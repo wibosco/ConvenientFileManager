@@ -1,3 +1,7 @@
+[![Version](https://img.shields.io/cocoapods/v/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
+[![License](https://img.shields.io/cocoapods/l/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
+[![Platform](https://img.shields.io/cocoapods/p/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
+
 ConvenientFileManager is a suite of categories to ease using NSFileManager for common tasks.
 
 ##Installation
