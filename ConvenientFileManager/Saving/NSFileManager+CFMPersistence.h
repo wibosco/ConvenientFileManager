@@ -27,6 +27,17 @@
               toPath:(NSString *)path;
 
 /**
+ Creates directory on filesystem.
+ 
+ If the directory doesn't exist it will be created.
+ 
+ @parameter path - path/directory-structure that will be created.
+ 
+ @return BOOL if creation was successful.
+ */
++ (BOOL)cfm_createDirectoryAtPath:(NSString *)path;
+
+/**
  Determines if a file exists at path.
  
  @parameter path - path to the file.
