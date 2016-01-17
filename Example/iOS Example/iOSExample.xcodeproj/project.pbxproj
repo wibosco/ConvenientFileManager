@@ -17,8 +17,8 @@
 		F4501CE81C4BDEF8007DDBF6 /* CFEMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CE61C4BDEF8007DDBF6 /* CFEMedia.m */; };
 		F4501CEB1C4BE015007DDBF6 /* CFEMedia+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CEA1C4BE015007DDBF6 /* CFEMedia+CoreDataProperties.m */; };
 		F4501CF51C4BE245007DDBF6 /* CFEListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CF21C4BE245007DDBF6 /* CFEListViewController.m */; };
-		F4501CF81C4BE257007DDBF6 /* CFEMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CF71C4BE257007DDBF6 /* CFEMediaViewController.m */; };
 		F4501CFC1C4BF911007DDBF6 /* CFEMediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CFB1C4BF911007DDBF6 /* CFEMediaTableViewCell.m */; };
+		F4501D001C4BFD7D007DDBF6 /* CFEMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CFF1C4BFD7D007DDBF6 /* CFEMediaViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +52,10 @@
 		F4501CEA1C4BE015007DDBF6 /* CFEMedia+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CFEMedia+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F4501CF11C4BE245007DDBF6 /* CFEListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEListViewController.h; sourceTree = "<group>"; };
 		F4501CF21C4BE245007DDBF6 /* CFEListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEListViewController.m; sourceTree = "<group>"; };
-		F4501CF61C4BE257007DDBF6 /* CFEMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEMediaViewController.h; sourceTree = "<group>"; };
-		F4501CF71C4BE257007DDBF6 /* CFEMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEMediaViewController.m; sourceTree = "<group>"; };
 		F4501CFA1C4BF911007DDBF6 /* CFEMediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEMediaTableViewCell.h; sourceTree = "<group>"; };
 		F4501CFB1C4BF911007DDBF6 /* CFEMediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEMediaTableViewCell.m; sourceTree = "<group>"; };
+		F4501CFE1C4BFD7D007DDBF6 /* CFEMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEMediaViewController.h; sourceTree = "<group>"; };
+		F4501CFF1C4BFD7D007DDBF6 /* CFEMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEMediaViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				F4501CEC1C4BE245007DDBF6 /* List */,
-				F4501CF31C4BE245007DDBF6 /* Photo */,
+				F4501CFD1C4BFD7D007DDBF6 /* Media */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -233,20 +233,20 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F4501CF31C4BE245007DDBF6 /* Photo */ = {
-			isa = PBXGroup;
-			children = (
-				F4501CF61C4BE257007DDBF6 /* CFEMediaViewController.h */,
-				F4501CF71C4BE257007DDBF6 /* CFEMediaViewController.m */,
-			);
-			path = Photo;
-			sourceTree = "<group>";
-		};
 		F4501CF91C4BF911007DDBF6 /* Media */ = {
 			isa = PBXGroup;
 			children = (
 				F4501CFA1C4BF911007DDBF6 /* CFEMediaTableViewCell.h */,
 				F4501CFB1C4BF911007DDBF6 /* CFEMediaTableViewCell.m */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		F4501CFD1C4BFD7D007DDBF6 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CFE1C4BFD7D007DDBF6 /* CFEMediaViewController.h */,
+				F4501CFF1C4BFD7D007DDBF6 /* CFEMediaViewController.m */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -402,9 +402,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4501D001C4BFD7D007DDBF6 /* CFEMediaViewController.m in Sources */,
 				F4501CF51C4BE245007DDBF6 /* CFEListViewController.m in Sources */,
 				F4501CEB1C4BE015007DDBF6 /* CFEMedia+CoreDataProperties.m in Sources */,
-				F4501CF81C4BE257007DDBF6 /* CFEMediaViewController.m in Sources */,
 				F4501CFC1C4BF911007DDBF6 /* CFEMediaTableViewCell.m in Sources */,
 				F4501CE81C4BDEF8007DDBF6 /* CFEMedia.m in Sources */,
 				F4501CA91C4BD93C007DDBF6 /* main.m in Sources */,
