@@ -2,7 +2,7 @@
 //  CFEMedia+CoreDataProperties.m
 //  iOSExample
 //
-//  Created by Home on 17/01/2016.
+//  Created by Boles on 17/01/2016.
 //  Copyright © 2016 Boles. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
