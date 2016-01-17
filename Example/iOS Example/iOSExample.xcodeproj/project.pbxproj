@@ -11,10 +11,15 @@
 		F4501C971C4BD6D6007DDBF6 /* iOSExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501C961C4BD6D6007DDBF6 /* iOSExampleTests.m */; };
 		F4501CA81C4BD93C007DDBF6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4501CA61C4BD93C007DDBF6 /* Info.plist */; };
 		F4501CA91C4BD93C007DDBF6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CA71C4BD93C007DDBF6 /* main.m */; };
-		F4501CAE1C4BD998007DDBF6 /* CFEFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CAD1C4BD998007DDBF6 /* CFEFirstViewController.m */; };
-		F4501CB21C4BD9B4007DDBF6 /* CFEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CB11C4BD9B4007DDBF6 /* CFEAppDelegate.m */; };
 		F4501CC51C4BD9F1007DDBF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4501CBF1C4BD9F1007DDBF6 /* Assets.xcassets */; };
 		F4501CC61C4BD9F1007DDBF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4501CC11C4BD9F1007DDBF6 /* LaunchScreen.storyboard */; };
+		F4501CCE1C4BDCAA007DDBF6 /* CFEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CCD1C4BDCAA007DDBF6 /* CFEAppDelegate.m */; };
+		F4501CD11C4BDCDD007DDBF6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4501CCF1C4BDCDD007DDBF6 /* Model.xcdatamodeld */; };
+		F4501CE81C4BDEF8007DDBF6 /* CFEPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CE61C4BDEF8007DDBF6 /* CFEPhoto.m */; };
+		F4501CEB1C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CEA1C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.m */; };
+		F4501CF41C4BE245007DDBF6 /* CFEPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CF01C4BE245007DDBF6 /* CFEPhotoTableViewCell.m */; };
+		F4501CF51C4BE245007DDBF6 /* CFEListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CF21C4BE245007DDBF6 /* CFEListViewController.m */; };
+		F4501CF81C4BE257007DDBF6 /* CFEPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4501CF71C4BE257007DDBF6 /* CFEPhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +42,21 @@
 		F4501C981C4BD6D6007DDBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4501CA61C4BD93C007DDBF6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4501CA71C4BD93C007DDBF6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F4501CAC1C4BD998007DDBF6 /* CFEFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEFirstViewController.h; sourceTree = "<group>"; };
-		F4501CAD1C4BD998007DDBF6 /* CFEFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEFirstViewController.m; sourceTree = "<group>"; };
-		F4501CB01C4BD9B4007DDBF6 /* CFEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEAppDelegate.h; sourceTree = "<group>"; };
-		F4501CB11C4BD9B4007DDBF6 /* CFEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEAppDelegate.m; sourceTree = "<group>"; };
 		F4501CBF1C4BD9F1007DDBF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4501CC21C4BD9F1007DDBF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F4501CCC1C4BDCAA007DDBF6 /* CFEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEAppDelegate.h; sourceTree = "<group>"; };
+		F4501CCD1C4BDCAA007DDBF6 /* CFEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEAppDelegate.m; sourceTree = "<group>"; };
+		F4501CD01C4BDCDD007DDBF6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F4501CE51C4BDEF8007DDBF6 /* CFEPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEPhoto.h; sourceTree = "<group>"; };
+		F4501CE61C4BDEF8007DDBF6 /* CFEPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEPhoto.m; sourceTree = "<group>"; };
+		F4501CE91C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CFEPhoto+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F4501CEA1C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CFEPhoto+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F4501CEF1C4BE245007DDBF6 /* CFEPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEPhotoTableViewCell.h; sourceTree = "<group>"; };
+		F4501CF01C4BE245007DDBF6 /* CFEPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEPhotoTableViewCell.m; sourceTree = "<group>"; };
+		F4501CF11C4BE245007DDBF6 /* CFEListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEListViewController.h; sourceTree = "<group>"; };
+		F4501CF21C4BE245007DDBF6 /* CFEListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEListViewController.m; sourceTree = "<group>"; };
+		F4501CF61C4BE257007DDBF6 /* CFEPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFEPhotoViewController.h; sourceTree = "<group>"; };
+		F4501CF71C4BE257007DDBF6 /* CFEPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFEPhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +118,8 @@
 		F4501C781C4BD6D6007DDBF6 /* iOSExample */ = {
 			isa = PBXGroup;
 			children = (
-				F4501CAF1C4BD9B4007DDBF6 /* AppDelegae */,
+				F4501CCB1C4BDCAA007DDBF6 /* AppDelegate */,
+				F4501CC81C4BDC98007DDBF6 /* Model */,
 				F4501CBD1C4BD9F1007DDBF6 /* Resources */,
 				F4501CA51C4BD93C007DDBF6 /* SupportingFiles */,
 				F4501CAA1C4BD998007DDBF6 /* ViewControllers */,
@@ -133,27 +148,10 @@
 		F4501CAA1C4BD998007DDBF6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F4501CAB1C4BD998007DDBF6 /* First */,
+				F4501CEC1C4BE245007DDBF6 /* List */,
+				F4501CF31C4BE245007DDBF6 /* Photo */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		F4501CAB1C4BD998007DDBF6 /* First */ = {
-			isa = PBXGroup;
-			children = (
-				F4501CAC1C4BD998007DDBF6 /* CFEFirstViewController.h */,
-				F4501CAD1C4BD998007DDBF6 /* CFEFirstViewController.m */,
-			);
-			path = First;
-			sourceTree = "<group>";
-		};
-		F4501CAF1C4BD9B4007DDBF6 /* AppDelegae */ = {
-			isa = PBXGroup;
-			children = (
-				F4501CB01C4BD9B4007DDBF6 /* CFEAppDelegate.h */,
-				F4501CB11C4BD9B4007DDBF6 /* CFEAppDelegate.m */,
-			);
-			path = AppDelegae;
 			sourceTree = "<group>";
 		};
 		F4501CBD1C4BD9F1007DDBF6 /* Resources */ = {
@@ -179,6 +177,79 @@
 				F4501CC11C4BD9F1007DDBF6 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F4501CC81C4BDC98007DDBF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CC91C4BDC98007DDBF6 /* ManagedObjects */,
+				F4501CCA1C4BDC98007DDBF6 /* Model */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4501CC91C4BDC98007DDBF6 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CE51C4BDEF8007DDBF6 /* CFEPhoto.h */,
+				F4501CE61C4BDEF8007DDBF6 /* CFEPhoto.m */,
+				F4501CE91C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.h */,
+				F4501CEA1C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.m */,
+			);
+			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		F4501CCA1C4BDC98007DDBF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CCF1C4BDCDD007DDBF6 /* Model.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4501CCB1C4BDCAA007DDBF6 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CCC1C4BDCAA007DDBF6 /* CFEAppDelegate.h */,
+				F4501CCD1C4BDCAA007DDBF6 /* CFEAppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		F4501CEC1C4BE245007DDBF6 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CED1C4BE245007DDBF6 /* Cells */,
+				F4501CF11C4BE245007DDBF6 /* CFEListViewController.h */,
+				F4501CF21C4BE245007DDBF6 /* CFEListViewController.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		F4501CED1C4BE245007DDBF6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CEE1C4BE245007DDBF6 /* Photo */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4501CEE1C4BE245007DDBF6 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CEF1C4BE245007DDBF6 /* CFEPhotoTableViewCell.h */,
+				F4501CF01C4BE245007DDBF6 /* CFEPhotoTableViewCell.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		F4501CF31C4BE245007DDBF6 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				F4501CF61C4BE257007DDBF6 /* CFEPhotoViewController.h */,
+				F4501CF71C4BE257007DDBF6 /* CFEPhotoViewController.m */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,9 +404,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4501CB21C4BD9B4007DDBF6 /* CFEAppDelegate.m in Sources */,
-				F4501CAE1C4BD998007DDBF6 /* CFEFirstViewController.m in Sources */,
+				F4501CF51C4BE245007DDBF6 /* CFEListViewController.m in Sources */,
+				F4501CEB1C4BE015007DDBF6 /* CFEPhoto+CoreDataProperties.m in Sources */,
+				F4501CF81C4BE257007DDBF6 /* CFEPhotoViewController.m in Sources */,
+				F4501CE81C4BDEF8007DDBF6 /* CFEPhoto.m in Sources */,
 				F4501CA91C4BD93C007DDBF6 /* main.m in Sources */,
+				F4501CF41C4BE245007DDBF6 /* CFEPhotoTableViewCell.m in Sources */,
+				F4501CCE1C4BDCAA007DDBF6 /* CFEAppDelegate.m in Sources */,
+				F4501CD11C4BDCDD007DDBF6 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +606,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F4501CCF1C4BDCDD007DDBF6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F4501CD01C4BDCDD007DDBF6 /* Model.xcdatamodel */,
+			);
+			currentVersion = F4501CD01C4BDCDD007DDBF6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F4501C6E1C4BD6D6007DDBF6 /* Project object */;
 }
