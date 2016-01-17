@@ -10,20 +10,26 @@
 
 #import <CoreDataServices/CDSServiceManager.h>
 #import <CoreDataServices/NSManagedObjectContext+CDSRetrieval.h>
+#import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
+#import <ConvenientFileManager/NSFileManager+CFMCache.h>
+#import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
 
 #import "CFEPhoto.h"
 #import "CFEPhotoTableViewCell.h"
 #import "CFEPhotoViewController.h"
 
-@interface CFEListViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CFEListViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic, strong) NSArray *images;
 
-@property (nonatomic, strong) UIBarButtonItem *photoPickerBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *imagePickerBarButtonItem;
 
-- (void)photoPickerButtonPressed:(UIBarButtonItem *)sender;
+@property (nonatomic, strong) UIImagePickerController *imagePickerViewController;
+
+- (void)imagePickerButtonPressed:(UIBarButtonItem *)sender;
+- (void)saveImageToDisk:(UIImage *)image;
 
 @end
 
@@ -37,11 +43,11 @@
     
     /*-------------------*/
     
-    self.title = @"Photos";
+    self.title = @"Images";
     
     /*-------------------*/
     
-    self.navigationItem.rightBarButtonItem = self.photoPickerBarButtonItem;
+    self.navigationItem.rightBarButtonItem = self.imagePickerBarButtonItem;
     
     /*-------------------*/
     
@@ -67,50 +73,96 @@
     return _tableView;
 }
 
-- (UIBarButtonItem *)photoPickerBarButtonItem
+- (UIBarButtonItem *)imagePickerBarButtonItem
 {
-    if (!_photoPickerBarButtonItem)
+    if (!_imagePickerBarButtonItem)
     {
-        _photoPickerBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+        _imagePickerBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                   target:self
-                                                                                  action:@selector(photoPickerButtonPressed:)];
+                                                                                  action:@selector(imagePickerButtonPressed:)];
     }
     
-    return _photoPickerBarButtonItem;
+    return _imagePickerBarButtonItem;
 }
 
-#pragma mark - Photos
+#pragma mark - Image
 
-- (NSArray *)photos
+- (NSArray *)images
 {
-    if (!_photos)
+    if (!_images)
     {
         NSSortDescriptor *dateSort = [NSSortDescriptor sortDescriptorWithKey:@"createdDate"
                                                                    ascending:YES];
         
-        _photos = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[CFEPhoto class]
+        _images = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[CFEPhoto class]
                                                                                              sortDescriptors:@[dateSort]];
     }
     
-    return _photos;
+    return _images;
+}
+
+- (void)saveImageToDisk:(UIImage *)image
+{
+    CFEPhoto *photo = [NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEPhoto class]
+                                                         inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
+    
+    photo.photoID = [NSUUID UUID].UUIDString;
+    photo.name = [NSString stringWithFormat:@"Image %@", @(self.images.count)];
+    photo.location = @(arc4random_uniform(2));
+    photo.createdDate = [NSDate date];
+    
+    [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    switch (photo.location.integerValue)
+    {
+        case CFEPhotoLocationCache:
+        {
+            [NSFileManager cfm_saveData:imageData
+                   toCacheDirectoryPath:photo.name];
+            
+            break;
+        }
+        case CFEPhotoLocationDocuments:
+        {
+            [NSFileManager cfm_saveData:imageData
+               toDocumentsDirectoryPath:photo.name];
+            
+            break;
+        }
+    }
+}
+
+- (UIImagePickerController *)imagePickerViewController
+{
+    if (!_imagePickerViewController)
+    {
+        _imagePickerViewController = [[UIImagePickerController alloc] init];
+        _imagePickerViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        _imagePickerViewController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        _imagePickerViewController.delegate = self;
+    }
+    
+    return _imagePickerViewController;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.photos.count;
+    return self.images.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CFEPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[CFEPhotoTableViewCell reuseIdentifier]
-                                                                 forIndexPath:indexPath];
+                                                                  forIndexPath:indexPath];
     
-    CFEPhoto *photo = self.photos[indexPath.row];
-
-    cell.nameLabel.text = photo.name;
-    cell.directoryLocationLabel.text = [photo locationString];
+    CFEPhoto *image = self.images[indexPath.row];
+    
+    cell.nameLabel.text = image.name;
+    cell.directoryLocationLabel.text = [image locationString];
     
     [cell layoutByApplyingConstraints];
     
@@ -121,19 +173,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CFEPhoto *photo = self.photos[indexPath.row];
+    CFEPhoto *image = self.images[indexPath.row];
     
-    CFEPhotoViewController *viewController = [[CFEPhotoViewController alloc] initWithPhoto:photo];
+    CFEPhotoViewController *viewController = [[CFEPhotoViewController alloc] initWithImage:image];
     
     [self.navigationController pushViewController:viewController
                                          animated:YES];
 }
 
-#pragma mark - Insert
+#pragma mark - PhotoPicker
 
-- (void)photoPickerButtonPressed:(UIBarButtonItem *)sender
+- (void)imagePickerButtonPressed:(UIBarButtonItem *)sender
 {
+    [self presentViewController:self.imagePickerViewController
+                       animated:YES
+                     completion:nil];
+}
 
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    [self saveImageToDisk:image];
+    
+    self.images = nil;
+    
+    [self.tableView reloadData];
+    
+    [picker dismissViewControllerAnimated:YES
+                               completion:nil];
 }
 
 @end

@@ -15,7 +15,7 @@
 @interface CFEPhotoViewController ()
 
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) CFEPhoto *photo;
+@property (nonatomic, strong) CFEPhoto *image;
 
 @end
 
@@ -23,13 +23,13 @@
 
 #pragma mark - Init
 
-- (instancetype)initWithPhoto:(CFEPhoto *)photo
+- (instancetype)initWithImage:(CFEPhoto *)photo
 {
     self = [super init];
     
     if (self)
     {
-        self.photo = photo;
+        self.image = photo;
     }
     
     return self;
@@ -43,7 +43,7 @@
     
     /*-------------------*/
     
-    self.title = @"Photo Detail";
+    self.title = @"Image Detail";
     
     /*-------------------*/
     

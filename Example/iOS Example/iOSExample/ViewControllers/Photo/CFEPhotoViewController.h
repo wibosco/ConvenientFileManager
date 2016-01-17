@@ -12,6 +12,6 @@
 
 @interface CFEPhotoViewController : UIViewController
 
-- (instancetype)initWithPhoto:(CFEPhoto *)photo;
+- (instancetype)initWithImage:(CFEPhoto *)photo;
 
 @end
