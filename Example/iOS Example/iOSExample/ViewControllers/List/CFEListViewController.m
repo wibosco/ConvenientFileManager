@@ -14,15 +14,15 @@
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
 #import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
 
-#import "CFEPhoto.h"
-#import "CFEPhotoTableViewCell.h"
-#import "CFEPhotoViewController.h"
+#import "CFEMedia.h"
+#import "CFEMediaTableViewCell.h"
+#import "CFEMediaViewController.h"
 
 @interface CFEListViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *medias;
 
 @property (nonatomic, strong) UIBarButtonItem *imagePickerBarButtonItem;
 
@@ -54,6 +54,15 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.medias = nil;
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - Subview
 
 - (UITableView *)tableView
@@ -66,8 +75,8 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         
-        [_tableView registerClass:[CFEPhotoTableViewCell class]
-           forCellReuseIdentifier:[CFEPhotoTableViewCell reuseIdentifier]];
+        [_tableView registerClass:[CFEMediaTableViewCell class]
+           forCellReuseIdentifier:[CFEMediaTableViewCell reuseIdentifier]];
     }
     
     return _tableView;
@@ -87,47 +96,47 @@
 
 #pragma mark - Image
 
-- (NSArray *)images
+- (NSArray *)medias
 {
-    if (!_images)
+    if (!_medias)
     {
         NSSortDescriptor *dateSort = [NSSortDescriptor sortDescriptorWithKey:@"createdDate"
                                                                    ascending:YES];
         
-        _images = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[CFEPhoto class]
+        _medias = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[CFEMedia class]
                                                                                              sortDescriptors:@[dateSort]];
     }
     
-    return _images;
+    return _medias;
 }
 
 - (void)saveImageToDisk:(UIImage *)image
 {
-    CFEPhoto *photo = [NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEPhoto class]
+    CFEMedia *media = [NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEMedia class]
                                                          inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
     
-    photo.photoID = [NSUUID UUID].UUIDString;
-    photo.name = [NSString stringWithFormat:@"Image %@", @(self.images.count)];
-    photo.location = @(arc4random_uniform(2));
-    photo.createdDate = [NSDate date];
+    media.mediaID = [NSUUID UUID].UUIDString;
+    media.name = [NSString stringWithFormat:@"Image %@", @(self.medias.count)];
+    media.location = @(arc4random_uniform(2));
+    media.createdDate = [NSDate date];
     
     [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
     
     NSData *imageData = UIImagePNGRepresentation(image);
     
-    switch (photo.location.integerValue)
+    switch (media.location.integerValue)
     {
-        case CFEPhotoLocationCache:
+        case CFEMediaLocationCache:
         {
             [NSFileManager cfm_saveData:imageData
-                   toCacheDirectoryPath:photo.name];
+                   toCacheDirectoryPath:media.name];
             
             break;
         }
-        case CFEPhotoLocationDocuments:
+        case CFEMediaLocationDocuments:
         {
             [NSFileManager cfm_saveData:imageData
-               toDocumentsDirectoryPath:photo.name];
+               toDocumentsDirectoryPath:media.name];
             
             break;
         }
@@ -151,18 +160,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.images.count;
+    return self.medias.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CFEPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[CFEPhotoTableViewCell reuseIdentifier]
+    CFEMediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[CFEMediaTableViewCell reuseIdentifier]
                                                                   forIndexPath:indexPath];
     
-    CFEPhoto *image = self.images[indexPath.row];
+    CFEMedia *media = self.medias[indexPath.row];
     
-    cell.nameLabel.text = image.name;
-    cell.directoryLocationLabel.text = [image locationString];
+    cell.nameLabel.text = media.name;
+    cell.directoryLocationLabel.text = [media locationString];
     
     [cell layoutByApplyingConstraints];
     
@@ -173,15 +182,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CFEPhoto *image = self.images[indexPath.row];
+    CFEMedia *media = self.medias[indexPath.row];
     
-    CFEPhotoViewController *viewController = [[CFEPhotoViewController alloc] initWithImage:image];
+    CFEMediaViewController *viewController = [[CFEMediaViewController alloc] initWithMedia:media];
     
     [self.navigationController pushViewController:viewController
                                          animated:YES];
 }
 
-#pragma mark - PhotoPicker
+#pragma mark - ButtonActions
 
 - (void)imagePickerButtonPressed:(UIBarButtonItem *)sender
 {
@@ -198,7 +207,7 @@
     
     [self saveImageToDisk:image];
     
-    self.images = nil;
+    self.medias = nil;
     
     [self.tableView reloadData];
     

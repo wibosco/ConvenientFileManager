@@ -1,5 +1,5 @@
 //
-//  CFEPhoto+CoreDataProperties.m
+//  CFEMedia+CoreDataProperties.m
 //  iOSExample
 //
 //  Created by Home on 17/01/2016.
@@ -9,11 +9,11 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "CFEPhoto+CoreDataProperties.h"
+#import "CFEMedia+CoreDataProperties.h"
 
-@implementation CFEPhoto (CoreDataProperties)
+@implementation CFEMedia (CoreDataProperties)
 
-@dynamic photoID;
+@dynamic mediaID;
 @dynamic createdDate;
 @dynamic name;
 @dynamic location;

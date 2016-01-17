@@ -1,14 +1,14 @@
 //
-//  CFEPhoto.m
+//  CFEMedia.m
 //  iOSExample
 //
 //  Created by Boles on 17/01/2016.
 //  Copyright © 2016 Boles. All rights reserved.
 //
 
-#import "CFEPhoto.h"
+#import "CFEMedia.h"
 
-@implementation CFEPhoto
+@implementation CFEMedia
 
 #pragma mark - Location
 
@@ -18,13 +18,13 @@
     
     switch (self.location.integerValue)
     {
-        case CFEPhotoLocationCache:
+        case CFEMediaLocationCache:
         {
             locationString = @"Cache";
             
             break;
         }
-        case CFEPhotoLocationDocuments:
+        case CFEMediaLocationDocuments:
         {
             locationString = @"Documents";
             

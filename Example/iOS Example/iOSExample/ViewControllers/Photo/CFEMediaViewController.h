@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class CFEPhoto;
+@class CFEMedia;
 
-@interface CFEPhotoViewController : UIViewController
+@interface CFEMediaViewController : UIViewController
 
-- (instancetype)initWithImage:(CFEPhoto *)photo;
+- (instancetype)initWithMedia:(CFEMedia *)image;
 
 @end

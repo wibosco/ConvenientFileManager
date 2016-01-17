@@ -1,5 +1,5 @@
 //
-//  CFEPhoto+CoreDataProperties.h
+//  CFEMedia+CoreDataProperties.h
 //  iOSExample
 //
 //  Created by Home on 17/01/2016.
@@ -9,13 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "CFEPhoto.h"
+#import "CFEMedia.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CFEPhoto (CoreDataProperties)
+@interface CFEMedia (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *photoID;
+@property (nullable, nonatomic, retain) NSString *mediaID;
 @property (nullable, nonatomic, retain) NSDate *createdDate;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSNumber *location;

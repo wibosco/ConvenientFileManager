@@ -1,5 +1,5 @@
 //
-//  CFEPhoto.h
+//  CFEMedia.h
 //  iOSExample
 //
 //  Created by Boles on 17/01/2016.
@@ -11,13 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, CFEPhotoLocation)
+typedef NS_ENUM(NSInteger, CFEMediaLocation)
 {
-    CFEPhotoLocationCache,
-    CFEPhotoLocationDocuments,
+    CFEMediaLocationCache,
+    CFEMediaLocationDocuments,
 };
 
-@interface CFEPhoto : NSManagedObject
+@interface CFEMedia : NSManagedObject
 
 - (NSString *)locationString;
 
@@ -25,4 +25,4 @@ typedef NS_ENUM(NSInteger, CFEPhotoLocation)
 
 NS_ASSUME_NONNULL_END
 
-#import "CFEPhoto+CoreDataProperties.h"
+#import "CFEMedia+CoreDataProperties.h"

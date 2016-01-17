@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CFEPhotoTableViewCell : UITableViewCell
+@interface CFEMediaTableViewCell : UITableViewCell
 
 @property (nonatomic, strong, readonly) UILabel *nameLabel;
 @property (nonatomic, strong, readonly) UILabel *directoryLocationLabel;

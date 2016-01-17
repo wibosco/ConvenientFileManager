@@ -6,20 +6,20 @@
 //  Copyright © 2016 Boles. All rights reserved.
 //
 
-#import "CFEPhotoTableViewCell.h"
+#import "CFEMediaTableViewCell.h"
 
 #import <PureLayout/PureLayout.h>
 
 static CGFloat const kCFEPadding = 28.0f;
 
-@interface CFEPhotoTableViewCell ()
+@interface CFEMediaTableViewCell ()
 
 @property (nonatomic, strong, readwrite) UILabel *nameLabel;
 @property (nonatomic, strong, readwrite) UILabel *directoryLocationLabel;
 
 @end
 
-@implementation CFEPhotoTableViewCell
+@implementation CFEMediaTableViewCell
 
 #pragma mark - Init
 
