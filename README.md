@@ -6,8 +6,6 @@ ConvenientFileManager is a suite of categories to ease using `NSFileManager` for
 
 ##Installation via [Cocoapods](https://cocoapods.org/)
 
-#### Podfile
-
 To integrate ConvenientFileManager into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
@@ -26,6 +24,8 @@ $ pod install
 > CocoaPods 0.39.0+ is required to build ConvenientFileManager.
 
 ##Usage
+
+ConvenientFileManager comes with convenience methods for the `Documents` (`NSFileManager+CFMDocuments.h`) and `Cache` (`NSFileManager+CFMCache`) folders in your app sandbox. These methods will prefix the relevant path on the one provided for accessing data however you may already have the absolute path and wish to use that instead, in which case you should use `NSFileManager+CFMPersistence`.
 
 ####Saving
 
@@ -116,6 +116,38 @@ $ pod install
             break;
         }
     }
+}
+```
+
+####Exists
+
+```objc
+#import <ConvenientFileManager/NSFileManager+CFMCache.h>
+#import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
+
+....
+
+- (BOOL)mediaAssetHasBeenDownloaded:(CFEMedia *)media
+{
+	BOOL mediaAssetHasBeenDownloaded = NO;
+
+    switch (self.media.location.integerValue)
+    {
+        case CFEMediaLocationCache:
+        {
+            mediaAssetHasBeenDownloaded = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:self.media.name];
+            
+            break;
+        }
+        case CFEMediaLocationDocuments:
+        {
+            mediaAssetHasBeenDownloaded = [NSFileManager cfm_fileExistsInDocumentsDirectory:self.media.name];
+            
+            break;
+        }
+    }
+    
+    return mediaAssetHasBeenDownloaded;
 }
 ```
 
