@@ -103,7 +103,7 @@
         NSSortDescriptor *dateSort = [NSSortDescriptor sortDescriptorWithKey:@"createdDate"
                                                                    ascending:YES];
         
-        _medias = [[CDSServiceManager sharedInstance].managedObjectContext cds_retrieveEntriesForEntityClass:[CFEMedia class]
+        _medias = [[CDSServiceManager sharedInstance].mainManagedObjectContext cds_retrieveEntriesForEntityClass:[CFEMedia class]
                                                                                              sortDescriptors:@[dateSort]];
     }
     
@@ -113,14 +113,14 @@
 - (void)saveImageToDisk:(UIImage *)image
 {
     CFEMedia *media = [NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEMedia class]
-                                                         inManagedObjectContext:[CDSServiceManager sharedInstance].managedObjectContext];
+                                                         inManagedObjectContext:[CDSServiceManager sharedInstance].mainManagedObjectContext];
     
     media.mediaID = [NSUUID UUID].UUIDString;
     media.name = [NSString stringWithFormat:@"Image %@", @(self.medias.count)];
     media.location = @(arc4random_uniform(2));
     media.createdDate = [NSDate date];
     
-    [[CDSServiceManager sharedInstance].managedObjectContext save:nil];
+    [[CDSServiceManager sharedInstance].mainManagedObjectContext save:nil];
     
     NSData *imageData = UIImagePNGRepresentation(image);
     

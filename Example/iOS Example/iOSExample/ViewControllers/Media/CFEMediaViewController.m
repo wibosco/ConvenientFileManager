@@ -146,7 +146,7 @@
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mediaID MATCHES %@", self.media.mediaID];
     
-    [[CDSServiceManager sharedInstance].managedObjectContext cds_deleteEntriesForEntityClass:[CFEMedia class]
+    [[CDSServiceManager sharedInstance].mainManagedObjectContext cds_deleteEntriesForEntityClass:[CFEMedia class]
                                                                                    predicate:predicate];
     
     [self.navigationController popToRootViewControllerAnimated:YES];

@@ -40,7 +40,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[CDSServiceManager sharedInstance] saveManagedObjectContext];
+    [[CDSServiceManager sharedInstance] saveMainManagedObjectContext];
 }
 
 #pragma mark - Window
