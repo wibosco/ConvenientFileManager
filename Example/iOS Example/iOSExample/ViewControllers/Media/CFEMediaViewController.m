@@ -62,6 +62,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.mediaImageView];
+    
+    /*-------------------*/
+    
+    [self updateViewConstraints];
 }
 
 #pragma mark - Autolayout
@@ -147,7 +151,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mediaID MATCHES %@", self.media.mediaID];
     
     [[CDSServiceManager sharedInstance].mainManagedObjectContext cds_deleteEntriesForEntityClass:[CFEMedia class]
-                                                                                   predicate:predicate];
+                                                                                       predicate:predicate];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
