@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: ConvenientFileManager.xcodeproj
+xcode_scheme: ConvenientFileManager
