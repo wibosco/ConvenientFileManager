@@ -47,6 +47,15 @@
 + (BOOL)cfm_fileExistsAtPath:(NSString *)path;
 
 /**
+ Determines if a file exists at path.
+ 
+ @parameter path - path to the file.
+ @parameter completion - a block that will be executed upon determining if a file exists or not.
+ */
++ (void)cfm_fileExistsAtPath:(NSString *)path
+                  completion:(void (^)(BOOL fileExists))completion;
+
+/**
  Delete data from path.
  
  @parameter path - path to the file.

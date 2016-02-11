@@ -78,6 +78,26 @@
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 
++ (void)ufc_fileExistsAtPath:(NSString *)path
+                  completion:(void (^)(BOOL fileExists))completion
+{
+    //Used to return the call on the same thread
+    NSOperationQueue *callBackQueue = [NSOperationQueue currentQueue];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^
+                   {
+                       BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:path];
+                       
+                       [callBackQueue addOperationWithBlock:^
+                        {
+                            if (completion)
+                            {
+                                completion(fileExists);
+                            }
+                        }];
+                   });
+}
+
 #pragma mark - Deletion
 
 + (BOOL)cfm_deleteDataAtPath:(NSString *)path
