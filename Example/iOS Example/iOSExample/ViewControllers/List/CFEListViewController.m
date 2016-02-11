@@ -104,7 +104,7 @@
                                                                    ascending:YES];
         
         _medias = [[CDSServiceManager sharedInstance].mainManagedObjectContext cds_retrieveEntriesForEntityClass:[CFEMedia class]
-                                                                                             sortDescriptors:@[dateSort]];
+                                                                                                 sortDescriptors:@[dateSort]];
     }
     
     return _medias;
