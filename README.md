@@ -5,7 +5,7 @@
 
 ConvenientFileManager is a suite of categories to ease using `NSFileManager` for common tasks.
 
-##Installation via [Cocoapods](https://cocoapods.org/)
+##Installation via [CocoaPods](https://cocoapods.org/)
 
 To integrate ConvenientFileManager into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
