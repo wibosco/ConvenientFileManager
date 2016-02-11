@@ -23,47 +23,47 @@
 /**
  Path of resource in cache directory.
  
- @parameter path - path that will be combined cache path.
+ @parameter relativePath - relative path that will be combined cache path.
  
  @return Combined path.
  */
-+ (NSString *)cfm_cacheDirectoryPathForResourceWithPath:(NSString *)path;
++ (NSString *)cfm_cacheDirectoryPathForResourceWithPath:(NSString *)relativePath;
 
 /**
  Save data to path in cache directory.
  
  @parameter data - data to be saved.
- @parameter path - path that will be combined cache path.
+ @parameter relativePath - relative path that will be combined cache path.
  
  @return BOOL if save was successful.
  */
-+ (BOOL)cfm_saveData:(NSData *)data toCacheDirectoryPath:(NSString *)path;
++ (BOOL)cfm_saveData:(NSData *)data toCacheDirectoryPath:(NSString *)relativePath;
 
 /**
  Retrieve data to path in cache directory.
  
- @parameter path - path that will be combined cache path.
+ @parameter relativePath - relative path that will be combined cache path.
  
  @return NSData that was retrieved.
  */
-+ (NSData *)cfm_retrieveDataFromCacheDirectoryWithPath:(NSString *)path;
++ (NSData *)cfm_retrieveDataFromCacheDirectoryWithPath:(NSString *)relativePath;
 
 /**
  Determines if a file exists at path in the cache directory
  
- @parameter path - path that will be combined cache path.
+ @parameter relativePath - relative path that will be combined cache path.
  
  @return BOOL - YES if file exists, NO if file doesn't exist.
  */
-+ (BOOL)cfm_fileExistsInCacheDirectory:(NSString *)path;
++ (BOOL)cfm_fileExistsInCacheDirectory:(NSString *)relativePath;
 
 /**
  Delete data from path in cache directory.
  
- @parameter path - path that will be combined cache path.
+ @parameter relativePath - relative path that will be combined cache path.
  
  @return BOOL if deletion was successful.
  */
-+ (BOOL)cfm_deleteDataFromCacheDirectoryWithPath:(NSString *)path;
++ (BOOL)cfm_deleteDataFromCacheDirectoryWithPath:(NSString *)relativePath;
 
 @end
