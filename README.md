@@ -122,6 +122,8 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 
 ####Exists
 
+**Synchronously**
+
 ```objc
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
 #import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
@@ -151,6 +153,35 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
     return mediaAssetHasBeenDownloaded;
 }
 ```
+
+**Asynchronously**
+
+```objc
+
+#import <ConvenientFileManager/NSFileManager+CFMPersistence.h>
+
+...
+
+[NSFileManager cfm_fileExistsAtPath:self.media.absoluteLocalPath
+                         completion:^(BOOL fileExists)
+ {
+     if (!fileExists)
+     {   
+         [CFMMediaAPIManager retrieveAssetForMedia:media
+                                           success:success
+                                           failure:failure];
+     }
+     else
+     {
+         if (failure)
+         {
+             failure(error);
+         }
+     }
+ }];
+
+```
+
 
 > ConvenientFileManager comes with an [example project](https://github.com/wibosco/ConvenientFileManager/tree/master/Example/iOS%20Example) to provide more details than listed above.
 
