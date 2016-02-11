@@ -22,52 +22,52 @@
     return [directoryURL path];
 }
 
-+ (NSString *)cfm_cacheDirectoryPathForResourceWithPath:(NSString *)path
++ (NSString *)cfm_cacheDirectoryPathForResourceWithPath:(NSString *)relativePath
 {
     NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
     
-    return [cacheDirectory stringByAppendingPathComponent:path];
+    return [cacheDirectory stringByAppendingPathComponent:relativePath];
 }
 
 #pragma mark - Saving
 
-+ (BOOL)cfm_saveData:(NSData *)data toCacheDirectoryPath:(NSString *)path
++ (BOOL)cfm_saveData:(NSData *)data toCacheDirectoryPath:(NSString *)relativePath
 {
     NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
-    NSString *extendedPath = [cacheDirectory stringByAppendingPathComponent:path];
+    NSString *absolutePath = [cacheDirectory stringByAppendingPathComponent:relativePath];
     
     return [NSFileManager cfm_saveData:data
-                                toPath:extendedPath];
+                                toPath:absolutePath];
 }
 
 #pragma mark - Retrieval
 
-+ (NSData *)cfm_retrieveDataFromCacheDirectoryWithPath:(NSString *)path
++ (NSData *)cfm_retrieveDataFromCacheDirectoryWithPath:(NSString *)relativePath
 {
     NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
-    NSString *extendedPath = [cacheDirectory stringByAppendingPathComponent:path];
+    NSString *absolutePath = [cacheDirectory stringByAppendingPathComponent:relativePath];
     
-    return [NSData dataWithContentsOfFile:extendedPath];
+    return [NSData dataWithContentsOfFile:absolutePath];
 }
 
 #pragma mark - Exists
 
-+ (BOOL)cfm_fileExistsInCacheDirectory:(NSString *)path
++ (BOOL)cfm_fileExistsInCacheDirectory:(NSString *)relativePath
 {
     NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
-    NSString *extendedPath = [cacheDirectory stringByAppendingPathComponent:path];
+    NSString *absolutePath = [cacheDirectory stringByAppendingPathComponent:relativePath];
     
-    return [NSFileManager cfm_fileExistsAtPath:extendedPath];
+    return [NSFileManager cfm_fileExistsAtPath:absolutePath];
 }
 
 #pragma mark - Deletion
 
-+ (BOOL)cfm_deleteDataFromCacheDirectoryWithPath:(NSString *)path
++ (BOOL)cfm_deleteDataFromCacheDirectoryWithPath:(NSString *)relativePath
 {
     NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
-    NSString *extendedPath = [cacheDirectory stringByAppendingPathComponent:path];
+    NSString *absolutePath = [cacheDirectory stringByAppendingPathComponent:relativePath];
     
-    return [NSFileManager cfm_deleteDataAtPath:extendedPath];
+    return [NSFileManager cfm_deleteDataAtPath:absolutePath];
 }
 
 @end

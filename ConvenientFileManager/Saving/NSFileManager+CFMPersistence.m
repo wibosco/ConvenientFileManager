@@ -13,18 +13,18 @@
 #pragma mark - Saving
 
 + (BOOL)cfm_saveData:(NSData *)data
-              toPath:(NSString *)path
+              toPath:(NSString *)absolutePath
 {
     BOOL success = NO;
     
     if (data.length > 0 &&
-        path.length > 0)
+        absolutePath.length > 0)
     {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
         BOOL createdDirectory = YES;
         
-        NSString *folderPath = [path stringByDeletingLastPathComponent];
+        NSString *folderPath = [absolutePath stringByDeletingLastPathComponent];
         
         if (![fileManager fileExistsAtPath:folderPath])
         {
@@ -35,7 +35,7 @@
         {
             NSError *error = nil;
             
-            success = [data writeToFile:path
+            success = [data writeToFile:absolutePath
                                 options:NSDataWritingAtomic
                                   error:&error];
             
@@ -49,22 +49,22 @@
     return success;
 }
 
-+ (BOOL)cfm_createDirectoryAtPath:(NSString *)path
++ (BOOL)cfm_createDirectoryAtPath:(NSString *)absolutePath
 {
     BOOL createdDirectory = NO;
     
-    if (path.length > 0)
+    if (absolutePath.length > 0)
     {
         NSError *error = nil;
         
-        createdDirectory = [[NSFileManager defaultManager] createDirectoryAtPath:path
+        createdDirectory = [[NSFileManager defaultManager] createDirectoryAtPath:absolutePath
                                                      withIntermediateDirectories:YES
                                                                       attributes:nil
                                                                            error:&error];
         
         if(error)
         {
-            NSLog(@"Error when creating a directory at location: %@", path);
+            NSLog(@"Error when creating a directory at location: %@", absolutePath);
         }
     }
     
@@ -73,18 +73,38 @@
 
 #pragma mark - Exists
 
-+ (BOOL)cfm_fileExistsAtPath:(NSString *)path
++ (BOOL)cfm_fileExistsAtPath:(NSString *)absolutePath
 {
-    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+    return [[NSFileManager defaultManager] fileExistsAtPath:absolutePath];
+}
+
++ (void)cfm_fileExistsAtPath:(NSString *)absolutePath
+                  completion:(void (^)(BOOL fileExists))completion
+{
+    //Used to return the call on the same thread
+    NSOperationQueue *callBackQueue = [NSOperationQueue currentQueue];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^
+                   {
+                       BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:absolutePath];
+                       
+                       [callBackQueue addOperationWithBlock:^
+                        {
+                            if (completion)
+                            {
+                                completion(fileExists);
+                            }
+                        }];
+                   });
 }
 
 #pragma mark - Deletion
 
-+ (BOOL)cfm_deleteDataAtPath:(NSString *)path
++ (BOOL)cfm_deleteDataAtPath:(NSString *)absolutePath
 {
     NSError *error = nil;
     
-    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path
+    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:absolutePath
                                                               error:&error];
     
     if (error)
@@ -97,9 +117,9 @@
 
 #pragma mark - URL
 
-+ (NSURL *)cfm_fileURLForPath:(NSString *)path
++ (NSURL *)cfm_fileURLForPath:(NSString *)absolutePath
 {
-    return [NSURL fileURLWithPath:path];
+    return [NSURL fileURLWithPath:absolutePath];
 }
 
 #pragma mark - Move

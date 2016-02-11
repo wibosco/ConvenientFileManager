@@ -23,47 +23,47 @@
 /**
  Path of resource in documents directory.
  
- @parameter path - path that will be combined documents path.
+ @parameter relativePath - relative path that will be combined documents path.
  
  @return Combined path.
  */
-+ (NSString *)cfm_documentsDirectoryPathForResourceWithPath:(NSString *)path;
++ (NSString *)cfm_documentsDirectoryPathForResourceWithPath:(NSString *)relativePath;
 
 /**
  Save data to path in document directory.
  
  @parameter data - data to be saved.
- @parameter path - path that will be combined documents path.
+ @parameter relativePath - relative path that will be combined documents path.
  
  @return BOOL if save was successful.
  */
-+ (BOOL)cfm_saveData:(NSData *)data toDocumentsDirectoryPath:(NSString *)path;
++ (BOOL)cfm_saveData:(NSData *)data toDocumentsDirectoryPath:(NSString *)relativePath;
 
 /**
  Retrieve data to path in document directory.
  
- @parameter path - path that will be combined documents path.
+ @parameter relativePath - relative path that will be combined documents path.
  
  @return NSData that was retrieved.
  */
-+ (NSData *)cfm_retrieveDataFromDocumentsDirectoryWithPath:(NSString *)path;
++ (NSData *)cfm_retrieveDataFromDocumentsDirectoryWithPath:(NSString *)relativePath;
 
 /**
  Determines if a file exists at path in the document directory
  
- @parameter path - path that will be combined documents path.
+ @parameter relativePath - relative path that will be combined documents path.
  
  @return BOOL - YES if file exists, NO if file doesn't exist.
  */
-+ (BOOL)cfm_fileExistsInDocumentsDirectory:(NSString *)path;
++ (BOOL)cfm_fileExistsInDocumentsDirectory:(NSString *)relativePath;
 
 /**
  Delete data from path in document directory.
  
- @parameter path - path that will be combined documents path.
+ @parameter relativePath - relative path that will be combined documents path.
  
  @return BOOL if deletion was successful.
  */
-+ (BOOL)cfm_deleteDataFromDocumentDirectoryWithPath:(NSString *)path;
++ (BOOL)cfm_deleteDataFromDocumentDirectoryWithPath:(NSString *)relativePath;
 
 @end
