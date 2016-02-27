@@ -9,23 +9,9 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "437A77171C42842700AD92C1"
-               BuildableName = "libConvenientFileManager.a"
-               BlueprintName = "ConvenientFileManager"
-               ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F4C4403C1C81B35C004EDD6E"
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437A77171C42842700AD92C1"
-            BuildableName = "libConvenientFileManager.a"
-            BlueprintName = "ConvenientFileManager"
+            BlueprintIdentifier = "F4C4403C1C81B35C004EDD6E"
+            BuildableName = "ConvenientFileManagerTests.xctest"
+            BlueprintName = "ConvenientFileManagerTests"
             ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437A77171C42842700AD92C1"
-            BuildableName = "libConvenientFileManager.a"
-            BlueprintName = "ConvenientFileManager"
+            BlueprintIdentifier = "F4C4403C1C81B35C004EDD6E"
+            BuildableName = "ConvenientFileManagerTests.xctest"
+            BlueprintName = "ConvenientFileManagerTests"
             ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -93,15 +79,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437A77171C42842700AD92C1"
-            BuildableName = "libConvenientFileManager.a"
-            BlueprintName = "ConvenientFileManager"
-            ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

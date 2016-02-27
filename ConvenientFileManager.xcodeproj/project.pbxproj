@@ -10,7 +10,22 @@
 		437A772D1C4285BF00AD92C1 /* NSFileManager+CFMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */; };
 		437A772E1C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */; };
 		437A772F1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */; };
+		F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */; };
+		F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */; };
+		F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */; };
+		F4C440401C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */; };
+		F4C440421C81B35C004EDD6E /* libConvenientFileManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A77181C42842700AD92C1 /* libConvenientFileManager.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4C440431C81B35C004EDD6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437A77101C42842700AD92C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 437A77171C42842700AD92C1;
+			remoteInfo = ConvenientFileManager;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		437A77161C42842700AD92C1 /* CopyFiles */ = {
@@ -32,6 +47,9 @@
 		437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMDocuments.m"; sourceTree = "<group>"; };
 		437A772B1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CFMPersistence.h"; sourceTree = "<group>"; };
 		437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMPersistence.m"; sourceTree = "<group>"; };
+		F4C4403D1C81B35C004EDD6E /* ConvenientFileManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvenientFileManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMCacheTests.m; sourceTree = "<group>"; };
+		F4C440411C81B35C004EDD6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +60,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4C4403A1C81B35C004EDD6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C440421C81B35C004EDD6E /* libConvenientFileManager.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -49,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				437A771A1C42842700AD92C1 /* ConvenientFileManager */,
+				F4C4403E1C81B35C004EDD6E /* ConvenientFileManagerTests */,
 				437A77191C42842700AD92C1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				437A77181C42842700AD92C1 /* libConvenientFileManager.a */,
+				F4C4403D1C81B35C004EDD6E /* ConvenientFileManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +126,15 @@
 			path = Saving;
 			sourceTree = "<group>";
 		};
+		F4C4403E1C81B35C004EDD6E /* ConvenientFileManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */,
+				F4C440411C81B35C004EDD6E /* Info.plist */,
+			);
+			path = ConvenientFileManagerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,6 +155,24 @@
 			productReference = 437A77181C42842700AD92C1 /* libConvenientFileManager.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F4C4403C1C81B35C004EDD6E /* ConvenientFileManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4C440471C81B35C004EDD6E /* Build configuration list for PBXNativeTarget "ConvenientFileManagerTests" */;
+			buildPhases = (
+				F4C440391C81B35C004EDD6E /* Sources */,
+				F4C4403A1C81B35C004EDD6E /* Frameworks */,
+				F4C4403B1C81B35C004EDD6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4C440441C81B35C004EDD6E /* PBXTargetDependency */,
+			);
+			name = ConvenientFileManagerTests;
+			productName = ConvenientFileManagerTests;
+			productReference = F4C4403D1C81B35C004EDD6E /* ConvenientFileManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -130,6 +185,9 @@
 				TargetAttributes = {
 					437A77171C42842700AD92C1 = {
 						CreatedOnToolsVersion = 7.2;
+					};
+					F4C4403C1C81B35C004EDD6E = {
+						CreatedOnToolsVersion = 7.2.1;
 					};
 				};
 			};
@@ -146,9 +204,20 @@
 			projectRoot = "";
 			targets = (
 				437A77171C42842700AD92C1 /* ConvenientFileManager */,
+				F4C4403C1C81B35C004EDD6E /* ConvenientFileManagerTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4C4403B1C81B35C004EDD6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		437A77141C42842700AD92C1 /* Sources */ = {
@@ -161,7 +230,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4C440391C81B35C004EDD6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */,
+				F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */,
+				F4C440401C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m in Sources */,
+				F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4C440441C81B35C004EDD6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 437A77171C42842700AD92C1 /* ConvenientFileManager */;
+			targetProxy = F4C440431C81B35C004EDD6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		437A771F1C42842700AD92C1 /* Debug */ = {
@@ -203,6 +291,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -239,6 +328,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -262,6 +352,34 @@
 			};
 			name = Release;
 		};
+		F4C440451C81B35C004EDD6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ConvenientFileManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamboles.paginationthrowawayexample.ConvenientFileManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F4C440461C81B35C004EDD6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ConvenientFileManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamboles.paginationthrowawayexample.ConvenientFileManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -279,6 +397,15 @@
 			buildConfigurations = (
 				437A77221C42842700AD92C1 /* Debug */,
 				437A77231C42842700AD92C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4C440471C81B35C004EDD6E /* Build configuration list for PBXNativeTarget "ConvenientFileManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4C440451C81B35C004EDD6E /* Debug */,
+				F4C440461C81B35C004EDD6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
