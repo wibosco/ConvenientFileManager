@@ -185,7 +185,74 @@
 
 #pragma mark - FileExistsAsync
 
-//TODO: Test
+- (void)test_fileExistsAtPathAsync_trueReturnValue
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePath];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Handler called"];
+    
+    [NSFileManager cfm_fileExistsAtPath:self.absolutePath
+                             completion:^(BOOL fileExists)
+     {
+         XCTAssertTrue(fileExists, @"File does exist and should be returned as TRUE");
+         [expectation fulfill];
+     }];
+    
+    [self waitForExpectationsWithTimeout:1.0
+                                 handler:nil];
+}
+
+- (void)test_fileExistsAtPathAsync_falseReturnValueForFileThatDoesNotExist
+{
+    NSString *resourceThatDoesNotExist = @"unknown.jpg";
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Handler called"];
+    
+    [NSFileManager cfm_fileExistsAtPath:resourceThatDoesNotExist
+                             completion:^(BOOL fileExists)
+     {
+         XCTAssertFalse(fileExists, @"File does not exist and should be returned as FALSE");
+         [expectation fulfill];
+     }];
+    
+    [self waitForExpectationsWithTimeout:1.0
+                                 handler:nil];
+}
+
+- (void)test_fileExistsAtPathAsync_falseReturnValueForNilParameter
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Handler called"];
+    
+    [NSFileManager cfm_fileExistsAtPath:nil
+                             completion:^(BOOL fileExists)
+     {
+         XCTAssertFalse(fileExists, @"Nil parameter and should be returned as FALSE");
+         [expectation fulfill];
+     }];
+    
+    [self waitForExpectationsWithTimeout:1.0
+                                 handler:nil];
+}
+
+- (void)test_fileExistsAtPathAsync_returnedOnCallerThread
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePath];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Handler called"];
+    
+    NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
+    
+    [NSFileManager cfm_fileExistsAtPath:self.absolutePath
+                             completion:^(BOOL fileExists)
+     {
+         XCTAssertEqualObjects(currentQueue, [NSOperationQueue currentQueue], @"Should be returned on the celler thread");
+         [expectation fulfill];
+     }];
+    
+    [self waitForExpectationsWithTimeout:1.0
+                                 handler:nil];
+
+}
 
 #pragma mark - Deletion
 
