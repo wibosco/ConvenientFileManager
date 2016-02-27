@@ -147,28 +147,33 @@
                  toDestinationPath:(NSString *)destinationPath
 {
     BOOL success = NO;
-    BOOL createdDirectory = YES;
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSString *destinationDirectoryPath = [destinationPath stringByDeletingLastPathComponent];
-    
-    if (![fileManager fileExistsAtPath:destinationDirectoryPath])
+    if (sourcePath.length > 0 &&
+        destinationPath.length > 0)
     {
-        createdDirectory = [NSFileManager cfm_createDirectoryAtPath:destinationDirectoryPath];
-    }
-    
-    if (createdDirectory)
-    {
-        NSError *error = nil;
+        BOOL createdDirectory = YES;
         
-        success = [fileManager moveItemAtPath:sourcePath
-                                       toPath:destinationPath
-                                        error:&error];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        if (error)
+        NSString *destinationDirectoryPath = [destinationPath stringByDeletingLastPathComponent];
+        
+        if (![fileManager fileExistsAtPath:destinationDirectoryPath])
         {
-            NSLog(@"Error when attempting to move data on disk: %@", [error userInfo]);
+            createdDirectory = [NSFileManager cfm_createDirectoryAtPath:destinationDirectoryPath];
+        }
+        
+        if (createdDirectory)
+        {
+            NSError *error = nil;
+            
+            success = [fileManager moveItemAtPath:sourcePath
+                                           toPath:destinationPath
+                                            error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error when attempting to move data on disk: %@", [error userInfo]);
+            }
         }
     }
     

@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *absolutePath;
 @property (nonatomic, strong) NSString *absolutePathWithAdditionalDirectory;
 @property (nonatomic, strong) NSString *absolutePathWithoutFile;
+@property (nonatomic, strong) NSString *absoluteSourcePath;
+@property (nonatomic, strong) NSString *absoluteDestinationPath;
 
 @end
 
@@ -33,6 +35,11 @@
     self.absolutePath = [NSFileManager cfm_documentsDirectoryPathForResourceWithPath:@"test.mp4"];
     self.absolutePathWithAdditionalDirectory = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/test/test.mp4"];
     self.absolutePathWithoutFile = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/testcache"];
+    self.absoluteSourcePath = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/source"];
+    self.absoluteDestinationPath = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/destination"];
+    
+    [NSFileManager cfm_saveData:self.dataToBeSaved
+                         toPath:self.absoluteSourcePath];
 }
 
 - (void)tearDown
@@ -53,6 +60,11 @@
     if ([NSFileManager cfm_fileExistsAtPath:self.absolutePathWithoutFile])
     {
         [NSFileManager cfm_deleteDataAtPath:self.absolutePathWithoutFile];
+    }
+    
+    if ([NSFileManager cfm_fileExistsAtPath:self.absoluteDestinationPath])
+    {
+        [NSFileManager cfm_deleteDataAtPath:self.absoluteDestinationPath];
     }
     
     [super tearDown];
@@ -226,6 +238,38 @@
 
 #pragma mark - Move
 
-//TODO: Test
+- (void)test_moveFileFromSourcePath_fileMoved
+{
+    [NSFileManager cfm_moveFileFromSourcePath:self.absoluteSourcePath
+                            toDestinationPath:self.absoluteDestinationPath];
+    
+    BOOL fileMoved = [NSFileManager cfm_fileExistsAtPath:self.absoluteDestinationPath];
+    
+    XCTAssertTrue(fileMoved, @"File has not been moved");
+}
+
+- (void)test_moveFileFromSourcePath_trueReturnValueWhenFileMoved
+{
+    BOOL fileMoved = [NSFileManager cfm_moveFileFromSourcePath:self.absoluteSourcePath
+                                             toDestinationPath:self.absoluteDestinationPath];
+    
+    XCTAssertTrue(fileMoved, @"File has not been moved");
+}
+
+- (void)test_moveFileFromSourcePath_falseReturnValueWhenNilSource
+{
+    BOOL fileMoved = [NSFileManager cfm_moveFileFromSourcePath:nil
+                                             toDestinationPath:self.absoluteDestinationPath];
+    
+    XCTAssertFalse(fileMoved, @"Source isn't set so file shouldn't have been moved");
+}
+
+- (void)test_moveFileFromSourcePath_falseReturnValueWhenNilDestination
+{
+    BOOL fileMoved = [NSFileManager cfm_moveFileFromSourcePath:self.absoluteSourcePath
+                                             toDestinationPath:nil];
+    
+    XCTAssertFalse(fileMoved, @"Source isn't set so file shouldn't have been moved");
+}
 
 @end
