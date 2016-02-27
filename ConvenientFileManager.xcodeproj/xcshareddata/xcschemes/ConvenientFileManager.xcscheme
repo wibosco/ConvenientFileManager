@@ -20,6 +20,20 @@
                ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F4C4403C1C81B35C004EDD6E"
+               BuildableName = "ConvenientFileManagerTests.xctest"
+               BlueprintName = "ConvenientFileManagerTests"
+               ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
