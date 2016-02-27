@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		437A772D1C4285BF00AD92C1 /* NSFileManager+CFMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */; };
 		437A772E1C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */; };
-		437A772F1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */; };
 		F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */; };
 		F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */; };
-		F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */; };
 		F46BE1E51C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1E31C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m */; };
 		F46BE1E71C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */; };
+		F46BE1EC1C81F6E4003004A6 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1EB1C81F6E4003004A6 /* NSFileManager+CFMPersistence.m */; };
+		F46BE1EE1C81F714003004A6 /* NSFileManagerCFMPersistenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1ED1C81F714003004A6 /* NSFileManagerCFMPersistenceTests.m */; };
 		F4C440421C81B35C004EDD6E /* libConvenientFileManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A77181C42842700AD92C1 /* libConvenientFileManager.a */; };
 /* End PBXBuildFile section */
 
@@ -46,10 +46,11 @@
 		437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMCache.m"; sourceTree = "<group>"; };
 		437A77281C4285BF00AD92C1 /* NSFileManager+CFMDocuments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CFMDocuments.h"; sourceTree = "<group>"; };
 		437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMDocuments.m"; sourceTree = "<group>"; };
-		437A772B1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CFMPersistence.h"; sourceTree = "<group>"; };
-		437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMPersistence.m"; sourceTree = "<group>"; };
 		F46BE1E31C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMCacheTests.m; sourceTree = "<group>"; };
 		F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMDocumentsTests.m; sourceTree = "<group>"; };
+		F46BE1EA1C81F6E4003004A6 /* NSFileManager+CFMPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CFMPersistence.h"; sourceTree = "<group>"; };
+		F46BE1EB1C81F6E4003004A6 /* NSFileManager+CFMPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMPersistence.m"; sourceTree = "<group>"; };
+		F46BE1ED1C81F714003004A6 /* NSFileManagerCFMPersistenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMPersistenceTests.m; sourceTree = "<group>"; };
 		F4C4403D1C81B35C004EDD6E /* ConvenientFileManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvenientFileManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C440411C81B35C004EDD6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +97,7 @@
 			children = (
 				437A77241C4285BF00AD92C1 /* Cache */,
 				437A77271C4285BF00AD92C1 /* Documents */,
-				437A772A1C4285BF00AD92C1 /* Saving */,
+				F46BE1E91C81F6E4003004A6 /* Persistence */,
 			);
 			path = ConvenientFileManager;
 			sourceTree = "<group>";
@@ -119,20 +120,12 @@
 			path = Documents;
 			sourceTree = "<group>";
 		};
-		437A772A1C4285BF00AD92C1 /* Saving */ = {
-			isa = PBXGroup;
-			children = (
-				437A772B1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.h */,
-				437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */,
-			);
-			path = Saving;
-			sourceTree = "<group>";
-		};
 		F46BE1E11C81EA6E003004A6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				F46BE1E21C81EA6E003004A6 /* Cache */,
 				F46BE1E41C81EA6E003004A6 /* Documents */,
+				F46BE1E81C81F6CF003004A6 /* Persistence */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -151,6 +144,23 @@
 				F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */,
 			);
 			path = Documents;
+			sourceTree = "<group>";
+		};
+		F46BE1E81C81F6CF003004A6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F46BE1ED1C81F714003004A6 /* NSFileManagerCFMPersistenceTests.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		F46BE1E91C81F6E4003004A6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F46BE1EA1C81F6E4003004A6 /* NSFileManager+CFMPersistence.h */,
+				F46BE1EB1C81F6E4003004A6 /* NSFileManager+CFMPersistence.m */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		F4C4403E1C81B35C004EDD6E /* ConvenientFileManagerTests */ = {
@@ -252,7 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				437A772E1C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m in Sources */,
-				437A772F1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m in Sources */,
 				437A772D1C4285BF00AD92C1 /* NSFileManager+CFMCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,10 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46BE1E51C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m in Sources */,
+				F46BE1EE1C81F714003004A6 /* NSFileManagerCFMPersistenceTests.m in Sources */,
 				F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */,
 				F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */,
 				F46BE1E71C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m in Sources */,
-				F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */,
+				F46BE1EC1C81F6E4003004A6 /* NSFileManager+CFMPersistence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

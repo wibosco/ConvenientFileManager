@@ -10,6 +10,20 @@
 
 @implementation NSFileManager (CFMPersistence)
 
+#pragma mark - Retrieving
+
++ (NSData *)cfm_retrieveDataAtPath:(NSString *)absolutePath
+{
+    NSData *data = nil;
+    
+    if (absolutePath.length > 0)
+    {
+        data = [NSData dataWithContentsOfFile:absolutePath];
+    }
+    
+    return data;
+}
+
 #pragma mark - Saving
 
 + (BOOL)cfm_saveData:(NSData *)data
@@ -102,17 +116,22 @@
 
 + (BOOL)cfm_deleteDataAtPath:(NSString *)absolutePath
 {
-    NSError *error = nil;
+    BOOL deletion = NO;
     
-    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:absolutePath
-                                                              error:&error];
-    
-    if (error)
+    if (absolutePath.length > 0)
     {
-        NSLog(@"Error when attempting to delete data from disk: %@", [error userInfo]);
+        NSError *error = nil;
+        
+        deletion = [[NSFileManager defaultManager] removeItemAtPath:absolutePath
+                                                              error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error when attempting to delete data from disk: %@", [error userInfo]);
+        }
     }
     
-    return success;
+    return deletion;
 }
 
 #pragma mark - URL
@@ -128,28 +147,33 @@
                  toDestinationPath:(NSString *)destinationPath
 {
     BOOL success = NO;
-    BOOL createdDirectory = YES;
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSString *destinationDirectoryPath = [destinationPath stringByDeletingLastPathComponent];
-    
-    if (![fileManager fileExistsAtPath:destinationDirectoryPath])
+    if (sourcePath.length > 0 &&
+        destinationPath.length > 0)
     {
-        createdDirectory = [NSFileManager cfm_createDirectoryAtPath:destinationDirectoryPath];
-    }
-    
-    if (createdDirectory)
-    {
-        NSError *error = nil;
+        BOOL createdDirectory = YES;
         
-        success = [fileManager moveItemAtPath:sourcePath
-                                       toPath:destinationPath
-                                        error:&error];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        if (error)
+        NSString *destinationDirectoryPath = [destinationPath stringByDeletingLastPathComponent];
+        
+        if (![fileManager fileExistsAtPath:destinationDirectoryPath])
         {
-            NSLog(@"Error when attempting to move data on disk: %@", [error userInfo]);
+            createdDirectory = [NSFileManager cfm_createDirectoryAtPath:destinationDirectoryPath];
+        }
+        
+        if (createdDirectory)
+        {
+            NSError *error = nil;
+            
+            success = [fileManager moveItemAtPath:sourcePath
+                                           toPath:destinationPath
+                                            error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error when attempting to move data on disk: %@", [error userInfo]);
+            }
         }
     }
     

@@ -27,7 +27,7 @@
     [super setUp];
     
     self.dataToBeSaved = [@"Test string to be converted into data" dataUsingEncoding:NSUTF8StringEncoding];
-    self.resource = @"text.mp4";
+    self.resource = @"test.mp4";
     self.resourceWithFolder = @"test/test.mp4";
 }
 
@@ -52,7 +52,7 @@
 
 #pragma mark - Path
 
-- (void)test_DocumentsDirectoryPath_fullPathToDocumentsDirectory
+- (void)test_documentsDirectoryPath_fullPathToDocumentsDirectory
 {
     NSURL *directoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
@@ -64,7 +64,7 @@
     XCTAssertEqualObjects(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, @"Paths returned do not match: %@ and %@", returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath);
 }
 
-- (void)test_DocumentsDirectoryPathForResourceWithPath_fullPathToResource
+- (void)test_documentsDirectoryPathForResourceWithPath_fullPathToResource
 {
     NSURL *directoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
@@ -76,7 +76,7 @@
     XCTAssertEqualObjects(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, @"Paths returned do not match: %@ and %@", returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath);
 }
 
-- (void)test_DocumentsDirectoryPathForResourceWithPath_fullPathToResourceWithFolder
+- (void)test_documentsDirectoryPathForResourceWithPath_fullPathToResourceWithFolder
 {
     NSURL *directoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
@@ -88,7 +88,7 @@
     XCTAssertEqualObjects(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, @"Paths returned do not match: %@ and %@", returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath);
 }
 
-- (void)test_DocumentsDirectoryPathForResourceWithPath_nilResource
+- (void)test_documentsDirectoryPathForResourceWithPath_nilResource
 {
     NSURL *directoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
                                                                   inDomains:NSUserDomainMask] lastObject];
