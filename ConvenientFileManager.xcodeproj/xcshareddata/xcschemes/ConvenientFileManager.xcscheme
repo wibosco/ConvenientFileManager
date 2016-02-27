@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F4C4403C1C81B35C004EDD6E"
+               BuildableName = "ConvenientFileManagerTests.xctest"
+               BlueprintName = "ConvenientFileManagerTests"
+               ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "437A77171C42842700AD92C1"
+            BuildableName = "libConvenientFileManager.a"
+            BlueprintName = "ConvenientFileManager"
+            ReferencedContainer = "container:ConvenientFileManager.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
