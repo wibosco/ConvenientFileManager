@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [1.0.3](https://github.com/wibosco/ConvenientFileManager/releases/tag/1.0.3)
+
+* Implemented a suite of unit tests
+
 ## [1.0.2](https://github.com/wibosco/ConvenientFileManager/releases/tag/1.0.2)
 
 * Added asynchronous method for checking if file exists
