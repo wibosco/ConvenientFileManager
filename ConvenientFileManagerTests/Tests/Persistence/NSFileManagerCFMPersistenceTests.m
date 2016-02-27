@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSData *dataToBeSaved;
 @property (nonatomic, strong) NSString *absolutePath;
 @property (nonatomic, strong) NSString *absolutePathWithAdditionalDirectory;
+@property (nonatomic, strong) NSString *absolutePathWithoutFile;
 
 @end
 
@@ -30,7 +31,8 @@
     
     self.dataToBeSaved = [@"Test string to be converted into data" dataUsingEncoding:NSUTF8StringEncoding];
     self.absolutePath = [NSFileManager cfm_documentsDirectoryPathForResourceWithPath:@"test.mp4"];
-    self.absolutePathWithAdditionalDirectory = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/test.mp4"];
+    self.absolutePathWithAdditionalDirectory = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/test/test.mp4"];
+    self.absolutePathWithoutFile = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:@"test/testcache"];
 }
 
 - (void)tearDown
@@ -46,6 +48,11 @@
     if ([NSFileManager cfm_fileExistsAtPath:self.absolutePathWithAdditionalDirectory])
     {
         [NSFileManager cfm_deleteDataAtPath:self.absolutePathWithAdditionalDirectory];
+    }
+    
+    if ([NSFileManager cfm_fileExistsAtPath:self.absolutePathWithoutFile])
+    {
+        [NSFileManager cfm_deleteDataAtPath:self.absolutePathWithoutFile];
     }
     
     [super tearDown];
@@ -87,7 +94,7 @@
     XCTAssertFalse(saved, @"Failed save of data should return FALSE");
 }
 
-- (void)test_saveData_failedSaveNilResourceReturnValue
+- (void)test_saveData_failedSaveNilPathReturnValue
 {
     BOOL saved = [NSFileManager cfm_saveData:self.dataToBeSaved toPath:nil];
     
@@ -102,5 +109,123 @@
     
     XCTAssertEqualObjects(self.dataToBeSaved, dataThatWasSaved, @"Data returned do not match: %@ and %@", self.dataToBeSaved, dataThatWasSaved);
 }
+
+#pragma mark - Directory
+
+- (void)test_createDirectoryAtPath_directoryCreatedWithFile
+{
+    [NSFileManager cfm_createDirectoryAtPath:self.absolutePathWithAdditionalDirectory];
+    
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:self.absolutePathWithAdditionalDirectory];
+    
+    XCTAssertTrue(fileExists, @"File should exist within a custom directory");
+}
+
+- (void)test_createDirectoryAtPath_directoryCreatedWithoutFile
+{
+    [NSFileManager cfm_createDirectoryAtPath:self.absolutePathWithoutFile];
+    
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:self.absolutePathWithoutFile];
+    
+    XCTAssertTrue(fileExists, @"Directory should be created");
+}
+
+- (void)test_createDirectoryAtPath_returnValue
+{
+    BOOL directoryCreated = [NSFileManager cfm_createDirectoryAtPath:self.absolutePathWithAdditionalDirectory];
+    
+    XCTAssertTrue(directoryCreated, @"TRUE should be returned when custom directory is created");
+}
+
+- (void)test_createDirectoryAtPath_failedCreationNilPathReturnValue
+{
+    BOOL directoryCreated = [NSFileManager cfm_createDirectoryAtPath:nil];
+    
+    XCTAssertFalse(directoryCreated, @"FALSE should be returned when not path is provided");
+}
+
+#pragma mark - FileExists
+
+- (void)test_fileExistsAtPath_trueReturnValue
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePath];
+    
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:self.absolutePath];
+    
+    XCTAssertTrue(fileExists, @"File does exist and should be returned as TRUE");
+}
+
+- (void)test_fileExistsAtPath_falseReturnValueForFileThatDoesNotExist
+{
+    NSString *resourceThatDoesNotExist = @"unknown.jpg";
+    
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:resourceThatDoesNotExist];
+    
+    XCTAssertFalse(fileExists, @"File does not exist and should be returned as FALSE");
+}
+
+- (void)test_fileExistsAtPath_falseReturnValueForNilParameter
+{
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:nil];
+    
+    XCTAssertFalse(fileExists, @"Nil parameter and should be returned as FALSE");
+}
+
+#pragma mark - FileExistsAsync
+
+//TODO: Test
+
+#pragma mark - Deletion
+
+- (void)test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFile
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePath];
+    
+    [NSFileManager cfm_deleteDataAtPath:self.absolutePath];
+    
+    BOOL fileExists = [NSFileManager cfm_fileExistsAtPath:self.absolutePath];
+    
+    XCTAssertFalse(fileExists, @"File should not exist as file should have been deleted, this call should be returned as FALSE");
+}
+
+- (void)test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFileReturnValue
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePath];
+    
+    BOOL deletion = [NSFileManager cfm_deleteDataAtPath:self.absolutePath];
+    
+    XCTAssertTrue(deletion, @"File should not exist as file should have been deleted, this call should be returned as FALSE");
+}
+
+- (void)test_deleteDataFromDocumentsDirectoryWithPath_falseReturnValueForFileThatDoesNotExist
+{
+    NSString *resourceThatDoesNotExist = @"unknown.jpg";
+    
+    BOOL deletion = [NSFileManager cfm_deleteDataAtPath:resourceThatDoesNotExist];
+    
+    XCTAssertFalse(deletion, @"Deletion should return FALSE as the resource does not exist");
+}
+
+- (void)test_deleteDataFromDocumentsDirectoryWithPath_falseReturnValueForNilParameter
+{
+    BOOL deletion = [NSFileManager cfm_deleteDataAtPath:nil];
+    
+    XCTAssertFalse(deletion, @"Deletion should return FALSE as the resource is nil");
+}
+
+- (void)test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFileWithFolder
+{
+    [NSFileManager cfm_saveData:self.dataToBeSaved toPath:self.absolutePathWithAdditionalDirectory];
+    
+    [NSFileManager cfm_deleteDataAtPath:self.absolutePathWithAdditionalDirectory];
+    
+    BOOL fileExists = [NSFileManager cfm_deleteDataAtPath:self.absolutePathWithAdditionalDirectory];
+    
+    XCTAssertFalse(fileExists, @"File should not exist as file should have been deleted, this call should be returned as FALSE");
+}
+
+#pragma mark - Move
+
+//TODO: Test
 
 @end

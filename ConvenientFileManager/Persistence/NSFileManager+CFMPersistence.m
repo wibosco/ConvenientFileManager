@@ -116,17 +116,22 @@
 
 + (BOOL)cfm_deleteDataAtPath:(NSString *)absolutePath
 {
-    NSError *error = nil;
+    BOOL deletion = NO;
     
-    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:absolutePath
-                                                              error:&error];
-    
-    if (error)
+    if (absolutePath.length > 0)
     {
-        NSLog(@"Error when attempting to delete data from disk: %@", [error userInfo]);
+        NSError *error = nil;
+        
+        deletion = [[NSFileManager defaultManager] removeItemAtPath:absolutePath
+                                                              error:&error];
+        
+        if (error)
+        {
+            NSLog(@"Error when attempting to delete data from disk: %@", [error userInfo]);
+        }
     }
     
-    return success;
+    return deletion;
 }
 
 #pragma mark - URL
