@@ -13,7 +13,8 @@
 		F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77261C4285BF00AD92C1 /* NSFileManager+CFMCache.m */; };
 		F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */; };
 		F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */; };
-		F4C440401C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */; };
+		F46BE1E51C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1E31C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m */; };
+		F46BE1E71C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */; };
 		F4C440421C81B35C004EDD6E /* libConvenientFileManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437A77181C42842700AD92C1 /* libConvenientFileManager.a */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +48,9 @@
 		437A77291C4285BF00AD92C1 /* NSFileManager+CFMDocuments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMDocuments.m"; sourceTree = "<group>"; };
 		437A772B1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CFMPersistence.h"; sourceTree = "<group>"; };
 		437A772C1C4285BF00AD92C1 /* NSFileManager+CFMPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+CFMPersistence.m"; sourceTree = "<group>"; };
+		F46BE1E31C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMCacheTests.m; sourceTree = "<group>"; };
+		F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMDocumentsTests.m; sourceTree = "<group>"; };
 		F4C4403D1C81B35C004EDD6E /* ConvenientFileManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvenientFileManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerCFMCacheTests.m; sourceTree = "<group>"; };
 		F4C440411C81B35C004EDD6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,10 +128,35 @@
 			path = Saving;
 			sourceTree = "<group>";
 		};
+		F46BE1E11C81EA6E003004A6 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F46BE1E21C81EA6E003004A6 /* Cache */,
+				F46BE1E41C81EA6E003004A6 /* Documents */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		F46BE1E21C81EA6E003004A6 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				F46BE1E31C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		F46BE1E41C81EA6E003004A6 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				F46BE1E61C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		F4C4403E1C81B35C004EDD6E /* ConvenientFileManagerTests */ = {
 			isa = PBXGroup;
 			children = (
-				F4C4403F1C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m */,
+				F46BE1E11C81EA6E003004A6 /* Tests */,
 				F4C440411C81B35C004EDD6E /* Info.plist */,
 			);
 			path = ConvenientFileManagerTests;
@@ -234,9 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F46BE1E51C81EA6E003004A6 /* NSFileManagerCFMCacheTests.m in Sources */,
 				F46BE1DE1C81B54A003004A6 /* NSFileManager+CFMCache.m in Sources */,
 				F46BE1DF1C81B7AA003004A6 /* NSFileManager+CFMDocuments.m in Sources */,
-				F4C440401C81B35C004EDD6E /* NSFileManagerCFMCacheTests.m in Sources */,
+				F46BE1E71C81EA91003004A6 /* NSFileManagerCFMDocumentsTests.m in Sources */,
 				F46BE1E01C81B7AC003004A6 /* NSFileManager+CFMPersistence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

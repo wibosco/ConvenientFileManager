@@ -64,6 +64,6 @@
  
  @return BOOL if deletion was successful.
  */
-+ (BOOL)cfm_deleteDataFromDocumentDirectoryWithPath:(NSString *)relativePath;
++ (BOOL)cfm_deleteDataFromDocumentsDirectoryWithPath:(NSString *)relativePath;
 
 @end
