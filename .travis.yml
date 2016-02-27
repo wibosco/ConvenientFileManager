@@ -1,3 +1,4 @@
 language: objective-c
-xcode_project: ConvenientFileManager.xcodeproj
-xcode_scheme: ConvenientFileManager
+   
+script: 
+   xctool -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager build -scheme ConvenientFileManagerTests test -sdk iphonesimulator
