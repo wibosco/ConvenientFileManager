@@ -58,7 +58,7 @@
         NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
         NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
         
-        data = [NSData dataWithContentsOfFile:absolutePath];
+        data = [NSFileManager cfm_retrieveDataAtPath:absolutePath];
     }
     
     return data;

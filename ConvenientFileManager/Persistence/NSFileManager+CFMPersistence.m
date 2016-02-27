@@ -10,6 +10,20 @@
 
 @implementation NSFileManager (CFMPersistence)
 
+#pragma mark - Retrieving
+
++ (NSData *)cfm_retrieveDataAtPath:(NSString *)absolutePath
+{
+    NSData *data = nil;
+    
+    if (absolutePath.length > 0)
+    {
+        data = [NSData dataWithContentsOfFile:absolutePath];
+    }
+    
+    return data;
+}
+
 #pragma mark - Saving
 
 + (BOOL)cfm_saveData:(NSData *)data

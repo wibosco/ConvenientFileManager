@@ -58,7 +58,7 @@
         NSString *cacheDirectory = [NSFileManager cfm_cacheDirectoryPath];
         NSString *absolutePath = [cacheDirectory stringByAppendingPathComponent:relativePath];
         
-        data = [NSData dataWithContentsOfFile:absolutePath];
+        data = [NSFileManager cfm_retrieveDataAtPath:absolutePath];
     }
     
     return data;

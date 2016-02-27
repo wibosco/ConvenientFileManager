@@ -27,7 +27,7 @@
     [super setUp];
     
     self.dataToBeSaved = [@"Test string to be converted into data" dataUsingEncoding:NSUTF8StringEncoding];
-    self.resource = @"text.mp4";
+    self.resource = @"test.mp4";
     self.resourceWithFolder = @"test/test.mp4";
 }
 

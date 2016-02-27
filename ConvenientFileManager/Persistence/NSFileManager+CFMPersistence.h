@@ -14,6 +14,15 @@
 @interface NSFileManager (CFMPersistence)
 
 /**
+ Retrieve data to path in document directory.
+ 
+ @parameter absolutePath - absolute path that will be used to retrieve the data that it's location.
+ 
+ @return NSData that was retrieved.
+ */
++ (NSData *)cfm_retrieveDataAtPath:(NSString *)absolutePath;
+
+/**
  Save data to path on filesystem.
  
  If the directory doesn't exist it will be created.
