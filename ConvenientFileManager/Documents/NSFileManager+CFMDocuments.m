@@ -33,41 +33,69 @@
 
 + (BOOL)cfm_saveData:(NSData *)data toDocumentsDirectoryPath:(NSString *)relativePath
 {
-    NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
-    NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+    BOOL saved = NO;
     
-    return [NSFileManager cfm_saveData:data
-                                toPath:absolutePath];
+    if (relativePath.length > 0)
+    {
+        NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
+        NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+        
+        saved = [NSFileManager cfm_saveData:data
+                                     toPath:absolutePath];
+    }
+    
+    return saved;
 }
 
 #pragma mark - Retrieval
 
 + (NSData *)cfm_retrieveDataFromDocumentsDirectoryWithPath:(NSString *)relativePath
 {
-    NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
-    NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+    NSData *data = nil;
     
-    return [NSData dataWithContentsOfFile:absolutePath];
+    if (relativePath.length > 0)
+    {
+        NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
+        NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+        
+        data = [NSData dataWithContentsOfFile:absolutePath];
+    }
+    
+    return data;
 }
 
 #pragma mark - Exists
 
 + (BOOL)cfm_fileExistsInDocumentsDirectory:(NSString *)relativePath
 {
-    NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
-    NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+    BOOL fileExists = NO;
     
-    return [[NSFileManager defaultManager] fileExistsAtPath:absolutePath];
+    if (relativePath.length > 0)
+    {
+        NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
+        NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+        
+        fileExists = [[NSFileManager defaultManager] fileExistsAtPath:absolutePath];
+    }
+    
+    return fileExists;
 }
 
 #pragma mark - Deletion
 
-+ (BOOL)cfm_deleteDataFromDocumentDirectoryWithPath:(NSString *)relativePath
++ (BOOL)cfm_deleteDataFromDocumentsDirectoryWithPath:(NSString *)relativePath
 {
-    NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
-    NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+    BOOL deletion = NO;
     
-    return [NSFileManager cfm_deleteDataAtPath:absolutePath];
+    if (relativePath.length > 0)
+    {
+        NSString *documentsDirectory = [NSFileManager cfm_documentsDirectoryPath];
+        NSString *absolutePath = [documentsDirectory stringByAppendingPathComponent:relativePath];
+        
+        deletion = [NSFileManager cfm_deleteDataAtPath:absolutePath];
+    }
+    
+    return deletion;
 }
 
 @end
