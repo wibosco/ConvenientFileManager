@@ -16,7 +16,6 @@ Pod::Spec.new do |s|
   					 :tag => s.version }
 
   s.source_files  = "ConvenientFileManager/**/*.swift"
-  s.public_header_files = "ConvenientFileManager/**/*.swift"
 	
   s.requires_arc = true
   

@@ -19,9 +19,9 @@
 		4383CB401CABDCA300280004 /* NSFileManager+CFMPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
 		4383CB461CABDCC300280004 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4383CB431CABDCC300280004 /* Info.plist */; };
 		4383CB4A1CABDDFE00280004 /* ConvenientFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB491CABDDFE00280004 /* ConvenientFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4383CB4B1CABDE2600280004 /* NSFileManager+CFMCache.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */; };
-		4383CB4C1CABDE2600280004 /* NSFileManager+CFMDocuments.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */; };
-		4383CB4D1CABDE2600280004 /* NSFileManager+CFMPersistence.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
+		4383CB4E1CABF4E900280004 /* NSFileManager+CFMCache.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */; };
+		4383CB4F1CABF4E900280004 /* NSFileManager+CFMDocuments.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */; };
+		4383CB501CABF4E900280004 /* NSFileManager+CFMPersistence.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,9 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4383CB4A1CABDDFE00280004 /* ConvenientFileManager.h in Headers */,
-				4383CB4B1CABDE2600280004 /* NSFileManager+CFMCache.swift in Headers */,
-				4383CB4C1CABDE2600280004 /* NSFileManager+CFMDocuments.swift in Headers */,
-				4383CB4D1CABDE2600280004 /* NSFileManager+CFMPersistence.swift in Headers */,
+				4383CB4E1CABF4E900280004 /* NSFileManager+CFMCache.swift in Headers */,
+				4383CB4F1CABF4E900280004 /* NSFileManager+CFMDocuments.swift in Headers */,
+				4383CB501CABF4E900280004 /* NSFileManager+CFMPersistence.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
