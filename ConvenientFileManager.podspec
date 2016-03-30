@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ConvenientFileManager"
-  s.version      = "1.0.3"
+  s.version      = "2.0.0"
   s.summary      = "A suite of categories to ease using NSFileManager for common tasks."
 
   s.homepage     = "http://www.williamboles.me"
@@ -9,14 +9,14 @@ Pod::Spec.new do |s|
   					 :file => 'LICENSE.md' }
   s.author       = "William Boles"
 
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
 
   s.source       = { :git => "https://github.com/wibosco/ConvenientFileManager.git", 
   					 :branch => "master", 
   					 :tag => s.version }
 
-  s.source_files  = "ConvenientFileManager/**/*.{h,m}"
-  s.public_header_files = "ConvenientFileManager/**/*.{h}"
+  s.source_files  = "ConvenientFileManager/**/*.swift"
+  s.public_header_files = "ConvenientFileManager/**/*.swift"
 	
   s.requires_arc = true
   
