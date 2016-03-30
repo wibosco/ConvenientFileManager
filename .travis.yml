@@ -1,4 +1,6 @@
 language: objective-c
+
+osx_image: xcode7.3
    
 script: 
-   xctool -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager build -scheme ConvenientFileManagerTests test -sdk iphonesimulator
+   xcodebuild -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager test -sdk iphonesimulator
