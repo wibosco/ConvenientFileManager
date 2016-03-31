@@ -50,9 +50,9 @@ public extension NSFileManager {
         var success = true
         
         if data.length > 0 && absolutePath.characters.count > 0 {
-            let absoluteURL = NSURL(string: absolutePath)
+            let absoluteURL = self.fileURLForPath(absolutePath)
 
-            if let directoryPath = absoluteURL?.URLByDeletingLastPathComponent?.path {
+            if let directoryPath = absoluteURL.URLByDeletingLastPathComponent?.path {
                  var createdDirectory = true
                 
                 if !NSFileManager.defaultManager().fileExistsAtPath(directoryPath) {
@@ -61,7 +61,7 @@ public extension NSFileManager {
                 
                 if createdDirectory {
                     do {
-                        try data.writeToFile(absolutePath, options: NSDataWritingOptions.DataWritingAtomic)
+                        try data.writeToURL(absoluteURL, options: NSDataWritingOptions.DataWritingAtomic)
                     } catch let error as NSError {
                         success = false
                         print("Error when saving data at location: \(absolutePath). The error was: \(error.description)")
@@ -93,8 +93,10 @@ public extension NSFileManager {
         var createdDirectory = true
         
         if absoluteDirectoryPath.characters.count > 0 {
+            let absoluteDirectoryURL = self.fileURLForPath(absoluteDirectoryPath)
+            
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(absoluteDirectoryPath, withIntermediateDirectories: true, attributes: nil)
+                try NSFileManager.defaultManager().createDirectoryAtURL(absoluteDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             } catch let error as NSError {
                 createdDirectory = false
                 print("Error when creating a directory at location: \(absoluteDirectoryPath). The error was: \(error.description)")
@@ -156,8 +158,10 @@ public extension NSFileManager {
         var deleted = true
         
         if absolutePath.characters.count > 0 {
+            let absoluteURL = self.fileURLForPath(absolutePath)
+            
             do {
-                try NSFileManager.defaultManager().removeItemAtPath(absolutePath)
+                try NSFileManager.defaultManager().removeItemAtURL(absoluteURL)
             } catch let error as NSError {
                 deleted = false
                 print("Error when deleting data at location: \(absolutePath). The error was: \(error.description)")
@@ -198,9 +202,9 @@ public extension NSFileManager {
         var moved = true
         
         if sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 {
-            let destinationAbsoluteURL = NSURL(string: destinationAbsolutePath)
+            let destinationAbsoluteURL = self.fileURLForPath(destinationAbsolutePath)
             
-            if let destinationAbsoluteDirectoryPath = destinationAbsoluteURL?.URLByDeletingLastPathComponent?.path {
+            if let destinationAbsoluteDirectoryPath = destinationAbsoluteURL.URLByDeletingLastPathComponent?.path {
                 
                 var createdDirectory = true
                 
@@ -209,8 +213,10 @@ public extension NSFileManager {
                 }
                 
                 if createdDirectory {
+                    let sourceAbsoluteURL = self.fileURLForPath(sourceAbsolutePath)
+                    
                     do {
-                        try NSFileManager.defaultManager().moveItemAtPath(sourceAbsolutePath, toPath: destinationAbsolutePath)
+                        try NSFileManager.defaultManager().moveItemAtURL(sourceAbsoluteURL, toURL: destinationAbsoluteURL)
                     } catch let error as NSError {
                         moved = false
                         print("Error when moving file from: \(sourceAbsolutePath) to \(destinationAbsolutePath). The error was: \(error.description)")

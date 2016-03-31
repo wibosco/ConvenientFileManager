@@ -36,6 +36,12 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         return absolutePath
     }()
     
+    lazy var absolutePathWithSpaceInFilename: String = {
+        let absolutePathWithSpaceInFilename = NSFileManager.documentsDirectoryPathForResourceWithPath("test 98.mp4")
+        
+        return absolutePathWithSpaceInFilename
+    }()
+    
     lazy var absolutePathWithAdditionalDirectory: String = {
         let absolutePathWithAdditionalDirectory = NSFileManager.cacheDirectoryPathForResourceWithPath("\(self.testFolder)/test/test.mp4")
         
@@ -54,10 +60,22 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         return absoluteSourcePath
     }()
     
+    lazy var absoluteSourcePathWithSpaceInFilename: String = {
+        let absoluteSourcePathWithSpaceInFilename = NSFileManager.cacheDirectoryPathForResourceWithPath("\(self.testFolder)/source 98.png")
+        
+        return absoluteSourcePathWithSpaceInFilename
+    }()
+    
     lazy var absoluteDestinationPath: String = {
         let absoluteDestinationPath = NSFileManager.cacheDirectoryPathForResourceWithPath("\(self.testFolder)/destination.png")
         
         return absoluteDestinationPath
+    }()
+    
+    lazy var absoluteDestinationPathWithSpaceInFilename: String = {
+        let absoluteDestinationPathWithSpaceInFilename = NSFileManager.cacheDirectoryPathForResourceWithPath("\(self.testFolder)/destination 879.png")
+        
+        return absoluteDestinationPathWithSpaceInFilename
     }()
     
     //MARK: TestSuiteLifecycle
@@ -66,12 +84,17 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         super.setUp()
         
         NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absoluteSourcePath)
+        NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absoluteSourcePathWithSpaceInFilename)
     }
     
     override func tearDown() {
         
         if NSFileManager.fileExistsAtPath(self.absolutePath) {
            NSFileManager.deleteDataAtPath(self.absolutePath)
+        }
+        
+        if NSFileManager.fileExistsAtPath(self.absolutePathWithSpaceInFilename) {
+            NSFileManager.deleteDataAtPath(self.absolutePathWithSpaceInFilename)
         }
         
         if NSFileManager.fileExistsAtPath(self.absolutePathWithAdditionalDirectory) {
@@ -88,6 +111,14 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         
         if NSFileManager.fileExistsAtPath(self.absoluteSourcePath) {
             NSFileManager.deleteDataAtPath(self.absoluteSourcePath)
+        }
+        
+        if NSFileManager.fileExistsAtPath(self.absoluteDestinationPathWithSpaceInFilename) {
+            NSFileManager.deleteDataAtPath(self.absoluteDestinationPathWithSpaceInFilename)
+        }
+        
+        if NSFileManager.fileExistsAtPath(self.absoluteSourcePathWithSpaceInFilename) {
+            NSFileManager.deleteDataAtPath(self.absoluteSourcePathWithSpaceInFilename)
         }
         
         let documentsTestFolder = NSFileManager.documentsDirectoryPathForResourceWithPath(self.testFolder)
@@ -120,6 +151,14 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let dataThatWasSaved = NSFileManager.retrieveDataAtPath(self.absolutePath)
+        
+        XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
+    }
+    
+    func test_saveData_fileOnDiskWithSpaceInFilename() {
+        NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absolutePathWithSpaceInFilename)
+        
+        let dataThatWasSaved = NSFileManager.retrieveDataAtPath(self.absolutePathWithSpaceInFilename)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
@@ -186,6 +225,14 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let fileExists = NSFileManager.fileExistsAtPath(self.absolutePath)
+        
+        XCTAssertTrue(fileExists, "File does exist and should be returned as TRUE")
+    }
+    
+    func test_fileExistsAtPath_trueReturnValueWithSpaceInFilename() {
+        NSFileManager.saveData(self.dataToBeSaved, absolutePath: self.absolutePathWithoutFile)
+        
+        let fileExists = NSFileManager.fileExistsAtPath(self.absolutePathWithoutFile)
         
         XCTAssertTrue(fileExists, "File does exist and should be returned as TRUE")
     }
@@ -308,6 +355,22 @@ class NSFileManagerCFMPersistenceTests: XCTestCase {
         NSFileManager.moveFile(self.absoluteSourcePath, destinationAbsolutePath: self.absoluteDestinationPath)
         
         let fileMoved = NSFileManager.fileExistsAtPath(self.absoluteDestinationPath)
+        
+        XCTAssertTrue(fileMoved, "File has not been moved")
+    }
+    
+    func test_moveFileFromSourcePath_fileMovedWithSpaceInSourcePathFileName() {
+        NSFileManager.moveFile(self.absoluteSourcePathWithSpaceInFilename, destinationAbsolutePath: self.absoluteDestinationPath)
+        
+        let fileMoved = NSFileManager.fileExistsAtPath(self.absoluteDestinationPath)
+        
+        XCTAssertTrue(fileMoved, "File has not been moved")
+    }
+    
+    func test_moveFileFromSourcePath_fileMovedWithSpaceInDestinationPathFileName() {
+        NSFileManager.moveFile(self.absoluteSourcePath, destinationAbsolutePath: self.absoluteDestinationPathWithSpaceInFilename)
+        
+        let fileMoved = NSFileManager.fileExistsAtPath(self.absoluteDestinationPathWithSpaceInFilename)
         
         XCTAssertTrue(fileMoved, "File has not been moved")
     }

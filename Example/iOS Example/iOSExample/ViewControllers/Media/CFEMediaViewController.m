@@ -141,7 +141,7 @@
         }
         case CFEMediaLocationDocuments:
         {
-            [NSFileManager cfm_deleteDataFromDocumentDirectoryWithPath:self.media.name];
+            [NSFileManager cfm_deleteDataFromDocumentsDirectoryWithPath:self.media.name];
             
             break;
         }
