@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   					 :file => 'LICENSE.md' }
   s.author       = "William Boles"
 
-  s.platform     = :ios, "9.0"
+  s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/wibosco/ConvenientFileManager.git", 
   					 :branch => "master", 
