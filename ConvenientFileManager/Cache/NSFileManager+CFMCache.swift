@@ -8,18 +8,38 @@
 
 import Foundation
 
+/**
+ A collection of helper functions for common operations in the cache directory.
+ */
 public extension NSFileManager {
     
     //MARK: Cache
     
+    /**
+     Path of cache directory.
+     
+     - returns: String instance.
+     */
     public class func cacheDirectoryPath() -> String {
         return (NSFileManager.cacheDirectoryURL().path)!
     }
     
+    /**
+     URL of cache directory.
+     
+     - returns: URL instance.
+     */
     public class func cacheDirectoryURL() -> NSURL {
         return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.CachesDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last!
     }
     
+    /**
+     Path of resource in cache directory.
+     
+     - parameter relativePath: relative path that will be combined cache path.
+     
+     - returns: Combined path.
+     */
     public class func cacheDirectoryPathForResourceWithPath(relativePath: String) -> String {
         let cacheDirectoryPathForResource: String
         
@@ -37,6 +57,14 @@ public extension NSFileManager {
     
     //MARK: Saving
     
+    /**
+     Save data to path in cache directory.
+     
+     - parameter data: data to be saved.
+     - parameter relativePath: relative path that will be combined cache path.
+     
+     - returns: Bool if save was successful.
+     */
     public class func saveDataToCacheDirectory(data: NSData, relativePath: String) -> Bool{
         var saved = false
         
@@ -53,6 +81,13 @@ public extension NSFileManager {
     
     //MARK: Retrieval
     
+    /**
+     Retrieve data to path in cache directory.
+     
+     - parameter relativePath: relative path that will be combined cache path.
+     
+     - returns: NSData that was retrieved.
+     */
     public class func retrieveDataFromCacheDirectory(relativePath: String) -> NSData? {
         var data: NSData?
         
@@ -69,6 +104,13 @@ public extension NSFileManager {
     
     //MARK: Exists
     
+    /**
+     Determines if a file exists at path in the cache directory
+     
+     - parameter relativePath: relative path that will be combined cache path.
+     
+     - returns: Bool - true if file exists, false if file doesn't exist.
+     */
     public class func fileExistsInCacheDirectory(relativePath: String) -> Bool {
         var fileExists = false
         
@@ -85,6 +127,13 @@ public extension NSFileManager {
     
     //MARK: Deletion 
     
+    /**
+     Delete data from path in cache directory.
+     
+     - parameter relativePath: relative path that will be combined cache path.
+     
+     - returns: Bool - true if deletion was successful, false otherwise.
+     */
     public class func deleteDataFromCacheDirectory(relativePath: String) -> Bool {
         var deleted = false
         

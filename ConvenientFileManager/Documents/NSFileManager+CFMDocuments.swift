@@ -8,18 +8,38 @@
 
 import Foundation
 
+/**
+ A collection of helper functions for common operations in the documents directory.
+ */
 public extension NSFileManager {
 
     //MARK: Documents
     
+    /**
+     Path of documents directory.
+     
+     - returns: String instance.
+     */
     public class func documentsDirectoryPath() -> String {
         return (NSFileManager.documentsDirectoryURL().path)!
     }
     
+    /**
+     URL of documents directory.
+     
+     - returns: URL instance.
+     */
     public class func documentsDirectoryURL() -> NSURL {
         return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last!
     }
     
+    /**
+     Path of resource in documents directory.
+     
+     - parameter relativePath: relative path that will be combined documents path.
+     
+     - returns: Combined path.
+     */
     public class func documentsDirectoryPathForResourceWithPath(relativePath: String) -> String {
         let documentsDirectoryPathForResource: String
         
@@ -37,6 +57,14 @@ public extension NSFileManager {
     
     //MARK: Saving
     
+    /**
+     Save data to path in documents directory.
+     
+     - parameter data: data to be saved.
+     - parameter relativePath: relative path that will be combined documents path.
+     
+     - returns: Bool if save was successful.
+     */
     public class func saveDataToDocumentsDirectory(data: NSData, relativePath: String) -> Bool{
         var saved = false
         
@@ -53,6 +81,13 @@ public extension NSFileManager {
     
     //MARK: Retrieval
     
+    /**
+     Retrieve data to path in documents directory.
+     
+     - parameter relativePath: relative path that will be combined documents path.
+     
+     - returns: NSData that was retrieved.
+     */
     public class func retrieveDataFromDocumentsDirectory(relativePath: String) -> NSData? {
         var data: NSData?
         
@@ -68,6 +103,13 @@ public extension NSFileManager {
     
     //MARK: Exists
     
+    /**
+     Determines if a file exists at path in the documents directory
+     
+     - parameter relativePath: relative path that will be combined documents path.
+     
+     - returns: Bool - true if file exists, false if file doesn't exist.
+     */
     public class func fileExistsInDocumentsDirectory(relativePath: String) -> Bool {
         var fileExists = false
         
@@ -83,6 +125,13 @@ public extension NSFileManager {
     
     //MARK: Deletion
     
+    /**
+     Delete data from path in documents directory.
+     
+     - parameter relativePath: relative path that will be combined documents path.
+     
+     - returns: Bool - true if deletion was successful, false otherwise.
+     */
     public class func deleteDataFromDocumentsDirectory(relativePath: String) -> Bool {
         var deleted = false
         

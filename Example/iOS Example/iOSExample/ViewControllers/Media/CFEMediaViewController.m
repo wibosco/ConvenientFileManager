@@ -11,8 +11,7 @@
 #import <PureLayout/PureLayout.h>
 #import <CoreDataServices/CDSServiceManager.h>
 #import <CoreDataServices/NSManagedObjectContext+CDSDelete.h>
-#import <ConvenientFileManager/NSFileManager+CFMCache.h>
-#import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
+#import "ConvenientFileManager-Swift.h"
 
 #import "CFEMedia.h"
 

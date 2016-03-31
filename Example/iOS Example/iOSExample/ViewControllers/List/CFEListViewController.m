@@ -11,8 +11,7 @@
 #import <CoreDataServices/CDSServiceManager.h>
 #import <CoreDataServices/NSManagedObjectContext+CDSRetrieval.h>
 #import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
-#import <ConvenientFileManager/NSFileManager+CFMCache.h>
-#import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
+#import "ConvenientFileManager-Swift.h"
 
 #import "CFEMedia.h"
 #import "CFEMediaTableViewCell.h"
