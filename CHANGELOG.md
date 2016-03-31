@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.4](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.4)
+
+* Updated example project's pods
+
 ## [2.0.3](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.3)
 
 * Switched from using path to using URL when interacting with the filesystem because it handles spaces better
