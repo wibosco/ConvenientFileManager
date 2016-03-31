@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.2](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.2)
+
+* Re-added documentation
+* Added `@objc` method names
+
 ## [2.0.1](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.1)
 
 * Removed `public_header_files` from podspec
