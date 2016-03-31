@@ -22,6 +22,7 @@ public extension NSFileManager {
      
      - returns: NSData that was retrieved or nil.
      */
+    @objc(cfm_retrieveDataAtPath:)
     public class func retrieveDataAtPath(absolutePath: String) -> NSData? {
         var data: NSData?
         
@@ -44,6 +45,7 @@ public extension NSFileManager {
      
      - returns: BOOL if save was successful.
      */
+    @objc(cfm_saveData:toPath:)
     public class func saveData(data: NSData, absolutePath: String) -> Bool {
         var success = true
         
@@ -86,6 +88,7 @@ public extension NSFileManager {
      
      - returns: Bool - true if creation was successful, false otherwise.
      */
+    @objc(cfm_createDirectoryAtPath:)
     public class func createDirectoryAtPath(absoluteDirectoryPath: String) -> Bool {
         var createdDirectory = true
         
@@ -112,6 +115,7 @@ public extension NSFileManager {
      
      - returns: Bool - YES if file exists, NO if file doesn't exist.
      */
+    @objc(cfm_fileExistsAtPath:)
     public class func fileExistsAtPath(absolutePath: String) -> Bool {
         return NSFileManager.defaultManager().fileExistsAtPath(absolutePath)
     }
@@ -122,6 +126,7 @@ public extension NSFileManager {
      - parameter absolutePath: absolute path to the file.
      - parameter completion: a block that will be executed upon determining if a file exists or not.
      */
+    @objc(cfm_fileExistsAtPath:completion:)
     public class func fileExistsAtPath(absolutePath: String, completion:((fileExists: Bool) -> Void)?) {
         //Used to return the call on the same thread
         let callBackQueue = NSOperationQueue.currentQueue()
@@ -146,6 +151,7 @@ public extension NSFileManager {
      
      - returns: Bool - true if deletion was successful, false otherwise.
      */
+    @objc(cfm_deleteDataAtPath:)
     public class func deleteDataAtPath(absolutePath: String) -> Bool {
         var deleted = true
         
@@ -172,6 +178,7 @@ public extension NSFileManager {
      
      - returns: Combined URL.
      */
+    @objc(cfm_fileURLForPath:)
     public class func fileURLForPath(absolutePath: String) -> NSURL {
         return NSURL(fileURLWithPath: absolutePath)
     }
@@ -186,6 +193,7 @@ public extension NSFileManager {
      
      - returns: Bool - true if move was successful, false otherwise.
      */
+    @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
     public class func moveFile(sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
         var moved = true
         

@@ -20,6 +20,7 @@ public extension NSFileManager {
      
      - returns: String instance.
      */
+    @objc(cfm_cacheDirectoryPath)
     public class func cacheDirectoryPath() -> String {
         return (NSFileManager.cacheDirectoryURL().path)!
     }
@@ -29,6 +30,7 @@ public extension NSFileManager {
      
      - returns: URL instance.
      */
+    @objc(cfm_cacheDirectoryURL)
     public class func cacheDirectoryURL() -> NSURL {
         return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.CachesDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last!
     }
@@ -40,6 +42,7 @@ public extension NSFileManager {
      
      - returns: Combined path.
      */
+    @objc(cfm_cacheDirectoryPathForResourceWithPath:)
     public class func cacheDirectoryPathForResourceWithPath(relativePath: String) -> String {
         let cacheDirectoryPathForResource: String
         
@@ -65,6 +68,7 @@ public extension NSFileManager {
      
      - returns: Bool if save was successful.
      */
+    @objc(cfm_saveData:toCacheDirectoryPath:)
     public class func saveDataToCacheDirectory(data: NSData, relativePath: String) -> Bool{
         var saved = false
         
@@ -88,6 +92,7 @@ public extension NSFileManager {
      
      - returns: NSData that was retrieved.
      */
+    @objc(cfm_retrieveDataFromCacheDirectoryWithPath:)
     public class func retrieveDataFromCacheDirectory(relativePath: String) -> NSData? {
         var data: NSData?
         
@@ -111,6 +116,7 @@ public extension NSFileManager {
      
      - returns: Bool - true if file exists, false if file doesn't exist.
      */
+    @objc(cfm_fileExistsInCacheDirectory:)
     public class func fileExistsInCacheDirectory(relativePath: String) -> Bool {
         var fileExists = false
         
@@ -134,6 +140,7 @@ public extension NSFileManager {
      
      - returns: Bool - true if deletion was successful, false otherwise.
      */
+    @objc(cfm_deleteDataFromCacheDirectoryWithPath:)
     public class func deleteDataFromCacheDirectory(relativePath: String) -> Bool {
         var deleted = false
         
