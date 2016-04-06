@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.6](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.6)
+
+* Removed prefix from extension file name
+
 ## [2.0.5](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.5)
 
 * Reduced minimum iOS version to 8.0
