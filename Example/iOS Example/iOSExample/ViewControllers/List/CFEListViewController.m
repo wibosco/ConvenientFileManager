@@ -8,10 +8,8 @@
 
 #import "CFEListViewController.h"
 
-#import <CoreDataServices/CDSServiceManager.h>
-#import <CoreDataServices/NSManagedObjectContext+CDSRetrieval.h>
-#import <CoreDataServices/NSEntityDescription+CDSEntityDescription.h>
-#import "ConvenientFileManager-Swift.h"
+#import <CoreDataServices/CoreDataServices-Swift.h>
+#import <ConvenientFileManager/ConvenientFileManager-Swift.h>
 
 #import "CFEMedia.h"
 #import "CFEMediaTableViewCell.h"
@@ -111,8 +109,8 @@
 
 - (void)saveImageToDisk:(UIImage *)image
 {
-    CFEMedia *media = [NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEMedia class]
-                                                         inManagedObjectContext:[CDSServiceManager sharedInstance].mainManagedObjectContext];
+    CFEMedia *media = (CFEMedia *)[NSEntityDescription cds_insertNewObjectForEntityForClass:[CFEMedia class]
+                                                                     inManagedObjectContext:[CDSServiceManager sharedInstance].mainManagedObjectContext];
     
     media.mediaID = [NSUUID UUID].UUIDString;
     media.name = [NSString stringWithFormat:@"Image %@", @(self.medias.count)];

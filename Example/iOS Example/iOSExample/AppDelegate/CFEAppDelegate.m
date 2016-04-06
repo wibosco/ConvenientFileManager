@@ -8,7 +8,7 @@
 
 #import "CFEAppDelegate.h"
 
-#import <CoreDataServices/CDSServiceManager.h>
+#import <CoreDataServices/CoreDataServices-Swift.h>
 
 #import "CFEListViewController.h"
 

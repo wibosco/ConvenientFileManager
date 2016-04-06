@@ -9,9 +9,8 @@
 #import "CFEMediaViewController.h"
 
 #import <PureLayout/PureLayout.h>
-#import <CoreDataServices/CDSServiceManager.h>
-#import <CoreDataServices/NSManagedObjectContext+CDSDelete.h>
-#import "ConvenientFileManager-Swift.h"
+#import <CoreDataServices/CoreDataServices-Swift.h>
+#import <ConvenientFileManager/ConvenientFileManager-Swift.h>
 
 #import "CFEMedia.h"
 
