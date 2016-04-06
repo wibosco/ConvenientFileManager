@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		4383CB0D1CAACCDD00280004 /* ConvenientFileManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4383CB021CAACCDD00280004 /* ConvenientFileManager.framework */; };
-		4383CB321CABD0AE00280004 /* NSFileManagerCFMCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB2D1CABD0AE00280004 /* NSFileManagerCFMCacheTests.swift */; };
-		4383CB331CABD0AE00280004 /* NSFileManagerCFMDocumentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB2F1CABD0AE00280004 /* NSFileManagerCFMDocumentsTests.swift */; };
-		4383CB341CABD0AE00280004 /* NSFileManagerCFMPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB311CABD0AE00280004 /* NSFileManagerCFMPersistenceTests.swift */; };
-		4383CB3B1CABDCA300280004 /* NSFileManager+CFMCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */; };
-		4383CB3C1CABDCA300280004 /* NSFileManager+CFMCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */; };
-		4383CB3D1CABDCA300280004 /* NSFileManager+CFMDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */; };
-		4383CB3E1CABDCA300280004 /* NSFileManager+CFMDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */; };
-		4383CB3F1CABDCA300280004 /* NSFileManager+CFMPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
-		4383CB401CABDCA300280004 /* NSFileManager+CFMPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
+		4383CB321CABD0AE00280004 /* NSFileManagerCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB2D1CABD0AE00280004 /* NSFileManagerCacheTests.swift */; };
+		4383CB331CABD0AE00280004 /* NSFileManagerDocumentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB2F1CABD0AE00280004 /* NSFileManagerDocumentsTests.swift */; };
+		4383CB341CABD0AE00280004 /* NSFileManagerPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB311CABD0AE00280004 /* NSFileManagerPersistenceTests.swift */; };
+		4383CB3B1CABDCA300280004 /* NSFileManager+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+Cache.swift */; };
+		4383CB3C1CABDCA300280004 /* NSFileManager+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+Cache.swift */; };
+		4383CB3D1CABDCA300280004 /* NSFileManager+Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+Documents.swift */; };
+		4383CB3E1CABDCA300280004 /* NSFileManager+Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+Documents.swift */; };
+		4383CB3F1CABDCA300280004 /* NSFileManager+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+Persistence.swift */; };
+		4383CB401CABDCA300280004 /* NSFileManager+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+Persistence.swift */; };
 		4383CB461CABDCC300280004 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4383CB431CABDCC300280004 /* Info.plist */; };
 		4383CB4A1CABDDFE00280004 /* ConvenientFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB491CABDDFE00280004 /* ConvenientFileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4383CB4E1CABF4E900280004 /* NSFileManager+CFMCache.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */; };
-		4383CB4F1CABF4E900280004 /* NSFileManager+CFMDocuments.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */; };
-		4383CB501CABF4E900280004 /* NSFileManager+CFMPersistence.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */; };
+		4383CB4E1CABF4E900280004 /* NSFileManager+Cache.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB361CABDCA300280004 /* NSFileManager+Cache.swift */; };
+		4383CB4F1CABF4E900280004 /* NSFileManager+Documents.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB381CABDCA300280004 /* NSFileManager+Documents.swift */; };
+		4383CB501CABF4E900280004 /* NSFileManager+Persistence.swift in Headers */ = {isa = PBXBuildFile; fileRef = 4383CB3A1CABDCA300280004 /* NSFileManager+Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +38,12 @@
 		4383CB021CAACCDD00280004 /* ConvenientFileManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ConvenientFileManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4383CB0C1CAACCDD00280004 /* ConvenientFileManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvenientFileManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4383CB131CAACCDD00280004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4383CB2D1CABD0AE00280004 /* NSFileManagerCFMCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerCFMCacheTests.swift; sourceTree = "<group>"; };
-		4383CB2F1CABD0AE00280004 /* NSFileManagerCFMDocumentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerCFMDocumentsTests.swift; sourceTree = "<group>"; };
-		4383CB311CABD0AE00280004 /* NSFileManagerCFMPersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerCFMPersistenceTests.swift; sourceTree = "<group>"; };
-		4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+CFMCache.swift"; sourceTree = "<group>"; };
-		4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+CFMDocuments.swift"; sourceTree = "<group>"; };
-		4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+CFMPersistence.swift"; sourceTree = "<group>"; };
+		4383CB2D1CABD0AE00280004 /* NSFileManagerCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerCacheTests.swift; sourceTree = "<group>"; };
+		4383CB2F1CABD0AE00280004 /* NSFileManagerDocumentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerDocumentsTests.swift; sourceTree = "<group>"; };
+		4383CB311CABD0AE00280004 /* NSFileManagerPersistenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManagerPersistenceTests.swift; sourceTree = "<group>"; };
+		4383CB361CABDCA300280004 /* NSFileManager+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Cache.swift"; sourceTree = "<group>"; };
+		4383CB381CABDCA300280004 /* NSFileManager+Documents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Documents.swift"; sourceTree = "<group>"; };
+		4383CB3A1CABDCA300280004 /* NSFileManager+Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Persistence.swift"; sourceTree = "<group>"; };
 		4383CB431CABDCC300280004 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4383CB491CABDDFE00280004 /* ConvenientFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvenientFileManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,7 +118,7 @@
 		4383CB2C1CABD0AE00280004 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB2D1CABD0AE00280004 /* NSFileManagerCFMCacheTests.swift */,
+				4383CB2D1CABD0AE00280004 /* NSFileManagerCacheTests.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -126,7 +126,7 @@
 		4383CB2E1CABD0AE00280004 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB2F1CABD0AE00280004 /* NSFileManagerCFMDocumentsTests.swift */,
+				4383CB2F1CABD0AE00280004 /* NSFileManagerDocumentsTests.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -134,7 +134,7 @@
 		4383CB301CABD0AE00280004 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB311CABD0AE00280004 /* NSFileManagerCFMPersistenceTests.swift */,
+				4383CB311CABD0AE00280004 /* NSFileManagerPersistenceTests.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 		4383CB351CABDCA300280004 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB361CABDCA300280004 /* NSFileManager+CFMCache.swift */,
+				4383CB361CABDCA300280004 /* NSFileManager+Cache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -150,7 +150,7 @@
 		4383CB371CABDCA300280004 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB381CABDCA300280004 /* NSFileManager+CFMDocuments.swift */,
+				4383CB381CABDCA300280004 /* NSFileManager+Documents.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -158,7 +158,7 @@
 		4383CB391CABDCA300280004 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				4383CB3A1CABDCA300280004 /* NSFileManager+CFMPersistence.swift */,
+				4383CB3A1CABDCA300280004 /* NSFileManager+Persistence.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -180,9 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4383CB4A1CABDDFE00280004 /* ConvenientFileManager.h in Headers */,
-				4383CB4E1CABF4E900280004 /* NSFileManager+CFMCache.swift in Headers */,
-				4383CB4F1CABF4E900280004 /* NSFileManager+CFMDocuments.swift in Headers */,
-				4383CB501CABF4E900280004 /* NSFileManager+CFMPersistence.swift in Headers */,
+				4383CB4E1CABF4E900280004 /* NSFileManager+Cache.swift in Headers */,
+				4383CB4F1CABF4E900280004 /* NSFileManager+Documents.swift in Headers */,
+				4383CB501CABF4E900280004 /* NSFileManager+Persistence.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,9 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4383CB3D1CABDCA300280004 /* NSFileManager+CFMDocuments.swift in Sources */,
-				4383CB3B1CABDCA300280004 /* NSFileManager+CFMCache.swift in Sources */,
-				4383CB3F1CABDCA300280004 /* NSFileManager+CFMPersistence.swift in Sources */,
+				4383CB3D1CABDCA300280004 /* NSFileManager+Documents.swift in Sources */,
+				4383CB3B1CABDCA300280004 /* NSFileManager+Cache.swift in Sources */,
+				4383CB3F1CABDCA300280004 /* NSFileManager+Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,12 +294,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4383CB3E1CABDCA300280004 /* NSFileManager+CFMDocuments.swift in Sources */,
-				4383CB3C1CABDCA300280004 /* NSFileManager+CFMCache.swift in Sources */,
-				4383CB321CABD0AE00280004 /* NSFileManagerCFMCacheTests.swift in Sources */,
-				4383CB331CABD0AE00280004 /* NSFileManagerCFMDocumentsTests.swift in Sources */,
-				4383CB341CABD0AE00280004 /* NSFileManagerCFMPersistenceTests.swift in Sources */,
-				4383CB401CABDCA300280004 /* NSFileManager+CFMPersistence.swift in Sources */,
+				4383CB3E1CABDCA300280004 /* NSFileManager+Documents.swift in Sources */,
+				4383CB3C1CABDCA300280004 /* NSFileManager+Cache.swift in Sources */,
+				4383CB321CABD0AE00280004 /* NSFileManagerCacheTests.swift in Sources */,
+				4383CB331CABD0AE00280004 /* NSFileManagerDocumentsTests.swift in Sources */,
+				4383CB341CABD0AE00280004 /* NSFileManagerPersistenceTests.swift in Sources */,
+				4383CB401CABDCA300280004 /* NSFileManager+Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
