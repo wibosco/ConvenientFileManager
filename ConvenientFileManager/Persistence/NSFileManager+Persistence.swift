@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- A collection of helper functions for common operations when dealing with the file manager.
- */
+/// A collection of helper functions for common operations when dealing with the file manager.
 public extension NSFileManager {
     
     //MARK: Retrieving
@@ -18,9 +16,9 @@ public extension NSFileManager {
     /**
      Retrieve data to path in document directory.
      
-     - parameter absolutePath: absolute path that will be used to retrieve the data that it's location.
+     - Parameter absolutePath: absolute path that will be used to retrieve the data that it's location.
      
-     - returns: NSData that was retrieved or nil.
+     - Returns: NSData that was retrieved or nil.
      */
     @objc(cfm_retrieveDataAtPath:)
     public class func retrieveDataAtPath(absolutePath: String) -> NSData? {
@@ -40,10 +38,10 @@ public extension NSFileManager {
      
      If the directory doesn't exist it will be created.
      
-     - parameter data: data to be saved.
-     - parameter absolutePath: absolute path that the data will be saved to.
+     - Parameter data: data to be saved.
+     - Parameter absolutePath: absolute path that the data will be saved to.
      
-     - returns: BOOL if save was successful.
+     - Returns: BOOL if save was successful.
      */
     @objc(cfm_saveData:toPath:)
     public class func saveData(data: NSData, absolutePath: String) -> Bool {
@@ -84,9 +82,9 @@ public extension NSFileManager {
      
      If the directory doesn't exist it will be created.
      
-     - parameter absolutePath: absolute path/directory-structure that will be created.
+     - Parameter absolutePath: absolute path/directory-structure that will be created.
      
-     - returns: Bool - true if creation was successful, false otherwise.
+     - Returns: Bool - true if creation was successful, false otherwise.
      */
     @objc(cfm_createDirectoryAtPath:)
     public class func createDirectoryAtPath(absoluteDirectoryPath: String) -> Bool {
@@ -113,9 +111,9 @@ public extension NSFileManager {
     /**
      Determines if a file exists at path.
      
-     - parameter absolutePath: absolute path to the file.
+     - Parameter absolutePath: absolute path to the file.
      
-     - returns: Bool - YES if file exists, NO if file doesn't exist.
+     - Returns: Bool - YES if file exists, NO if file doesn't exist.
      */
     @objc(cfm_fileExistsAtPath:)
     public class func fileExistsAtPath(absolutePath: String) -> Bool {
@@ -125,8 +123,8 @@ public extension NSFileManager {
     /**
      Determines asynchronously  if a file exists at path.
      
-     - parameter absolutePath: absolute path to the file.
-     - parameter completion: a block that will be executed upon determining if a file exists or not.
+     - Parameter absolutePath: absolute path to the file.
+     - Parameter completion: a block that will be executed upon determining if a file exists or not.
      */
     @objc(cfm_fileExistsAtPath:completion:)
     public class func fileExistsAtPath(absolutePath: String, completion:((fileExists: Bool) -> Void)?) {
@@ -149,9 +147,9 @@ public extension NSFileManager {
     /**
      Delete data from path.
      
-     - parameter absolutePath: absolute path to the file.
+     - Parameter absolutePath: absolute path to the file.
      
-     - returns: Bool - true if deletion was successful, false otherwise.
+     - Returns: Bool - true if deletion was successful, false otherwise.
      */
     @objc(cfm_deleteDataAtPath:)
     public class func deleteDataAtPath(absolutePath: String) -> Bool {
@@ -178,9 +176,9 @@ public extension NSFileManager {
     /**
      URL of resource in directory.
      
-     - parameter absolutePath: absolute path that will be combined cache path.
+     - Parameter absolutePath: absolute path that will be combined cache path.
      
-     - returns: Combined URL.
+     - Returns: Combined URL.
      */
     @objc(cfm_fileURLForPath:)
     public class func fileURLForPath(absolutePath: String) -> NSURL {
@@ -192,10 +190,10 @@ public extension NSFileManager {
     /**
      Moves a file from a source location to a destination location.
      
-     - parameter sourcePath: current absolute path of file to be moved.
-     - parameter destinationPath: future absolute path that file will be moved to.
+     - Parameter sourcePath: current absolute path of file to be moved.
+     - Parameter destinationPath: future absolute path that file will be moved to.
      
-     - returns: Bool - true if move was successful, false otherwise.
+     - Returns: Bool - true if move was successful, false otherwise.
      */
     @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
     public class func moveFile(sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {

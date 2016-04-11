@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- A collection of helper functions for common operations in the cache directory.
- */
+ /// A collection of helper functions for common operations in the cache directory.
 public extension NSFileManager {
     
     //MARK: Cache
@@ -18,7 +16,7 @@ public extension NSFileManager {
     /**
      Path of cache directory.
      
-     - returns: String instance.
+     - Returns: String instance.
      */
     @objc(cfm_cacheDirectoryPath)
     public class func cacheDirectoryPath() -> String {
@@ -28,7 +26,7 @@ public extension NSFileManager {
     /**
      URL of cache directory.
      
-     - returns: URL instance.
+     - Returns: URL instance.
      */
     @objc(cfm_cacheDirectoryURL)
     public class func cacheDirectoryURL() -> NSURL {
@@ -38,9 +36,9 @@ public extension NSFileManager {
     /**
      Path of resource in cache directory.
      
-     - parameter relativePath: relative path that will be combined cache path.
+     - Parameter relativePath: relative path that will be combined cache path.
      
-     - returns: Combined path.
+     - Returns: Combined path.
      */
     @objc(cfm_cacheDirectoryPathForResourceWithPath:)
     public class func cacheDirectoryPathForResourceWithPath(relativePath: String) -> String {
@@ -63,10 +61,10 @@ public extension NSFileManager {
     /**
      Save data to path in cache directory.
      
-     - parameter data: data to be saved.
-     - parameter relativePath: relative path that will be combined cache path.
+     - Parameter data: data to be saved.
+     - Parameter relativePath: relative path that will be combined cache path.
      
-     - returns: Bool if save was successful.
+     - Returns: Bool if save was successful.
      */
     @objc(cfm_saveData:toCacheDirectoryPath:)
     public class func saveDataToCacheDirectory(data: NSData, relativePath: String) -> Bool{
@@ -88,9 +86,9 @@ public extension NSFileManager {
     /**
      Retrieve data to path in cache directory.
      
-     - parameter relativePath: relative path that will be combined cache path.
+     - Parameter relativePath: relative path that will be combined cache path.
      
-     - returns: NSData that was retrieved.
+     - Returns: NSData that was retrieved.
      */
     @objc(cfm_retrieveDataFromCacheDirectoryWithPath:)
     public class func retrieveDataFromCacheDirectory(relativePath: String) -> NSData? {
@@ -112,9 +110,9 @@ public extension NSFileManager {
     /**
      Determines if a file exists at path in the cache directory
      
-     - parameter relativePath: relative path that will be combined cache path.
+     - Parameter relativePath: relative path that will be combined cache path.
      
-     - returns: Bool - true if file exists, false if file doesn't exist.
+     - Returns: Bool - true if file exists, false if file doesn't exist.
      */
     @objc(cfm_fileExistsInCacheDirectory:)
     public class func fileExistsInCacheDirectory(relativePath: String) -> Bool {
@@ -136,9 +134,9 @@ public extension NSFileManager {
     /**
      Delete data from path in cache directory.
      
-     - parameter relativePath: relative path that will be combined cache path.
+     - Parameter relativePath: relative path that will be combined cache path.
      
-     - returns: Bool - true if deletion was successful, false otherwise.
+     - Returns: Bool - true if deletion was successful, false otherwise.
      */
     @objc(cfm_deleteDataFromCacheDirectoryWithPath:)
     public class func deleteDataFromCacheDirectory(relativePath: String) -> Bool {
