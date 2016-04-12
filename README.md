@@ -30,6 +30,23 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 
 ####Saving
 
+######Swift
+
+```swift
+func saveImageToDisk(image: UIImage) {
+    if let imageData =  UIImagePNGRepresentation(image) {
+        switch self.media.location.integerValue {
+        case .Cache:
+            NSFileManager.saveDataToCacheDirectory(imageData, relativePath: self.media.name)
+        case .Documents:
+            NSFileManager.saveDataToDocumentsDirectory(imageData, relativePath: self.media.name)
+        }
+    }
+}
+```
+
+######Objective-C
+
 ```objc
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
 #import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
@@ -61,6 +78,29 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 ```
 
 ####Retrieving
+
+######Swift
+
+```swift
+func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
+    var retrievedData: NSData?
+    
+    switch media.location.integerValue {
+    case .Cache:
+        retrievedData = NSFileManager.retrieveDataFromCacheDirectory(media.name)
+    case .Documents:
+        retrievedData = NSFileManager.retrieveDataFromDocumentsDirectory(media.name)
+    }
+    
+    guard let unwrappedRetrievedData = retrievedData else {
+        return nil
+    }
+    
+    return UIImage.init(data: unwrappedRetrievedData)
+}
+```
+
+######Objective-C
 
 ```objc
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
@@ -94,6 +134,21 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 
 ####Deleting
 
+######Swift
+
+```swift
+func trashButtonPressed(sender: UIBarButtonItem) {
+    switch self.media.location.integerValue {
+    case .Cache:
+        NSFileManager.deleteDataFromCacheDirectory(self.media.name)
+    case .Documents:
+        NSFileManager.deleteDataFromDocumentsDirectory(self.media.name)
+    }
+}
+```
+
+######Objective-C
+
 ```objc
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
 #import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
@@ -124,6 +179,25 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 
 **Synchronously**
 
+######Swift
+
+```swift
+func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
+    var mediaAssetHasBeenDownloaded = false
+    
+    switch self.media.location.integerValue {
+    case .Cache:
+        mediaAssetHasBeenDownloaded = NSFileManager.fileExistsInCacheDirectory(self.media.name)
+    case .Documents:
+        mediaAssetHasBeenDownloaded = NSFileManager.fileExistsInDocumentsDirectory(self.media.name)
+    }
+
+    return mediaAssetHasBeenDownloaded
+}
+```
+
+######Objective-C
+
 ```objc
 #import <ConvenientFileManager/NSFileManager+CFMCache.h>
 #import <ConvenientFileManager/NSFileManager+CFMDocuments.h>
@@ -138,7 +212,7 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
     {
         case CFEMediaLocationCache:
         {
-            mediaAssetHasBeenDownloaded = [NSFileManager cfm_cacheDirectoryPathForResourceWithPath:self.media.name];
+            mediaAssetHasBeenDownloaded = [NSFileManager cfm_fileExistsInCacheDirectory:self.media.name];
             
             break;
         }
@@ -156,6 +230,20 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
 
 **Asynchronously**
 
+######Swift
+
+```swift
+NSFileManager.fileExistsAtPath(self.media.absoluteLocalPath) { (fileExists) in
+        if (!fileExists) {
+            //Yay!
+        } else {
+            //Boo!
+        }
+    }
+```
+
+######Objective-C
+
 ```objc
 
 #import <ConvenientFileManager/NSFileManager+CFMPersistence.h>
@@ -167,19 +255,13 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`NSFil
  {
      if (!fileExists)
      {   
-         [CFMMediaAPIManager retrieveAssetForMedia:media
-                                           success:success
-                                           failure:failure];
+        //Yay!
      }
      else
      {
-         if (failure)
-         {
-             failure(error);
-         }
+        //Boo!
      }
  }];
-
 ```
 
 
