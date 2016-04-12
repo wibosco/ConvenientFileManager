@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.7](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.7)
+
+* Updated incorrectly named parameters in documentation
+* Updated `README` to include examples of using this pod in a Swift project
+
 ## [2.0.6](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.6)
 
 * Removed prefix from extension file name

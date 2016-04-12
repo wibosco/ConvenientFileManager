@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
   s.name         = "ConvenientFileManager"
-  s.version      = "2.0.6"
-  s.summary      = "A suite of categories to ease using NSFileManager for common tasks."
+  s.version      = "2.0.7"
+  s.summary      = "A suite of extensions to ease using NSFileManager for common tasks."
 
   s.homepage     = "http://www.williamboles.me"
   s.license      = { :type => 'MIT', 
