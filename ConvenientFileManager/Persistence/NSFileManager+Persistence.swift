@@ -190,8 +190,8 @@ public extension NSFileManager {
     /**
      Moves a file from a source location to a destination location.
      
-     - Parameter sourcePath: current absolute path of file to be moved.
-     - Parameter destinationPath: future absolute path that file will be moved to.
+     - Parameter sourceAbsolutePath: current absolute path of file to be moved.
+     - Parameter destinationAbsolutePath: future absolute path that file will be moved to.
      
      - Returns: Bool - true if move was successful, false otherwise.
      */

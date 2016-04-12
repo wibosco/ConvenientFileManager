@@ -67,7 +67,7 @@ public extension NSFileManager {
      - Returns: Bool if save was successful.
      */
     @objc(cfm_saveData:toDocumentsDirectoryPath:)
-    public class func saveDataToDocumentsDirectory(data: NSData, relativePath: String) -> Bool{
+    public class func saveDataToDocumentsDirectory(data: NSData, relativePath: String) -> Bool {
         var saved = false
         
         if relativePath.characters.count > 0 && data.length > 0{
@@ -88,7 +88,7 @@ public extension NSFileManager {
      
      - Parameter relativePath: relative path that will be combined documents path.
      
-     - Returns: NSData that was retrieved.
+     - Returns: NSData that was retrieved or nil if it's not found.
      */
     @objc(cfm_retrieveDataFromDocumentsDirectoryWithPath:)
     public class func retrieveDataFromDocumentsDirectory(relativePath: String) -> NSData? {
