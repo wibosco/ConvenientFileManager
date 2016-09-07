@@ -5,6 +5,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'ConvenientFileManager'
-pod 'CoreDataServices'
-pod 'PureLayout'
+target 'iOSExample' do	
+	pod 'ConvenientFileManager'
+	pod 'CoreDataServices'
+	pod 'PureLayout'
+end
