@@ -48,7 +48,7 @@ public extension NSFileManager {
             let cacheDirectory = NSFileManager.cacheDirectoryURL()
             let absoluteURL = cacheDirectory.URLByAppendingPathComponent(relativePath)
             
-            cacheDirectoryPathForResource = absoluteURL.path!
+            cacheDirectoryPathForResource = absoluteURL!.path!
         } else {
             cacheDirectoryPathForResource = NSFileManager.cacheDirectoryPath()
         }
@@ -73,7 +73,7 @@ public extension NSFileManager {
         if relativePath.characters.count > 0 && data.length > 0 {
             let cacheDirectory = NSFileManager.cacheDirectoryURL()
             
-            if let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath).path {
+            if let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath)!.path {
                 saved = NSFileManager.saveData(data, absolutePath: absolutePath)
             }
         }
@@ -97,7 +97,7 @@ public extension NSFileManager {
         if relativePath.characters.count > 0 {
             let cacheDirectory = NSFileManager.cacheDirectoryURL()
             
-            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             data = NSFileManager.retrieveDataAtPath(absolutePath)
         }
@@ -121,7 +121,7 @@ public extension NSFileManager {
         if relativePath.characters.count > 0 {
             let cacheDirectory = NSFileManager.cacheDirectoryURL()
             
-            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             fileExists = NSFileManager.fileExistsAtPath(absolutePath)
         }
@@ -145,7 +145,7 @@ public extension NSFileManager {
         if relativePath.characters.count > 0 {
             let cacheDirectory = NSFileManager.cacheDirectoryURL()
             
-            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = cacheDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             deleted = NSFileManager.deleteDataAtPath(absolutePath)
         }
