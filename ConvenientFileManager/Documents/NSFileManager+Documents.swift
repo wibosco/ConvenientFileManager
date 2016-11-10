@@ -48,7 +48,7 @@ public extension NSFileManager {
             let documentsDirectory = NSFileManager.documentsDirectoryURL()
             let absoluteURL = documentsDirectory.URLByAppendingPathComponent(relativePath)
             
-            documentsDirectoryPathForResource = absoluteURL.path!
+            documentsDirectoryPathForResource = absoluteURL!.path!
         } else {
             documentsDirectoryPathForResource = NSFileManager.documentsDirectoryPath()
         }
@@ -73,7 +73,7 @@ public extension NSFileManager {
         if relativePath.characters.count > 0 && data.length > 0{
             let documentsDirectory = NSFileManager.documentsDirectoryURL()
             
-            if let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath).path {
+            if let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path {
                 saved = NSFileManager.saveData(data, absolutePath: absolutePath)
             }
         }
@@ -96,7 +96,7 @@ public extension NSFileManager {
         
         if relativePath.characters.count > 0 {
             let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             data = NSFileManager.retrieveDataAtPath(absolutePath)
         }
@@ -119,7 +119,7 @@ public extension NSFileManager {
         
         if relativePath.characters.count > 0 {
             let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             fileExists = NSFileManager.fileExistsAtPath(absolutePath)
         }
@@ -142,7 +142,7 @@ public extension NSFileManager {
         
         if relativePath.characters.count > 0 {
             let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath).path!
+            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
             
             deleted = NSFileManager.deleteDataAtPath(absolutePath)
         }

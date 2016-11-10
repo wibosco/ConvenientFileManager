@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [2.0.8](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.8)
+
+* Updated project to using Swift 2.3
+
 ## [2.0.7](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.7)
 
 * Updated incorrectly named parameters in documentation
