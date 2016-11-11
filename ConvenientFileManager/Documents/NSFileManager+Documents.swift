@@ -9,7 +9,7 @@
 import Foundation
 
  /// A collection of helper functions for common operations in the documents directory.
-public extension NSFileManager {
+public extension FileManager {
 
     //MARK: Documents
     
@@ -20,7 +20,7 @@ public extension NSFileManager {
      */
     @objc(cfm_documentsDirectoryPath)
     public class func documentsDirectoryPath() -> String {
-        return (NSFileManager.documentsDirectoryURL().path)!
+        return (FileManager.documentsDirectoryURL().path)
     }
     
     /**
@@ -29,8 +29,8 @@ public extension NSFileManager {
      - Returns: URL instance.
      */
     @objc(cfm_documentsDirectoryURL)
-    public class func documentsDirectoryURL() -> NSURL {
-        return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last!
+    public class func documentsDirectoryURL() -> URL {
+        return FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last!
     }
     
     /**
@@ -41,16 +41,16 @@ public extension NSFileManager {
      - Returns: Combined path.
      */
     @objc(cfm_documentsDirectoryPathForResourceWithPath:)
-    public class func documentsDirectoryPathForResourceWithPath(relativePath: String) -> String {
+    public class func documentsDirectoryPathForResourceWithPath(_ relativePath: String) -> String {
         let documentsDirectoryPathForResource: String
         
         if relativePath.characters.count > 0 {
-            let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absoluteURL = documentsDirectory.URLByAppendingPathComponent(relativePath)
+            let documentsDirectory = FileManager.documentsDirectoryURL()
+            let absoluteURL = documentsDirectory.appendingPathComponent(relativePath)
             
-            documentsDirectoryPathForResource = absoluteURL!.path!
+            documentsDirectoryPathForResource = absoluteURL.path
         } else {
-            documentsDirectoryPathForResource = NSFileManager.documentsDirectoryPath()
+            documentsDirectoryPathForResource = FileManager.documentsDirectoryPath()
         }
         
         return documentsDirectoryPathForResource
@@ -67,15 +67,15 @@ public extension NSFileManager {
      - Returns: Bool if save was successful.
      */
     @objc(cfm_saveData:toDocumentsDirectoryPath:)
-    public class func saveDataToDocumentsDirectory(data: NSData, relativePath: String) -> Bool {
+    @discardableResult
+    public class func saveDataToDocumentsDirectory(_ data: Data, relativePath: String) -> Bool {
         var saved = false
         
-        if relativePath.characters.count > 0 && data.length > 0{
-            let documentsDirectory = NSFileManager.documentsDirectoryURL()
+        if relativePath.characters.count > 0 && data.count > 0{
+            let documentsDirectory = FileManager.documentsDirectoryURL()
+            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
             
-            if let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path {
-                saved = NSFileManager.saveData(data, absolutePath: absolutePath)
-            }
+            saved = FileManager.saveData(data, absolutePath: absolutePath)
         }
         
         return saved
@@ -91,14 +91,14 @@ public extension NSFileManager {
      - Returns: NSData that was retrieved or nil if it's not found.
      */
     @objc(cfm_retrieveDataFromDocumentsDirectoryWithPath:)
-    public class func retrieveDataFromDocumentsDirectory(relativePath: String) -> NSData? {
-        var data: NSData?
+    public class func retrieveDataFromDocumentsDirectory(_ relativePath: String) -> Data? {
+        var data: Data?
         
         if relativePath.characters.count > 0 {
-            let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
+            let documentsDirectory = FileManager.documentsDirectoryURL()
+            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
             
-            data = NSFileManager.retrieveDataAtPath(absolutePath)
+            data = FileManager.retrieveDataAtPath(absolutePath)
         }
         
         return data
@@ -114,14 +114,14 @@ public extension NSFileManager {
      - Returns: Bool - true if file exists, false if file doesn't exist.
      */
     @objc(cfm_fileExistsInDocumentsDirectory:)
-    public class func fileExistsInDocumentsDirectory(relativePath: String) -> Bool {
+    public class func fileExistsInDocumentsDirectory(_ relativePath: String) -> Bool {
         var fileExists = false
         
         if relativePath.characters.count > 0 {
-            let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
+            let documentsDirectory = FileManager.documentsDirectoryURL()
+            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
             
-            fileExists = NSFileManager.fileExistsAtPath(absolutePath)
+            fileExists = FileManager.fileExistsAtPath(absolutePath)
         }
         
         return fileExists
@@ -137,14 +137,15 @@ public extension NSFileManager {
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
     @objc(cfm_deleteDataFromDocumentsDirectoryWithPath:)
-    public class func deleteDataFromDocumentsDirectory(relativePath: String) -> Bool {
+    @discardableResult
+    public class func deleteDataFromDocumentsDirectory(_ relativePath: String) -> Bool {
         var deleted = false
         
         if relativePath.characters.count > 0 {
-            let documentsDirectory = NSFileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.URLByAppendingPathComponent(relativePath)!.path!
+            let documentsDirectory = FileManager.documentsDirectoryURL()
+            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
             
-            deleted = NSFileManager.deleteDataAtPath(absolutePath)
+            deleted = FileManager.deleteDataAtPath(absolutePath)
         }
         
         return deleted
