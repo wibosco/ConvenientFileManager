@@ -42,18 +42,14 @@ public extension FileManager {
      */
     @objc(cfm_documentsDirectoryPathForResourceWithPath:)
     public class func documentsDirectoryPathForResourceWithPath(_ relativePath: String) -> String {
-        let documentsDirectoryPathForResource: String
-        
-        if relativePath.characters.count > 0 {
-            let documentsDirectory = FileManager.documentsDirectoryURL()
-            let absoluteURL = documentsDirectory.appendingPathComponent(relativePath)
-            
-            documentsDirectoryPathForResource = absoluteURL.path
-        } else {
-            documentsDirectoryPathForResource = FileManager.documentsDirectoryPath()
+        guard relativePath.characters.count > 0 else {
+            return FileManager.documentsDirectoryPath()
         }
         
-        return documentsDirectoryPathForResource
+        let documentsDirectory = FileManager.documentsDirectoryURL()
+        let absoluteURL = documentsDirectory.appendingPathComponent(relativePath)
+        
+        return absoluteURL.path
     }
     
     //MARK: Saving
@@ -69,16 +65,14 @@ public extension FileManager {
     @objc(cfm_saveData:toDocumentsDirectoryPath:)
     @discardableResult
     public class func saveDataToDocumentsDirectory(_ data: Data, relativePath: String) -> Bool {
-        var saved = false
-        
-        if relativePath.characters.count > 0 && data.count > 0{
-            let documentsDirectory = FileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
-            
-            saved = FileManager.saveData(data, absolutePath: absolutePath)
+        guard relativePath.characters.count > 0 && data.count > 0 else {
+            return false
         }
         
-        return saved
+        let documentsDirectory = FileManager.documentsDirectoryURL()
+        let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.saveData(data, absolutePath: absolutePath)
     }
     
     //MARK: Retrieval
@@ -92,16 +86,14 @@ public extension FileManager {
      */
     @objc(cfm_retrieveDataFromDocumentsDirectoryWithPath:)
     public class func retrieveDataFromDocumentsDirectory(_ relativePath: String) -> Data? {
-        var data: Data?
-        
-        if relativePath.characters.count > 0 {
-            let documentsDirectory = FileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
-            
-            data = FileManager.retrieveDataAtPath(absolutePath)
+        guard relativePath.characters.count > 0 else {
+            return nil
         }
         
-        return data
+        let documentsDirectory = FileManager.documentsDirectoryURL()
+        let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.retrieveDataAtPath(absolutePath)
     }
     
     //MARK: Exists
@@ -115,16 +107,14 @@ public extension FileManager {
      */
     @objc(cfm_fileExistsInDocumentsDirectory:)
     public class func fileExistsInDocumentsDirectory(_ relativePath: String) -> Bool {
-        var fileExists = false
-        
-        if relativePath.characters.count > 0 {
-            let documentsDirectory = FileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
-            
-            fileExists = FileManager.fileExistsAtPath(absolutePath)
+        guard relativePath.characters.count > 0 else {
+            return false
         }
         
-        return fileExists
+        let documentsDirectory = FileManager.documentsDirectoryURL()
+        let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.fileExistsAtPath(absolutePath)
     }
     
     //MARK: Deletion
@@ -139,15 +129,13 @@ public extension FileManager {
     @objc(cfm_deleteDataFromDocumentsDirectoryWithPath:)
     @discardableResult
     public class func deleteDataFromDocumentsDirectory(_ relativePath: String) -> Bool {
-        var deleted = false
-        
-        if relativePath.characters.count > 0 {
-            let documentsDirectory = FileManager.documentsDirectoryURL()
-            let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
-            
-            deleted = FileManager.deleteDataAtPath(absolutePath)
+        guard relativePath.characters.count > 0 else {
+            return false
         }
         
-        return deleted
+        let documentsDirectory = FileManager.documentsDirectoryURL()
+        let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.deleteDataAtPath(absolutePath)
     }
 }

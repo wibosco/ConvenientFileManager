@@ -22,13 +22,16 @@ public extension FileManager {
      */
     @objc(cfm_retrieveDataAtPath:)
     public class func retrieveDataAtPath(_ absolutePath: String) -> Data? {
-        var data: Data?
-        
-        if absolutePath.characters.count > 0 {
-            data = try? Data(contentsOf: URL(fileURLWithPath: absolutePath))
+        guard absolutePath.characters.count > 0 else {
+            return nil
         }
         
-        return data
+        do {
+            return try Data(contentsOf: URL(fileURLWithPath: absolutePath))
+        } catch {
+            print("Error when attempting to retrieve data from: \(absolutePath). The error was: \(error)")
+            return nil
+        }
     }
     
     //MARK: Saving
@@ -46,33 +49,30 @@ public extension FileManager {
     @objc(cfm_saveData:toPath:)
     @discardableResult
     public class func saveData(_ data: Data, absolutePath: String) -> Bool {
-        var success = true
-        
-        if data.count > 0 && absolutePath.characters.count > 0 {
-            let absoluteURL = self.fileURLForPath(absolutePath)
-            let directoryPath = absoluteURL.deletingLastPathComponent().path
-            
-            var createdDirectory = true
-            
-            if !FileManager.default.fileExists(atPath: directoryPath) {
-                createdDirectory = FileManager.createDirectoryAtPath(directoryPath)
-            }
-            
-            if createdDirectory {
-                do {
-                    try data.write(to: absoluteURL, options: NSData.WritingOptions.atomic)
-                } catch let error as NSError {
-                    success = false
-                    print("Error when saving data at location: \(absolutePath). The error was: \(error.description)")
-                }
-            } else {
-                success = false
-            }
-        } else {
-            success = false
+        guard data.count > 0 && absolutePath.characters.count > 0 else {
+            return false
         }
         
-        return success
+        let absoluteURL = self.fileURLForPath(absolutePath)
+        let directoryPath = absoluteURL.deletingLastPathComponent().path
+        
+        var createdDirectory = true
+        
+        if !FileManager.default.fileExists(atPath: directoryPath) {
+            createdDirectory = FileManager.createDirectoryAtPath(directoryPath)
+        }
+        
+        if createdDirectory {
+            do {
+                try data.write(to: absoluteURL, options: NSData.WritingOptions.atomic)
+                return true
+            } catch {
+                print("Error when saving data at location: \(absolutePath). The error was: \(error)")
+                return false
+            }
+        } else {
+            return false
+        }
     }
     
     /**
@@ -87,22 +87,19 @@ public extension FileManager {
     @objc(cfm_createDirectoryAtPath:)
     @discardableResult
     public class func createDirectoryAtPath(_ absoluteDirectoryPath: String) -> Bool {
-        var createdDirectory = true
-        
-        if absoluteDirectoryPath.characters.count > 0 {
-            let absoluteDirectoryURL = self.fileURLForPath(absoluteDirectoryPath)
-            
-            do {
-                try FileManager.default.createDirectory(at: absoluteDirectoryURL, withIntermediateDirectories: true, attributes: nil)
-            } catch let error as NSError {
-                createdDirectory = false
-                print("Error when creating a directory at location: \(absoluteDirectoryPath). The error was: \(error.description)")
-            }
-        } else {
-            createdDirectory = false
+        guard absoluteDirectoryPath.characters.count > 0 else {
+            return false
         }
         
-        return createdDirectory
+        let absoluteDirectoryURL = self.fileURLForPath(absoluteDirectoryPath)
+        
+        do {
+            try FileManager.default.createDirectory(at: absoluteDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            return true
+        } catch {
+            print("Error when creating a directory at location: \(absoluteDirectoryPath). The error was: \(error)")
+            return false
+        }
     }
     
     //MARK: Exists
@@ -153,22 +150,19 @@ public extension FileManager {
     @objc(cfm_deleteDataAtPath:)
     @discardableResult
     public class func deleteDataAtPath(_ absolutePath: String) -> Bool {
-        var deleted = true
-        
-        if absolutePath.characters.count > 0 {
-            let absoluteURL = self.fileURLForPath(absolutePath)
-            
-            do {
-                try FileManager.default.removeItem(at: absoluteURL)
-            } catch let error as NSError {
-                deleted = false
-                print("Error when deleting data at location: \(absolutePath). The error was: \(error.description)")
-            }
-        } else {
-            deleted = false
+        guard absolutePath.characters.count > 0 else {
+            return false
         }
         
-        return deleted
+        let absoluteURL = self.fileURLForPath(absolutePath)
+        
+        do {
+            try FileManager.default.removeItem(at: absoluteURL)
+            return true
+        } catch {
+            print("Error when deleting data at location: \(absolutePath). The error was: \(error)")
+            return false
+        }
     }
     
     //MARK: URL
@@ -198,34 +192,31 @@ public extension FileManager {
     @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
     @discardableResult
     public class func moveFile(_ sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
-        var moved = true
-        
-        if sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 {
-            let destinationAbsoluteURL = self.fileURLForPath(destinationAbsolutePath)
-            let destinationAbsoluteDirectoryPath = destinationAbsoluteURL.deletingLastPathComponent().path
-            
-            var createdDirectory = true
-            
-            if  FileManager.default.fileExists(atPath: destinationAbsoluteDirectoryPath) {
-                createdDirectory = FileManager.createDirectoryAtPath(destinationAbsoluteDirectoryPath)
-            }
-            
-            if createdDirectory {
-                let sourceAbsoluteURL = self.fileURLForPath(sourceAbsolutePath)
-                
-                do {
-                    try FileManager.default.moveItem(at: sourceAbsoluteURL, to: destinationAbsoluteURL)
-                } catch let error as NSError {
-                    moved = false
-                    print("Error when moving file from: \(sourceAbsolutePath) to \(destinationAbsolutePath). The error was: \(error.description)")
-                }
-            } else {
-                moved = false
-            }
-        } else {
-            moved = false
+        guard sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 else {
+            return false
         }
         
-        return moved
+        let destinationAbsoluteURL = self.fileURLForPath(destinationAbsolutePath)
+        let destinationAbsoluteDirectoryPath = destinationAbsoluteURL.deletingLastPathComponent().path
+        
+        var createdDirectory = true
+        
+        if  FileManager.default.fileExists(atPath: destinationAbsoluteDirectoryPath) {
+            createdDirectory = FileManager.createDirectoryAtPath(destinationAbsoluteDirectoryPath)
+        }
+        
+        if createdDirectory {
+            let sourceAbsoluteURL = self.fileURLForPath(sourceAbsolutePath)
+            
+            do {
+                try FileManager.default.moveItem(at: sourceAbsoluteURL, to: destinationAbsoluteURL)
+                return true
+            } catch {
+                print("Error when moving file from: \(sourceAbsolutePath) to \(destinationAbsolutePath). The error was: \(error)")
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }

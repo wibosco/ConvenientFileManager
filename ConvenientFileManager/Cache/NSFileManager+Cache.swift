@@ -42,18 +42,14 @@ public extension FileManager {
      */
     @objc(cfm_cacheDirectoryPathForResourceWithPath:)
     public class func cacheDirectoryPathForResourceWithPath(_ relativePath: String) -> String {
-        let cacheDirectoryPathForResource: String
-        
-        if relativePath.characters.count > 0 {
-            let cacheDirectory = FileManager.cacheDirectoryURL()
-            let absoluteURL = cacheDirectory.appendingPathComponent(relativePath)
-            
-            cacheDirectoryPathForResource = absoluteURL.path
-        } else {
-            cacheDirectoryPathForResource = FileManager.cacheDirectoryPath()
+        guard relativePath.characters.count > 0 else {
+            return FileManager.cacheDirectoryPath()
         }
         
-        return cacheDirectoryPathForResource
+        let cacheDirectory = FileManager.cacheDirectoryURL()
+        let absoluteURL = cacheDirectory.appendingPathComponent(relativePath)
+        
+        return absoluteURL.path
     }
     
     //MARK: Saving
@@ -69,16 +65,14 @@ public extension FileManager {
     @objc(cfm_saveData:toCacheDirectoryPath:)
     @discardableResult
     public class func saveDataToCacheDirectory(_ data: Data, relativePath: String) -> Bool{
-        var saved = false
-        
-        if relativePath.characters.count > 0 && data.count > 0 {
-            let cacheDirectory = FileManager.cacheDirectoryURL()
-            let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
-            
-            saved = FileManager.saveData(data, absolutePath: absolutePath)
+        guard relativePath.characters.count > 0 && data.count > 0 else {
+            return false
         }
         
-        return saved
+        let cacheDirectory = FileManager.cacheDirectoryURL()
+        let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.saveData(data, absolutePath: absolutePath)
     }
     
     //MARK: Retrieval
@@ -92,17 +86,14 @@ public extension FileManager {
      */
     @objc(cfm_retrieveDataFromCacheDirectoryWithPath:)
     public class func retrieveDataFromCacheDirectory(_ relativePath: String) -> Data? {
-        var data: Data?
-        
-        if relativePath.characters.count > 0 {
-            let cacheDirectory = FileManager.cacheDirectoryURL()
-            
-            let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
-            
-            data = FileManager.retrieveDataAtPath(absolutePath)
+        guard relativePath.characters.count > 0 else {
+            return nil
         }
         
-        return data
+        let cacheDirectory = FileManager.cacheDirectoryURL()
+        let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.retrieveDataAtPath(absolutePath)
     }
     
     //MARK: Exists
@@ -116,20 +107,17 @@ public extension FileManager {
      */
     @objc(cfm_fileExistsInCacheDirectory:)
     public class func fileExistsInCacheDirectory(_ relativePath: String) -> Bool {
-        var fileExists = false
-        
-        if relativePath.characters.count > 0 {
-            let cacheDirectory = FileManager.cacheDirectoryURL()
-            
-            let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
-            
-            fileExists = FileManager.fileExistsAtPath(absolutePath)
+        guard relativePath.characters.count > 0 else {
+            return false
         }
         
-        return fileExists
+        let cacheDirectory = FileManager.cacheDirectoryURL()
+        let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.fileExistsAtPath(absolutePath)
     }
     
-    //MARK: Deletion 
+    //MARK: Deletion
     
     /**
      Delete data from path in cache directory.
@@ -141,16 +129,13 @@ public extension FileManager {
     @objc(cfm_deleteDataFromCacheDirectoryWithPath:)
     @discardableResult
     public class func deleteDataFromCacheDirectory(_ relativePath: String) -> Bool {
-        var deleted = false
-        
-        if relativePath.characters.count > 0 {
-            let cacheDirectory = FileManager.cacheDirectoryURL()
-            
-            let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
-            
-            deleted = FileManager.deleteDataAtPath(absolutePath)
+        guard relativePath.characters.count > 0  else{
+            return false
         }
         
-        return deleted
+        let cacheDirectory = FileManager.cacheDirectoryURL()
+        let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
+        
+        return FileManager.deleteDataAtPath(absolutePath)
     }
 }
