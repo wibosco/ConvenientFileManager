@@ -55,18 +55,18 @@ class NSFileManagerCFMCacheTests: XCTestCase {
     }
     
     override func tearDown() {
-        if FileManager.fileExistsAtPath(self.resource) {
-            FileManager.deleteDataAtPath(self.resource)
+        if FileManager.fileExists(absolutePath: self.resource) {
+            FileManager.deleteData(absolutePath: self.resource)
         }
         
-        if FileManager.fileExistsAtPath(self.resourceWithFolder) {
-            FileManager.deleteDataAtPath(self.resourceWithFolder)
+        if FileManager.fileExists(absolutePath: self.resourceWithFolder) {
+            FileManager.deleteData(absolutePath: self.resourceWithFolder)
         }
         
-        let cacheTestFolder = FileManager.cacheDirectoryPathForResourceWithPath(self.testFolder)
+        let cacheTestFolder = FileManager.cacheDirectoryPathForResource(relativePath: self.testFolder)
         
-        if FileManager.fileExistsAtPath(cacheTestFolder) {
-            FileManager.deleteDataAtPath(cacheTestFolder)
+        if FileManager.fileExists(absolutePath: cacheTestFolder) {
+            FileManager.deleteData(absolutePath: cacheTestFolder)
         }
         
         super.tearDown()
@@ -82,23 +82,23 @@ class NSFileManagerCFMCacheTests: XCTestCase {
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
     
-    func test_cacheDirectoryPathForResourceWithPath_fullPathToResource() {
+    func test_cacheDirectoryPathForResource_fullPathToResource() {
         let expectedCacheDirectoryPath = (self.cachedDirectoryURL.path) + "/" + self.resource
-        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResourceWithPath(self.resource)
+        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResource(relativePath: self.resource)
         
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
     
-    func test_cacheDirectoryPathForResourceWithPath_fullPathToResourceWithFolder() {
+    func test_cacheDirectoryPathForResource_fullPathToResourceWithFolder() {
         let expectedCacheDirectoryPath = (self.cachedDirectoryURL.path) + "/" + self.resourceWithFolder
-        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResourceWithPath(self.resourceWithFolder)
+        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResource(relativePath: self.resourceWithFolder)
         
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
     
-    func test_cacheDirectoryPathForResourceWithPath_emptyResource() {
+    func test_cacheDirectoryPathForResource_emptyResource() {
         let expectedCacheDirectoryPath = (self.cachedDirectoryURL.path)
-        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResourceWithPath("")
+        let returnedCacheDirectoryPath = FileManager.cacheDirectoryPathForResource(relativePath: "")
         
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
@@ -106,59 +106,59 @@ class NSFileManagerCFMCacheTests: XCTestCase {
     //MARK: Saving
     
     func test_saveData_fileOnDisk() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resource)
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(self.resource)
+        let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resource)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
     func test_saveData_successfulSaveReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resource)
+        let saved = FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         XCTAssertTrue(saved, "Successful save of data should return TRUE")
     }
     
     func test_saveData_failedSaveEmptyDataReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(self.emptyData, relativePath: self.resource)
+        let saved = FileManager.saveDataToCacheDirectory(data: self.emptyData, relativePath: self.resource)
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
    
     func test_saveData_failedSaveNilResourceReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: "")
+        let saved = FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: "")
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
     func test_saveData_fileOnDiskWithFolder() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
-        let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(self.resourceWithFolder)!
+        let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resourceWithFolder)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)");
     }
     
     //MARK: Retrieval
     
-    func test_retrieveDataFromCacheDirectoryWithPath_dataReturned() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_retrieveDataFromCacheDirectory_dataReturned() {
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(self.resource)!
-        
-        XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
-    }
-    
-    func test_retrieveDataFromCacheDirectoryWithPath_dataReturnedWithFolder() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
-        
-        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(self.resourceWithFolder)!
+        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resource)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
     }
     
-    func test_retrieveDataFromCacheDirectoryWithPath_emptyDataWithNilResource() {
-        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory("")
+    func test_retrieveDataFromCacheDirectory_dataReturnedWithFolder() {
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        
+        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resourceWithFolder)!
+        
+        XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
+    }
+    
+    func test_retrieveDataFromCacheDirectory_emptyDataWithNilResource() {
+        let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(relativePath: "")
         
         XCTAssertNil(dataThatWasRetrieved, "Data should be nil for an empty path parameter")
     }
@@ -168,57 +168,57 @@ class NSFileManagerCFMCacheTests: XCTestCase {
     func test_fileExistsInCacheDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
         
-        let fileExists = FileManager.fileExistsInCacheDirectory(resourceThatDoesNotExist)
+        let fileExists = FileManager.fileExistsInCacheDirectory(relativePath: resourceThatDoesNotExist)
         
         XCTAssertFalse(fileExists, "File does not exist and should be returned as FALSE")
     }
     
     func test_fileExistsInCacheDirectory_falseReturnValueForEmptyParameter() {
-        let fileExists = FileManager.fileExistsInCacheDirectory("")
+        let fileExists = FileManager.fileExistsInCacheDirectory(relativePath: "")
         
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
     //MARK: Deleting 
     
-    func test_deleteDataFromCacheDirectoryWithPath_deletesSavedFile() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_deleteDataFromCacheDirectory_deletesSavedFile() {
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        FileManager.deleteDataFromCacheDirectory(self.resource)
+        FileManager.deleteDataFromCacheDirectory(relativePath: self.resource)
         
-        let fileExists = FileManager.fileExistsInCacheDirectory(self.resource)
+        let fileExists = FileManager.fileExistsInCacheDirectory(relativePath: self.resource)
         
          XCTAssertFalse(fileExists, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }
     
-    func test_deleteDataFromCacheDirectoryWithPath_deletesSavedFileReturnValue() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_deleteDataFromCacheDirectory_deletesSavedFileReturnValue() {
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-       let deleted = FileManager.deleteDataFromCacheDirectory(self.resource)
+       let deleted = FileManager.deleteDataFromCacheDirectory(relativePath: self.resource)
         
         XCTAssertTrue(deleted, "File should not exist as file should have been deleted, this call should be returned as TRUE")
     }
     
-    func test_deleteDataFromCacheDirectoryWithPath_falseReturnValueForFileThatDoesNotExist() {
+    func test_deleteDataFromCacheDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
         
-        let deleted = FileManager.deleteDataFromCacheDirectory(resourceThatDoesNotExist)
+        let deleted = FileManager.deleteDataFromCacheDirectory(relativePath: resourceThatDoesNotExist)
         
         XCTAssertFalse(deleted, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }
 
-    func test_deleteDataFromCacheDirectoryWithPath_falseReturnValueForEmptyParameter() {
-        let deleted = FileManager.deleteDataFromCacheDirectory("")
+    func test_deleteDataFromCacheDirectory_falseReturnValueForEmptyParameter() {
+        let deleted = FileManager.deleteDataFromCacheDirectory(relativePath: "")
         
         XCTAssertFalse(deleted, "Deletion should return FALSE as the resource is empty")
     }
 
-    func test_deleteDataFromCacheDirectoryWithPath_deletesSavedFileWithFolder() {
-        FileManager.saveDataToCacheDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
+    func test_deleteDataFromCacheDirectory_deletesSavedFileWithFolder() {
+        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
-        FileManager.deleteDataFromCacheDirectory(self.resourceWithFolder)
+        FileManager.deleteDataFromCacheDirectory(relativePath: self.resourceWithFolder)
         
-        let fileExists = FileManager.fileExistsInCacheDirectory(self.resourceWithFolder)
+        let fileExists = FileManager.fileExistsInCacheDirectory(relativePath: self.resourceWithFolder)
         
         XCTAssertFalse(fileExists, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NSFileManager+Persistence.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.
@@ -21,7 +21,7 @@ public extension FileManager {
      - Returns: NSData that was retrieved or nil.
      */
     @objc(cfm_retrieveDataAtPath:)
-    public class func retrieveDataAtPath(_ absolutePath: String) -> Data? {
+    public class func retrieveData(absolutePath: String) -> Data? {
         guard absolutePath.characters.count > 0 else {
             return nil
         }
@@ -46,20 +46,20 @@ public extension FileManager {
      
      - Returns: BOOL if save was successful.
      */
-    @objc(cfm_saveData:toPath:)
+    @objc(cfm_saveData:toAbsolutePath:)
     @discardableResult
-    public class func saveData(_ data: Data, absolutePath: String) -> Bool {
+    public class func saveData(data: Data, absolutePath: String) -> Bool {
         guard data.count > 0 && absolutePath.characters.count > 0 else {
             return false
         }
         
-        let absoluteURL = self.fileURLForPath(absolutePath)
+        let absoluteURL = self.fileURL(absolutePath: absolutePath)
         let directoryPath = absoluteURL.deletingLastPathComponent().path
         
         var createdDirectory = true
         
         if !FileManager.default.fileExists(atPath: directoryPath) {
-            createdDirectory = FileManager.createDirectoryAtPath(directoryPath)
+            createdDirectory = FileManager.createDirectory(absoluteDirectoryPath: directoryPath)
         }
         
         if createdDirectory {
@@ -80,18 +80,18 @@ public extension FileManager {
      
      If the directory doesn't exist it will be created.
      
-     - Parameter absolutePath: absolute path/directory-structure that will be created.
+     - Parameter absoluteDirectoryPath: absolute path/directory-structure that will be created.
      
      - Returns: Bool - true if creation was successful, false otherwise.
      */
-    @objc(cfm_createDirectoryAtPath:)
+    @objc(cfm_createDirectoryAtAbsoluteDirectoryPath:)
     @discardableResult
-    public class func createDirectoryAtPath(_ absoluteDirectoryPath: String) -> Bool {
+    public class func createDirectory(absoluteDirectoryPath: String) -> Bool {
         guard absoluteDirectoryPath.characters.count > 0 else {
             return false
         }
         
-        let absoluteDirectoryURL = self.fileURLForPath(absoluteDirectoryPath)
+        let absoluteDirectoryURL = self.fileURL(absolutePath: absoluteDirectoryPath)
         
         do {
             try FileManager.default.createDirectory(at: absoluteDirectoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -112,7 +112,7 @@ public extension FileManager {
      - Returns: Bool - YES if file exists, NO if file doesn't exist.
      */
     @objc(cfm_fileExistsAtPath:)
-    public class func fileExistsAtPath(_ absolutePath: String) -> Bool {
+    public class func fileExists(absolutePath: String) -> Bool {
         return FileManager.default.fileExists(atPath: absolutePath)
     }
    
@@ -123,12 +123,12 @@ public extension FileManager {
      - Parameter completion: a block that will be executed upon determining if a file exists or not.
      */
     @objc(cfm_fileExistsAtPath:completion:)
-    public class func fileExistsAtPath(_ absolutePath: String, completion:((_ fileExists: Bool) -> Void)?) {
+    public class func fileExists(absolutePath: String, completion:((_ fileExists: Bool) -> Void)?) {
         //Used to return the call on the same thread
         let callBackQueue = OperationQueue.current
         
         DispatchQueue.global(qos: .background).async {
-            let fileExists = FileManager.fileExistsAtPath(absolutePath)
+            let fileExists = FileManager.fileExists(absolutePath: absolutePath)
             
             callBackQueue?.addOperation({
                 if completion != nil {
@@ -149,12 +149,12 @@ public extension FileManager {
      */
     @objc(cfm_deleteDataAtPath:)
     @discardableResult
-    public class func deleteDataAtPath(_ absolutePath: String) -> Bool {
+    public class func deleteData(absolutePath: String) -> Bool {
         guard absolutePath.characters.count > 0 else {
             return false
         }
         
-        let absoluteURL = self.fileURLForPath(absolutePath)
+        let absoluteURL = self.fileURL(absolutePath: absolutePath)
         
         do {
             try FileManager.default.removeItem(at: absoluteURL)
@@ -175,7 +175,7 @@ public extension FileManager {
      - Returns: Combined URL.
      */
     @objc(cfm_fileURLForPath:)
-    public class func fileURLForPath(_ absolutePath: String) -> URL {
+    public class func fileURL(absolutePath: String) -> URL {
         return URL(fileURLWithPath: absolutePath)
     }
     
@@ -191,22 +191,22 @@ public extension FileManager {
      */
     @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
     @discardableResult
-    public class func moveFile(_ sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
+    public class func moveFile(sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
         guard sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 else {
             return false
         }
         
-        let destinationAbsoluteURL = self.fileURLForPath(destinationAbsolutePath)
+        let destinationAbsoluteURL = self.fileURL(absolutePath: destinationAbsolutePath)
         let destinationAbsoluteDirectoryPath = destinationAbsoluteURL.deletingLastPathComponent().path
         
         var createdDirectory = true
         
         if  FileManager.default.fileExists(atPath: destinationAbsoluteDirectoryPath) {
-            createdDirectory = FileManager.createDirectoryAtPath(destinationAbsoluteDirectoryPath)
+            createdDirectory = FileManager.createDirectory(absoluteDirectoryPath: destinationAbsoluteDirectoryPath)
         }
         
         if createdDirectory {
-            let sourceAbsoluteURL = self.fileURLForPath(sourceAbsolutePath)
+            let sourceAbsoluteURL = self.fileURL(absolutePath: sourceAbsolutePath)
             
             do {
                 try FileManager.default.moveItem(at: sourceAbsoluteURL, to: destinationAbsoluteURL)

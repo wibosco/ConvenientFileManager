@@ -1,5 +1,5 @@
 //
-//  NSFileManager+CFMCache.swift
+//  NSFileManager+Cache.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.
@@ -40,8 +40,8 @@ public extension FileManager {
      
      - Returns: Combined path.
      */
-    @objc(cfm_cacheDirectoryPathForResourceWithPath:)
-    public class func cacheDirectoryPathForResourceWithPath(_ relativePath: String) -> String {
+    @objc(cfm_cacheDirectoryPathForResourceWithRelativePath:)
+    public class func cacheDirectoryPathForResource(relativePath: String) -> String {
         guard relativePath.characters.count > 0 else {
             return FileManager.cacheDirectoryPath()
         }
@@ -62,9 +62,9 @@ public extension FileManager {
      
      - Returns: Bool if save was successful.
      */
-    @objc(cfm_saveData:toCacheDirectoryPath:)
+    @objc(cfm_saveData:toCacheDirectoryRelativePath:)
     @discardableResult
-    public class func saveDataToCacheDirectory(_ data: Data, relativePath: String) -> Bool{
+    public class func saveDataToCacheDirectory(data: Data, relativePath: String) -> Bool{
         guard relativePath.characters.count > 0 && data.count > 0 else {
             return false
         }
@@ -72,7 +72,7 @@ public extension FileManager {
         let cacheDirectory = FileManager.cacheDirectoryURL()
         let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.saveData(data, absolutePath: absolutePath)
+        return FileManager.saveData(data: data, absolutePath: absolutePath)
     }
     
     //MARK: Retrieval
@@ -84,8 +84,8 @@ public extension FileManager {
      
      - Returns: NSData that was retrieved.
      */
-    @objc(cfm_retrieveDataFromCacheDirectoryWithPath:)
-    public class func retrieveDataFromCacheDirectory(_ relativePath: String) -> Data? {
+    @objc(cfm_retrieveDataFromCacheDirectoryWithRelativePath:)
+    public class func retrieveDataFromCacheDirectory(relativePath: String) -> Data? {
         guard relativePath.characters.count > 0 else {
             return nil
         }
@@ -93,7 +93,7 @@ public extension FileManager {
         let cacheDirectory = FileManager.cacheDirectoryURL()
         let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.retrieveDataAtPath(absolutePath)
+        return FileManager.retrieveData(absolutePath: absolutePath)
     }
     
     //MARK: Exists
@@ -105,8 +105,8 @@ public extension FileManager {
      
      - Returns: Bool - true if file exists, false if file doesn't exist.
      */
-    @objc(cfm_fileExistsInCacheDirectory:)
-    public class func fileExistsInCacheDirectory(_ relativePath: String) -> Bool {
+    @objc(cfm_fileExistsInCacheDirectoryWithRelativePath:)
+    public class func fileExistsInCacheDirectory(relativePath: String) -> Bool {
         guard relativePath.characters.count > 0 else {
             return false
         }
@@ -114,7 +114,7 @@ public extension FileManager {
         let cacheDirectory = FileManager.cacheDirectoryURL()
         let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.fileExistsAtPath(absolutePath)
+        return FileManager.fileExists(absolutePath: absolutePath)
     }
     
     //MARK: Deletion
@@ -126,9 +126,9 @@ public extension FileManager {
      
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
-    @objc(cfm_deleteDataFromCacheDirectoryWithPath:)
+    @objc(cfm_deleteDataFromCacheDirectoryWithRelativePath:)
     @discardableResult
-    public class func deleteDataFromCacheDirectory(_ relativePath: String) -> Bool {
+    public class func deleteDataFromCacheDirectory(relativePath: String) -> Bool {
         guard relativePath.characters.count > 0  else{
             return false
         }
@@ -136,6 +136,6 @@ public extension FileManager {
         let cacheDirectory = FileManager.cacheDirectoryURL()
         let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.deleteDataAtPath(absolutePath)
+        return FileManager.deleteData(absolutePath: absolutePath)
     }
 }

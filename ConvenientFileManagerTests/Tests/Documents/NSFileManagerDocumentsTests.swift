@@ -55,18 +55,18 @@ class NSFileManagerCFMDocumentsTests: XCTestCase {
     }
     
     override func tearDown() {
-        if FileManager.fileExistsAtPath(self.resource) {
-            FileManager.deleteDataAtPath(self.resource)
+        if FileManager.fileExists(absolutePath: self.resource) {
+            FileManager.deleteData(absolutePath: self.resource)
         }
         
-        if FileManager.fileExistsAtPath(self.resourceWithFolder) {
-            FileManager.deleteDataAtPath(self.resourceWithFolder)
+        if FileManager.fileExists(absolutePath: self.resourceWithFolder) {
+            FileManager.deleteData(absolutePath: self.resourceWithFolder)
         }
         
-        let documentsTestFolder = FileManager.documentsDirectoryPathForResourceWithPath(self.testFolder)
+        let documentsTestFolder = FileManager.documentsDirectoryPathForResource(relativePath: self.testFolder)
         
-        if FileManager.fileExistsAtPath(documentsTestFolder) {
-            FileManager.deleteDataAtPath(documentsTestFolder)
+        if FileManager.fileExists(absolutePath: documentsTestFolder) {
+            FileManager.deleteData(absolutePath: documentsTestFolder)
         }
         
         super.tearDown()
@@ -84,21 +84,21 @@ class NSFileManagerCFMDocumentsTests: XCTestCase {
     
     func test_documentsDirectoryPathForResourceWithPath_fullPathToResource() {
         let expectedDocumentsDirectoryPath = (self.documentsDirectoryURL.path) + "/" + self.resource
-        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResourceWithPath(self.resource)
+        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResource(relativePath: self.resource)
         
         XCTAssertEqual(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, "Paths returned do not match: \(returnedDocumentsDirectoryPath) and \(expectedDocumentsDirectoryPath)")
     }
     
     func test_documentsDirectoryPathForResourceWithPath_fullPathToResourceWithFolder() {
         let expectedDocumentsDirectoryPath = (self.documentsDirectoryURL.path) + "/" + self.resourceWithFolder
-        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResourceWithPath(self.resourceWithFolder)
+        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResource(relativePath: self.resourceWithFolder)
         
         XCTAssertEqual(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, "Paths returned do not match: \(returnedDocumentsDirectoryPath) and \(expectedDocumentsDirectoryPath)")
     }
     
     func test_documentsDirectoryPathForResourceWithPath_emptyResource() {
         let expectedDocumentsDirectoryPath = (self.documentsDirectoryURL.path)
-        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResourceWithPath("")
+        let returnedDocumentsDirectoryPath = FileManager.documentsDirectoryPathForResource(relativePath: "")
         
         XCTAssertEqual(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, "Paths returned do not match: \(returnedDocumentsDirectoryPath) and \(expectedDocumentsDirectoryPath)")
     }
@@ -106,59 +106,59 @@ class NSFileManagerCFMDocumentsTests: XCTestCase {
     //MARK: Saving
     
     func test_saveData_fileOnDisk() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resource)
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(self.resource)
+        let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resource)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
     func test_saveData_successfulSaveReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resource)
+        let saved = FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         XCTAssertTrue(saved, "Successful save of data should return TRUE")
     }
     
     func test_saveData_failedSaveEmptyDataReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(self.emptyData, relativePath: self.resource)
+        let saved = FileManager.saveDataToDocumentsDirectory(data: self.emptyData, relativePath: self.resource)
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
     func test_saveData_failedSaveNilResourceReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: "")
+        let saved = FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: "")
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
     func test_saveData_fileOnDiskWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
-        let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(self.resourceWithFolder)!
+        let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)");
     }
     
     //MARK: Retrieval
     
-    func test_retrieveDataFromDocumentsDirectoryWithPath_dataReturned() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_retrieveDataFromDocumentsDirectory_dataReturned() {
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(self.resource)!
-        
-        XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
-    }
-    
-    func test_retrieveDataFromDocumentsDirectoryWithPath_dataReturnedWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
-        
-        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(self.resourceWithFolder)!
+        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resource)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
     }
     
-    func test_retrieveDataFromDocumentsDirectoryWithPath_emptyDataWithNilResource() {
-        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory("")
+    func test_retrieveDataFromDocumentsDirectory_dataReturnedWithFolder() {
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        
+        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)!
+        
+        XCTAssertEqual(self.dataToBeSaved, dataThatWasRetrieved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasRetrieved)");
+    }
+    
+    func test_retrieveDataFromDocumentsDirectory_emptyDataWithNilResource() {
+        let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: "")
         
         XCTAssertNil(dataThatWasRetrieved, "Data should be nil for an empty path parameter")
     }
@@ -168,57 +168,57 @@ class NSFileManagerCFMDocumentsTests: XCTestCase {
     func test_fileExistsInDocumentsDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
         
-        let fileExists = FileManager.fileExistsInDocumentsDirectory(resourceThatDoesNotExist)
+        let fileExists = FileManager.fileExistsInDocumentsDirectory(relativePath: resourceThatDoesNotExist)
         
         XCTAssertFalse(fileExists, "File does not exist and should be returned as FALSE")
     }
     
     func test_fileExistsInDocumentsDirectory_falseReturnValueForEmptyParameter() {
-        let fileExists = FileManager.fileExistsInDocumentsDirectory("")
+        let fileExists = FileManager.fileExistsInDocumentsDirectory(relativePath: "")
         
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
     //MARK: Deleting
     
-    func test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFile() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_deleteDataFromDocumentsDirectory_deletesSavedFile() {
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        FileManager.deleteDataFromDocumentsDirectory(self.resource)
+        FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resource)
         
-        let fileExists = FileManager.fileExistsInDocumentsDirectory(self.resource)
+        let fileExists = FileManager.fileExistsInDocumentsDirectory(relativePath: self.resource)
         
         XCTAssertFalse(fileExists, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }
     
-    func test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFileReturnValue() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resource)
+    func test_deleteDataFromDocumentsDirectory_deletesSavedFileReturnValue() {
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
-        let deleted = FileManager.deleteDataFromDocumentsDirectory(self.resource)
+        let deleted = FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resource)
         
         XCTAssertTrue(deleted, "File should not exist as file should have been deleted, this call should be returned as TRUE")
     }
     
-    func test_deleteDataFromDocumentsDirectoryWithPath_falseReturnValueForFileThatDoesNotExist() {
+    func test_deleteDataFromDocumentsDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
         
-        let deleted = FileManager.deleteDataFromDocumentsDirectory(resourceThatDoesNotExist)
+        let deleted = FileManager.deleteDataFromDocumentsDirectory(relativePath: resourceThatDoesNotExist)
         
         XCTAssertFalse(deleted, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }
     
-    func test_deleteDataFromDocumentsDirectoryWithPath_falseReturnValueForEmptyParameter() {
-        let deleted = FileManager.deleteDataFromDocumentsDirectory("")
+    func test_deleteDataFromDocumentsDirectory_falseReturnValueForEmptyParameter() {
+        let deleted = FileManager.deleteDataFromDocumentsDirectory(relativePath: "")
         
         XCTAssertFalse(deleted, "Deletion should return FALSE as the resource is empty")
     }
     
-    func test_deleteDataFromDocumentsDirectoryWithPath_deletesSavedFileWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(self.dataToBeSaved, relativePath: self.resourceWithFolder)
+    func test_deleteDataFromDocumentsDirectory_deletesSavedFileWithFolder() {
+        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
-        FileManager.deleteDataFromDocumentsDirectory(self.resourceWithFolder)
+        FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)
         
-        let fileExists = FileManager.fileExistsInDocumentsDirectory(self.resourceWithFolder)
+        let fileExists = FileManager.fileExistsInDocumentsDirectory(relativePath: self.resourceWithFolder)
         
         XCTAssertFalse(fileExists, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }

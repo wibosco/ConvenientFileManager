@@ -40,8 +40,8 @@ public extension FileManager {
      
      - Returns: Combined path.
      */
-    @objc(cfm_documentsDirectoryPathForResourceWithPath:)
-    public class func documentsDirectoryPathForResourceWithPath(_ relativePath: String) -> String {
+    @objc(cfm_documentsDirectoryPathForResourceWithRelativePath:)
+    public class func documentsDirectoryPathForResource(relativePath: String) -> String {
         guard relativePath.characters.count > 0 else {
             return FileManager.documentsDirectoryPath()
         }
@@ -62,9 +62,9 @@ public extension FileManager {
      
      - Returns: Bool if save was successful.
      */
-    @objc(cfm_saveData:toDocumentsDirectoryPath:)
+    @objc(cfm_saveData:toDocumentsDirectoryRelativePath:)
     @discardableResult
-    public class func saveDataToDocumentsDirectory(_ data: Data, relativePath: String) -> Bool {
+    public class func saveDataToDocumentsDirectory(data: Data, relativePath: String) -> Bool {
         guard relativePath.characters.count > 0 && data.count > 0 else {
             return false
         }
@@ -72,7 +72,7 @@ public extension FileManager {
         let documentsDirectory = FileManager.documentsDirectoryURL()
         let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.saveData(data, absolutePath: absolutePath)
+        return FileManager.saveData(data: data, absolutePath: absolutePath)
     }
     
     //MARK: Retrieval
@@ -84,8 +84,8 @@ public extension FileManager {
      
      - Returns: NSData that was retrieved or nil if it's not found.
      */
-    @objc(cfm_retrieveDataFromDocumentsDirectoryWithPath:)
-    public class func retrieveDataFromDocumentsDirectory(_ relativePath: String) -> Data? {
+    @objc(cfm_retrieveDataFromDocumentsDirectoryWithRelativePath:)
+    public class func retrieveDataFromDocumentsDirectory(relativePath: String) -> Data? {
         guard relativePath.characters.count > 0 else {
             return nil
         }
@@ -93,7 +93,7 @@ public extension FileManager {
         let documentsDirectory = FileManager.documentsDirectoryURL()
         let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.retrieveDataAtPath(absolutePath)
+        return FileManager.retrieveData(absolutePath: absolutePath)
     }
     
     //MARK: Exists
@@ -105,8 +105,8 @@ public extension FileManager {
      
      - Returns: Bool - true if file exists, false if file doesn't exist.
      */
-    @objc(cfm_fileExistsInDocumentsDirectory:)
-    public class func fileExistsInDocumentsDirectory(_ relativePath: String) -> Bool {
+    @objc(cfm_fileExistsInDocumentsDirectoryWithRelativePath:)
+    public class func fileExistsInDocumentsDirectory(relativePath: String) -> Bool {
         guard relativePath.characters.count > 0 else {
             return false
         }
@@ -114,7 +114,7 @@ public extension FileManager {
         let documentsDirectory = FileManager.documentsDirectoryURL()
         let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.fileExistsAtPath(absolutePath)
+        return FileManager.fileExists(absolutePath: absolutePath)
     }
     
     //MARK: Deletion
@@ -126,9 +126,9 @@ public extension FileManager {
      
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
-    @objc(cfm_deleteDataFromDocumentsDirectoryWithPath:)
+    @objc(cfm_deleteDataFromDocumentsDirectoryWithRelativePath:)
     @discardableResult
-    public class func deleteDataFromDocumentsDirectory(_ relativePath: String) -> Bool {
+    public class func deleteDataFromDocumentsDirectory(relativePath: String) -> Bool {
         guard relativePath.characters.count > 0 else {
             return false
         }
@@ -136,6 +136,6 @@ public extension FileManager {
         let documentsDirectory = FileManager.documentsDirectoryURL()
         let absolutePath = documentsDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.deleteDataAtPath(absolutePath)
+        return FileManager.deleteData(absolutePath: absolutePath)
     }
 }
