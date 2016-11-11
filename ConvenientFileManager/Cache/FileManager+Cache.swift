@@ -1,5 +1,5 @@
 //
-//  NSFileManager+Cache.swift
+//  FileManager+Cache.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.

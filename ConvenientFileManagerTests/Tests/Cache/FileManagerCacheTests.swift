@@ -1,5 +1,5 @@
 //
-//  NSFileManagerCFMCacheTests.swift
+//  FileManagerCFMCacheTests.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class NSFileManagerCFMCacheTests: XCTestCase {
+class FileManagerCFMCacheTests: XCTestCase {
     
     //MARK: Accessors
     

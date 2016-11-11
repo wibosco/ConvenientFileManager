@@ -1,5 +1,5 @@
 //
-//  NSFileManager+Persistence.swift
+//  FileManager+Persistence.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.

@@ -1,5 +1,5 @@
 //
-//  NSFileManagerCFMPersistenceTests.swift
+//  FileManagerCFMPersistenceTests.swift
 //  ConvenientFileManager
 //
 //  Created by William Boles on 29/03/2016.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class NSFileManagerCFMPersistenceTests: XCTestCase {
+class FileManagerCFMPersistenceTests: XCTestCase {
 
     //MARK: Accessor
     
