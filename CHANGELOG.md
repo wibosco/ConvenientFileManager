@@ -4,9 +4,18 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [3.0.0](https://github.com/wibosco/ConvenientFileManager/releases/tag/3.0.0)
+
+* Updated project to use Swift 3.0
+* Added named first parameters
+* Implemented `guard` rather than `if` statements
+* Renamed `save` methods to `write` to use the termnology already present in the `Data` class
+* Dropped prefix from extension filename
+* Dropped support for iOS 8
+
 ## [2.0.8](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.8)
 
-* Updated project to using Swift 2.3
+* Updated project to use Swift 2.3
 
 ## [2.0.7](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.7)
 
@@ -19,7 +28,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0.5](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.5)
 
-* Reduced minimum iOS version to 8.0
+* Dropped support for iOS 7
 
 ## [2.0.4](https://github.com/wibosco/ConvenientFileManager/releases/tag/2.0.4)
 

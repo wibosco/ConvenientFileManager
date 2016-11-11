@@ -20,7 +20,7 @@ public extension FileManager {
      
      - Returns: NSData that was retrieved or nil.
      */
-    @objc(cfm_retrieveDataAtPath:)
+    @objc(cfm_retrieveDataAtAbsolutePath:)
     public class func retrieveData(absolutePath: String) -> Data? {
         guard absolutePath.characters.count > 0 else {
             return nil
@@ -111,7 +111,7 @@ public extension FileManager {
      
      - Returns: Bool - YES if file exists, NO if file doesn't exist.
      */
-    @objc(cfm_fileExistsAtPath:)
+    @objc(cfm_fileExistsAtAbsolutePath:)
     public class func fileExists(absolutePath: String) -> Bool {
         return FileManager.default.fileExists(atPath: absolutePath)
     }
@@ -122,7 +122,7 @@ public extension FileManager {
      - Parameter absolutePath: absolute path to the file.
      - Parameter completion: a block that will be executed upon determining if a file exists or not.
      */
-    @objc(cfm_fileExistsAtPath:completion:)
+    @objc(cfm_fileExistsAtAbsolutePath:completion:)
     public class func fileExists(absolutePath: String, completion:((_ fileExists: Bool) -> Void)?) {
         //Used to return the call on the same thread
         let callBackQueue = OperationQueue.current
@@ -147,7 +147,7 @@ public extension FileManager {
      
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
-    @objc(cfm_deleteDataAtPath:)
+    @objc(cfm_deleteDataAtAbsolutePath:)
     @discardableResult
     public class func deleteData(absolutePath: String) -> Bool {
         guard absolutePath.characters.count > 0 else {
@@ -174,7 +174,7 @@ public extension FileManager {
      
      - Returns: Combined URL.
      */
-    @objc(cfm_fileURLForPath:)
+    @objc(cfm_fileURLForAbsolutePath:)
     public class func fileURL(absolutePath: String) -> URL {
         return URL(fileURLWithPath: absolutePath)
     }
@@ -189,7 +189,7 @@ public extension FileManager {
      
      - Returns: Bool - true if move was successful, false otherwise.
      */
-    @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
+    @objc(cfm_moveFileFromSourceAbsolutePath:toDestinationAbsolutePath:)
     @discardableResult
     public class func moveFile(sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
         guard sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 else {
