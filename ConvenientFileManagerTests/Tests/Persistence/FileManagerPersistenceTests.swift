@@ -10,7 +10,7 @@ import XCTest
 
 class FileManagerCFMPersistenceTests: XCTestCase {
 
-    //MARK: Accessor
+    //MARK: - Accessor
     
     var dataToBeSaved: Data = {
         let dataToSaved = "Test string to be converted into data".data(using: String.Encoding.utf8)
@@ -78,13 +78,13 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         return absoluteDestinationPathWithSpaceInFilename
     }()
     
-    //MARK: TestSuiteLifecycle
+    //MARK: - TestSuiteLifecycle
     
     override func setUp() {
         super.setUp()
         
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absoluteSourcePath)
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absoluteSourcePathWithSpaceInFilename)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absoluteSourcePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absoluteSourcePathWithSpaceInFilename)
     }
     
     override func tearDown() {
@@ -136,7 +136,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         super.tearDown()
     }
 
-    //MARK: URL
+    //MARK: - URL
     
     func test_fileURL_url() {
         let expectedURL = URL(fileURLWithPath: self.absolutePath)
@@ -145,51 +145,51 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         XCTAssertEqual(returnedURL, expectedURL, "URLs returned do not match: \(returnedURL) and \(expectedURL)")
     }
     
-    //MARK Saving
+    //MARK: - Write
     
-    func test_saveData_fileOnDisk() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+    func test_write_fileOnDisk() {
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let dataThatWasSaved = FileManager.retrieveData(absolutePath: self.absolutePath)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
-    func test_saveData_fileOnDiskWithSpaceInFilename() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePathWithSpaceInFilename)
+    func test_write_fileOnDiskWithSpaceInFilename() {
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePathWithSpaceInFilename)
         
         let dataThatWasSaved = FileManager.retrieveData(absolutePath: self.absolutePathWithSpaceInFilename)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
-    func test_saveData_successfulSaveReturnValue() {
-        let saved = FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+    func test_write_successfulSaveReturnValue() {
+        let saved = FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         XCTAssertTrue(saved, "Successful save of data should return TRUE")
     }
     
-    func test_saveData_failedSaveEmptyDataReturnValue() {
-        let saved = FileManager.saveData(data: self.emptyData, absolutePath: self.absolutePath)
+    func test_write_failedSaveEmptyDataReturnValue() {
+        let saved = FileManager.write(data: self.emptyData, absolutePath: self.absolutePath)
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE")
     }
 
-    func test_saveData_failedSaveEmptyPathReturnValue() {
-        let saved = FileManager.saveData(data: self.dataToBeSaved, absolutePath: "")
+    func test_write_failedSaveEmptyPathReturnValue() {
+        let saved = FileManager.write(data: self.dataToBeSaved, absolutePath: "")
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE")
     }
     
-    func test_saveData_fileOnDiskWithDirectoryCreation() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePathWithAdditionalDirectory)
+    func test_write_fileOnDiskWithDirectoryCreation() {
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePathWithAdditionalDirectory)
         
         let dataThatWasSaved = FileManager.retrieveData(absolutePath: self.absolutePathWithAdditionalDirectory)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
-    //MARK: Directory
+    //MARK: - Directory
     
     func test_createDirectory_directoryCreatedWithFile() {
         FileManager.createDirectory(absoluteDirectoryPath: self.absolutePathWithAdditionalDirectory)
@@ -219,10 +219,10 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         XCTAssertFalse(directoryCreated, "FALSE should be returned when not path is provided")
     }
 
-    //MARK: FileExists
+    //MARK: - FileExists
     
     func test_fileExists_trueReturnValue() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let fileExists = FileManager.fileExists(absolutePath:  self.absolutePath)
         
@@ -230,7 +230,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
     }
     
     func test_fileExists_trueReturnValueWithSpaceInFilename() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePathWithoutFile)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePathWithoutFile)
         
         let fileExists = FileManager.fileExists(absolutePath:  self.absolutePathWithoutFile)
         
@@ -251,10 +251,10 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
-    //MARK FileExistsAsync
+    //MARK: - FileExistsAsync
     
     func test_fileExistsAsync_trueReturnValue() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let expectation = self.expectation(description: "Handler called")
         
@@ -291,7 +291,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
     }
     
     func test_fileExistsAsync_returnedOnCallerThread() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let expectation = self.expectation(description: "Handler called")
         
@@ -305,10 +305,10 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
     
-    //MARK: Deletion
+    //MARK: - Deletion
     
     func test_deleteData_deletesSavedFile() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         FileManager.deleteData(absolutePath: self.absolutePath)
         
@@ -318,7 +318,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
     }
     
     func test_deleteData_deletesSavedFileReturnValue() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePath)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePath)
         
         let deleted = FileManager.deleteData(absolutePath: self.absolutePath)
         
@@ -340,7 +340,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
     }
     
     func test_deleteData_deletesSavedFileWithFolder() {
-        FileManager.saveData(data: self.dataToBeSaved, absolutePath: self.absolutePathWithAdditionalDirectory)
+        FileManager.write(data: self.dataToBeSaved, absolutePath: self.absolutePathWithAdditionalDirectory)
         
         FileManager.deleteData(absolutePath: self.absolutePathWithAdditionalDirectory)
         
@@ -349,7 +349,7 @@ class FileManagerCFMPersistenceTests: XCTestCase {
         XCTAssertFalse(fileExists, "File should not exist as file should have been deleted, this call should be returned as FALSE")
     }
     
-    //MARK: Move
+    //MARK: - Move
     
     func test_moveFileFromSourcePath_fileMoved() {
         FileManager.moveFile(sourceAbsolutePath: self.absoluteSourcePath, destinationAbsolutePath: self.absoluteDestinationPath)

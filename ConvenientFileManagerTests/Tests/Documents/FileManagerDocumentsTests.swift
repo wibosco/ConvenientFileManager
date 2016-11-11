@@ -10,7 +10,7 @@ import XCTest
 
 class FileManagerCFMDocumentsTests: XCTestCase {
 
-    //MARK: Accessors
+    //MARK: - Accessors
     
     lazy var dataToBeSaved: Data = {
         let dataToSaved = "Test string to be converted into data".data(using: String.Encoding.utf8)
@@ -48,7 +48,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
         return documentsDirectoryURL!
     }()
     
-    //MARK: TestSuiteLifecycle
+    //MARK: - TestSuiteLifecycle
     
     override func setUp() {
         super.setUp()
@@ -72,7 +72,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
         super.tearDown()
     }
     
-    //MARK: Path
+    //MARK: - Path
     
     func test_documentsDirectoryPath_fullPathToDocumentsDirectory() {
         let expectedDocumentsDirectoryPath = self.documentsDirectoryURL.path
@@ -103,46 +103,46 @@ class FileManagerCFMDocumentsTests: XCTestCase {
         XCTAssertEqual(returnedDocumentsDirectoryPath, expectedDocumentsDirectoryPath, "Paths returned do not match: \(returnedDocumentsDirectoryPath) and \(expectedDocumentsDirectoryPath)")
     }
     
-    //MARK: Saving
+    //MARK: - Write
     
-    func test_saveData_fileOnDisk() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+    func test_write_fileOnDisk() {
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resource)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
-    func test_saveData_successfulSaveReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+    func test_write_successfulSaveReturnValue() {
+        let saved = FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         XCTAssertTrue(saved, "Successful save of data should return TRUE")
     }
     
-    func test_saveData_failedSaveEmptyDataReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(data: self.emptyData, relativePath: self.resource)
+    func test_write_failedSaveEmptyDataReturnValue() {
+        let saved = FileManager.writeToDocumentsDirectory(data: self.emptyData, relativePath: self.resource)
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
-    func test_saveData_failedSaveNilResourceReturnValue() {
-        let saved = FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: "")
+    func test_write_failedSaveNilResourceReturnValue() {
+        let saved = FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: "")
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
-    func test_saveData_fileOnDiskWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+    func test_write_fileOnDiskWithFolder() {
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         let dataThatWasSaved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)");
     }
     
-    //MARK: Retrieval
+    //MARK: - Retrieval
     
     func test_retrieveDataFromDocumentsDirectory_dataReturned() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resource)!
         
@@ -150,7 +150,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
     }
     
     func test_retrieveDataFromDocumentsDirectory_dataReturnedWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         let dataThatWasRetrieved = FileManager.retrieveDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)!
         
@@ -163,7 +163,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
         XCTAssertNil(dataThatWasRetrieved, "Data should be nil for an empty path parameter")
     }
     
-    //MARK: FileExists
+    //MARK: - FileExists
     
     func test_fileExistsInDocumentsDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
@@ -179,10 +179,10 @@ class FileManagerCFMDocumentsTests: XCTestCase {
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
-    //MARK: Deleting
+    //MARK: - Deleting
     
     func test_deleteDataFromDocumentsDirectory_deletesSavedFile() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resource)
         
@@ -192,7 +192,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
     }
     
     func test_deleteDataFromDocumentsDirectory_deletesSavedFileReturnValue() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let deleted = FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resource)
         
@@ -214,7 +214,7 @@ class FileManagerCFMDocumentsTests: XCTestCase {
     }
     
     func test_deleteDataFromDocumentsDirectory_deletesSavedFileWithFolder() {
-        FileManager.saveDataToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.writeToDocumentsDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         FileManager.deleteDataFromDocumentsDirectory(relativePath: self.resourceWithFolder)
         

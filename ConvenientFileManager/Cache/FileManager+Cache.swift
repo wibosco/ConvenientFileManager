@@ -11,7 +11,7 @@ import Foundation
  /// A collection of helper functions for common operations in the cache directory.
 public extension FileManager {
     
-    //MARK: Cache
+    //MARK: - Cache
     
     /**
      Path of cache directory.
@@ -52,19 +52,19 @@ public extension FileManager {
         return absoluteURL.path
     }
     
-    //MARK: Saving
+    //MARK: - Write
     
     /**
-     Save data to path in cache directory.
+     Write/Save data to path in cache directory.
      
      - Parameter data: data to be saved.
      - Parameter relativePath: relative path that will be combined cache path.
      
      - Returns: Bool if save was successful.
      */
-    @objc(cfm_saveData:toCacheDirectoryRelativePath:)
+    @objc(cfm_writeData:toCacheDirectoryWithRelativePath:)
     @discardableResult
-    public class func saveDataToCacheDirectory(data: Data, relativePath: String) -> Bool{
+    public class func writeToCacheDirectory(data: Data, relativePath: String) -> Bool{
         guard relativePath.characters.count > 0 && data.count > 0 else {
             return false
         }
@@ -72,10 +72,10 @@ public extension FileManager {
         let cacheDirectory = FileManager.cacheDirectoryURL()
         let absolutePath = cacheDirectory.appendingPathComponent(relativePath).path
         
-        return FileManager.saveData(data: data, absolutePath: absolutePath)
+        return FileManager.write(data: data, absolutePath: absolutePath)
     }
     
-    //MARK: Retrieval
+    //MARK: - Retrieval
     
     /**
      Retrieve data to path in cache directory.
@@ -96,7 +96,7 @@ public extension FileManager {
         return FileManager.retrieveData(absolutePath: absolutePath)
     }
     
-    //MARK: Exists
+    //MARK: - Exists
     
     /**
      Determines if a file exists at path in the cache directory
@@ -117,7 +117,7 @@ public extension FileManager {
         return FileManager.fileExists(absolutePath: absolutePath)
     }
     
-    //MARK: Deletion
+    //MARK: - Deletion
     
     /**
      Delete data from path in cache directory.

@@ -11,7 +11,7 @@ import Foundation
 /// A collection of helper functions for common operations when dealing with the file manager.
 public extension FileManager {
     
-    //MARK: Retrieving
+    //MARK: - Retrieving
     
     /**
      Retrieve data to path in document directory.
@@ -34,10 +34,10 @@ public extension FileManager {
         }
     }
     
-    //MARK: Saving
+    //MARK: - Write
     
     /**
-     Save data to path on filesystem.
+     Write/Save data to path on filesystem.
      
      If the directory doesn't exist it will be created.
      
@@ -46,9 +46,9 @@ public extension FileManager {
      
      - Returns: BOOL if save was successful.
      */
-    @objc(cfm_saveData:toAbsolutePath:)
+    @objc(cfm_writeData:toAbsolutePath:)
     @discardableResult
-    public class func saveData(data: Data, absolutePath: String) -> Bool {
+    public class func write(data: Data, absolutePath: String) -> Bool {
         guard data.count > 0 && absolutePath.characters.count > 0 else {
             return false
         }
@@ -64,7 +64,7 @@ public extension FileManager {
         
         if createdDirectory {
             do {
-                try data.write(to: absoluteURL, options: NSData.WritingOptions.atomic)
+                try data.write(to: absoluteURL, options: .atomic)
                 return true
             } catch {
                 print("Error when saving data at location: \(absolutePath). The error was: \(error)")
@@ -102,7 +102,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: Exists
+    //MARK: - Exists
     
     /**
      Determines if a file exists at path.
@@ -138,7 +138,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: Deletion
+    //MARK: - Deletion
     
     /**
      Delete data from path.
@@ -165,7 +165,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: URL
+    //MARK: - URL
     
     /**
      URL of resource in directory.
@@ -179,7 +179,7 @@ public extension FileManager {
         return URL(fileURLWithPath: absolutePath)
     }
     
-    //MARK: Move
+    //MARK: - Move
     
     /**
      Moves a file from a source location to a destination location.

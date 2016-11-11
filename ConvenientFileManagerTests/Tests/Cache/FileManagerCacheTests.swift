@@ -10,7 +10,7 @@ import XCTest
 
 class FileManagerCFMCacheTests: XCTestCase {
     
-    //MARK: Accessors
+    //MARK: - Accessors
     
     lazy var dataToBeSaved: Data = {
         let dataToSaved = "Test string to be converted into data".data(using: String.Encoding.utf8)
@@ -48,7 +48,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         return cachedDirectoryURL!
     }()
     
-    //MARK: TestSuiteLifecycle
+    //MARK: - TestSuiteLifecycle
     
     override func setUp() {
         super.setUp()
@@ -72,7 +72,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         super.tearDown()
     }
     
-    //MARK: Path
+    //MARK: - Path
     
     func test_cacheDirectoryPath_fullPathToCacheDirectory() {
         let expectedCacheDirectoryPath = self.cachedDirectoryURL.path
@@ -103,46 +103,46 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
     
-    //MARK: Saving
+    //MARK: - Write
     
-    func test_saveData_fileOnDisk() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+    func test_write_fileOnDisk() {
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resource)
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
     }
     
-    func test_saveData_successfulSaveReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+    func test_write_successfulSaveReturnValue() {
+        let saved = FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         XCTAssertTrue(saved, "Successful save of data should return TRUE")
     }
     
-    func test_saveData_failedSaveEmptyDataReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(data: self.emptyData, relativePath: self.resource)
+    func test_write_failedSaveEmptyDataReturnValue() {
+        let saved = FileManager.writeToCacheDirectory(data: self.emptyData, relativePath: self.resource)
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
    
-    func test_saveData_failedSaveNilResourceReturnValue() {
-        let saved = FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: "")
+    func test_write_failedSaveNilResourceReturnValue() {
+        let saved = FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: "")
         
         XCTAssertFalse(saved, "Failed save of data should return FALSE");
     }
     
-    func test_saveData_fileOnDiskWithFolder() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+    func test_write_fileOnDiskWithFolder() {
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resourceWithFolder)!
         
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)");
     }
     
-    //MARK: Retrieval
+    //MARK: - Retrieval
     
     func test_retrieveDataFromCacheDirectory_dataReturned() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resource)!
         
@@ -150,7 +150,7 @@ class FileManagerCFMCacheTests: XCTestCase {
     }
     
     func test_retrieveDataFromCacheDirectory_dataReturnedWithFolder() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         let dataThatWasRetrieved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resourceWithFolder)!
         
@@ -163,7 +163,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertNil(dataThatWasRetrieved, "Data should be nil for an empty path parameter")
     }
     
-    //MARK: FileExists
+    //MARK: - FileExists
     
     func test_fileExistsInCacheDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
@@ -179,10 +179,10 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
-    //MARK: Deleting 
+    //MARK: - Deleting 
     
     func test_deleteDataFromCacheDirectory_deletesSavedFile() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         FileManager.deleteDataFromCacheDirectory(relativePath: self.resource)
         
@@ -192,7 +192,7 @@ class FileManagerCFMCacheTests: XCTestCase {
     }
     
     func test_deleteDataFromCacheDirectory_deletesSavedFileReturnValue() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
        let deleted = FileManager.deleteDataFromCacheDirectory(relativePath: self.resource)
         
@@ -214,7 +214,7 @@ class FileManagerCFMCacheTests: XCTestCase {
     }
 
     func test_deleteDataFromCacheDirectory_deletesSavedFileWithFolder() {
-        FileManager.saveDataToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
+        FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resourceWithFolder)
         
         FileManager.deleteDataFromCacheDirectory(relativePath: self.resourceWithFolder)
         
