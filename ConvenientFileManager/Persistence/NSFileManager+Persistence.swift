@@ -44,6 +44,7 @@ public extension FileManager {
      - Returns: BOOL if save was successful.
      */
     @objc(cfm_saveData:toPath:)
+    @discardableResult
     public class func saveData(_ data: Data, absolutePath: String) -> Bool {
         var success = true
         
@@ -84,6 +85,7 @@ public extension FileManager {
      - Returns: Bool - true if creation was successful, false otherwise.
      */
     @objc(cfm_createDirectoryAtPath:)
+    @discardableResult
     public class func createDirectoryAtPath(_ absoluteDirectoryPath: String) -> Bool {
         var createdDirectory = true
         
@@ -149,6 +151,7 @@ public extension FileManager {
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
     @objc(cfm_deleteDataAtPath:)
+    @discardableResult
     public class func deleteDataAtPath(_ absolutePath: String) -> Bool {
         var deleted = true
         
@@ -193,6 +196,7 @@ public extension FileManager {
      - Returns: Bool - true if move was successful, false otherwise.
      */
     @objc(cfm_moveFileFromSourcePath:toDestinationPath:)
+    @discardableResult
     public class func moveFile(_ sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
         var moved = true
         

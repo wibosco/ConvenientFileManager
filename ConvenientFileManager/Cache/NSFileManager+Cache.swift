@@ -67,6 +67,7 @@ public extension FileManager {
      - Returns: Bool if save was successful.
      */
     @objc(cfm_saveData:toCacheDirectoryPath:)
+    @discardableResult
     public class func saveDataToCacheDirectory(_ data: Data, relativePath: String) -> Bool{
         var saved = false
         
@@ -138,6 +139,7 @@ public extension FileManager {
      - Returns: Bool - true if deletion was successful, false otherwise.
      */
     @objc(cfm_deleteDataFromCacheDirectoryWithPath:)
+    @discardableResult
     public class func deleteDataFromCacheDirectory(_ relativePath: String) -> Bool {
         var deleted = false
         
