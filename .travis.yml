@@ -3,4 +3,4 @@ language: objective-c
 osx_image: xcode8
    
 script: 
-   xcodebuild -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager test -sdk iphonesimulator
+ xcodebuild -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager test -destination 'platform=iOS Simulator,name=iPhone 6'
