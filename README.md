@@ -27,7 +27,7 @@ $ pod install
 
 ##Usage
 
-ConvenientFileManager comes with convenience methods for the `Documents` (`NSFileManager+CFMDocuments.h`) and `Cache` (`NSFileManager+CFMCache`) folders in your app sandbox. These methods will prefix the relevant path on the one provided for accessing data however you may already have the absolute path and wish to use that instead, in which case you should use `NSFileManager+CFMPersistence`.
+ConvenientFileManager comes with convenience methods for the `Documents` (`FileManager+Documents`) and `Cache` (`FileManager+Cache`) directories in your app sandbox. These methods will prefix the relevant path on the one provided for accessing data however you may already have the absolute path and wish to use that instead, in which case you should use `FileManager+Persistence`.
 
 ####Writing/Saving
 
@@ -49,11 +49,6 @@ func writeImageToDisk(image: UIImage) {
 ######Objective-C
 
 ```objc
-#import <ConvenientFileManager/FileManager+Cache.h>
-#import <ConvenientFileManager/FileManager+Documents.h>
-
-....
-
 - (void)writeImageToDisk:(UIImage *)image
 {
     NSData *imageData = UIImagePNGRepresentation(image);
@@ -102,11 +97,6 @@ func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
 ######Objective-C
 
 ```objc
-#import <ConvenientFileManager/FileManager+Cache.h>
-#import <ConvenientFileManager/FileManager+Documents.h>
-
-....
-
 - (UIImage *)retrieveImageFromMedia:(CFEMedia *)media
 {
     NSData *imageData = nil;
@@ -149,11 +139,6 @@ func trashButtonPressed(sender: UIBarButtonItem) {
 ######Objective-C
 
 ```objc
-#import <ConvenientFileManager/FileManager+Cache.h>
-#import <ConvenientFileManager/FileManager+Documents.h>
-
-....
-
 - (void)trashButtonPressed:(UIBarButtonItem *)sender
 {
     switch (self.media.location.integerValue)
@@ -198,11 +183,6 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 ######Objective-C
 
 ```objc
-#import <ConvenientFileManager/FileManager+Cache.h>
-#import <ConvenientFileManager/FileManager+Documents.h>
-
-....
-
 - (BOOL)mediaAssetHasBeenDownloaded:(CFEMedia *)media
 {
 	BOOL mediaAssetHasBeenDownloaded = NO;
@@ -244,11 +224,6 @@ NSFileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fi
 ######Objective-C
 
 ```objc
-
-#import <ConvenientFileManager/FileManager+Persistence.h>
-
-...
-
 [NSFileManager cfm_fileExistsAtAbsolutePath:self.media.absoluteLocalPath
                                  completion:^(BOOL fileExists)
  {
