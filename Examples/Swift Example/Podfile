@@ -1,0 +1,12 @@
+platform :ios, "9.0"
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+inhibit_all_warnings!
+
+target 'SwiftExample' do	
+	pod 'ConvenientFileManager', '3.0.0'
+	pod 'CoreDataServices', '3.1.0'
+	pod 'PureLayout'
+end

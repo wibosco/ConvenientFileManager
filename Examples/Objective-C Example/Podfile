@@ -6,7 +6,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'iOSExample' do	
-	pod 'ConvenientFileManager'
+	pod 'ConvenientFileManager', '2.0.8'
 	pod 'CoreDataServices'
 	pod 'PureLayout'
 end

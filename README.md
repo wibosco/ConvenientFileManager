@@ -264,7 +264,7 @@ NSFileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fi
 ```
 
 
-> ConvenientFileManager comes with an [example project](https://github.com/wibosco/ConvenientFileManager/tree/master/Example/iOS%20Example) to provide more details than listed above.
+> ConvenientFileManager comes with an [example project](https://github.com/wibosco/ConvenientFileManager/tree/master/Examples/Swift%20Example) to provide more details than listed above.
 
 > ConvenientFileManager uses [modules](http://useyourloaf.com/blog/modules-and-precompiled-headers.html) for importing/using frameworks - you will need to enable this in your project.
 
