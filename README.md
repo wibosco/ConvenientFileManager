@@ -6,7 +6,7 @@
 
 ConvenientFileManager is a suite of categories to ease using `NSFileManager` for common tasks.
 
-##Installation via [CocoaPods](https://cocoapods.org/)
+## Installation via [CocoaPods](https://cocoapods.org/)
 
 To integrate ConvenientFileManager into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -25,13 +25,13 @@ $ pod install
 
 > CocoaPods 0.39.0+ is required to build ConvenientFileManager.
 
-##Usage
+## Usage
 
 ConvenientFileManager comes with convenience methods for the `Documents` (`FileManager+Documents`) and `Cache` (`FileManager+Cache`) directories in your app sandbox. These methods will prefix the relevant path on the one provided for accessing data however you may already have the absolute path and wish to use that instead, in which case you should use `FileManager+Persistence`.
 
-####Writing/Saving
+#### Writing/Saving
 
-######Swift
+###### Swift
 
 ```swift
 func writeImageToDisk(image: UIImage) {
@@ -46,7 +46,7 @@ func writeImageToDisk(image: UIImage) {
 }
 ```
 
-######Objective-C
+###### Objective-C
 
 ```objc
 - (void)writeImageToDisk:(UIImage *)image
@@ -71,9 +71,9 @@ func writeImageToDisk(image: UIImage) {
 }
 ```
 
-####Retrieving
+#### Retrieving
 
-######Swift
+###### Swift
 
 ```swift
 func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
@@ -94,7 +94,7 @@ func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
 }
 ```
 
-######Objective-C
+###### Objective-C
 
 ```objc
 - (UIImage *)retrieveImageFromMedia:(CFEMedia *)media
@@ -121,9 +121,9 @@ func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
 }
 ```
 
-####Deleting
+#### Deleting
 
-######Swift
+###### Swift
 
 ```swift
 func trashButtonPressed(sender: UIBarButtonItem) {
@@ -136,7 +136,7 @@ func trashButtonPressed(sender: UIBarButtonItem) {
 }
 ```
 
-######Objective-C
+###### Objective-C
 
 ```objc
 - (void)trashButtonPressed:(UIBarButtonItem *)sender
@@ -159,11 +159,11 @@ func trashButtonPressed(sender: UIBarButtonItem) {
 }
 ```
 
-####Exists
+#### Exists
 
 **Synchronously**
 
-######Swift
+###### Swift
 
 ```swift
 func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
@@ -180,7 +180,7 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 }
 ```
 
-######Objective-C
+###### Objective-C
 
 ```objc
 - (BOOL)mediaAssetHasBeenDownloaded:(CFEMedia *)media
@@ -209,7 +209,7 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 
 **Asynchronously**
 
-######Swift
+###### Swift
 
 ```swift
 NSFileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fileExists) in
@@ -221,7 +221,7 @@ NSFileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fi
     }
 ```
 
-######Objective-C
+###### Objective-C
 
 ```objc
 [NSFileManager cfm_fileExistsAtAbsolutePath:self.media.absoluteLocalPath
