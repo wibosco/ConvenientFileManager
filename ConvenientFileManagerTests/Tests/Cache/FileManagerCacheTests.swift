@@ -10,7 +10,7 @@ import XCTest
 
 class FileManagerCFMCacheTests: XCTestCase {
     
-    //MARK: - Accessors
+    // MARK: - Accessors
     
     lazy var dataToBeSaved: Data = {
         let dataToSaved = "Test string to be converted into data".data(using: String.Encoding.utf8)
@@ -48,7 +48,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         return cachedDirectoryURL!
     }()
     
-    //MARK: - TestSuiteLifecycle
+    // MARK: - TestSuiteLifecycle
     
     override func setUp() {
         super.setUp()
@@ -72,7 +72,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         super.tearDown()
     }
     
-    //MARK: - Path
+    // MARK: - Path
     
     func test_cacheDirectoryPath_fullPathToCacheDirectory() {
         let expectedCacheDirectoryPath = self.cachedDirectoryURL.path
@@ -103,14 +103,14 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertEqual(returnedCacheDirectoryPath, expectedCacheDirectoryPath, "Paths returned do not match: \(returnedCacheDirectoryPath) and \(expectedCacheDirectoryPath)")
     }
     
-    //MARK: - Write
+    // MARK: - Write
     
     func test_write_fileOnDisk() {
         FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
         
         let dataThatWasSaved = FileManager.retrieveDataFromCacheDirectory(relativePath: self.resource)
         
-        XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)")
+        XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(String(describing: dataThatWasSaved))")
     }
     
     func test_write_successfulSaveReturnValue() {
@@ -139,7 +139,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertEqual(self.dataToBeSaved, dataThatWasSaved, "Data returned do not match: \(self.dataToBeSaved) and \(dataThatWasSaved)");
     }
     
-    //MARK: - Retrieval
+    // MARK: - Retrieval
     
     func test_retrieveDataFromCacheDirectory_dataReturned() {
         FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
@@ -163,7 +163,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertNil(dataThatWasRetrieved, "Data should be nil for an empty path parameter")
     }
     
-    //MARK: - FileExists
+    // MARK: - FileExists
     
     func test_fileExistsInCacheDirectory_falseReturnValueForFileThatDoesNotExist() {
         let resourceThatDoesNotExist = "unknown.jpg"
@@ -179,7 +179,7 @@ class FileManagerCFMCacheTests: XCTestCase {
         XCTAssertFalse(fileExists, "Empty parameter and should be returned as FALSE")
     }
     
-    //MARK: - Deleting 
+    // MARK: - Deleting 
     
     func test_deleteDataFromCacheDirectory_deletesSavedFile() {
         FileManager.writeToCacheDirectory(data: self.dataToBeSaved, relativePath: self.resource)
