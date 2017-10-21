@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ConvenientFileManager"
-  s.version      = "3.0.0"
+  s.version      = "4.0.0"
   s.summary      = "A suite of extensions to ease using FileManager for common tasks."
 
   s.homepage     = "http://www.williamboles.me"
