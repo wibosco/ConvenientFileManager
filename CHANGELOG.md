@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ## [4.0.0](https://github.com/wibosco/ConvenientFileManager/releases/tag/4.0.0)
 
 * Updated project to use Swift 4.0
+* Introduced `fastlane` to ease CI configuration
 
 ## [3.0.0](https://github.com/wibosco/ConvenientFileManager/releases/tag/3.0.0)
 
