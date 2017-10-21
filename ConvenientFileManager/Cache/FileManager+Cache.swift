@@ -11,7 +11,7 @@ import Foundation
  /// A collection of helper functions for common operations in the cache directory.
 public extension FileManager {
     
-    //MARK: - Cache
+    // MARK: - Cache
     
     /**
      Path of cache directory.
@@ -52,7 +52,7 @@ public extension FileManager {
         return absoluteURL.path
     }
     
-    //MARK: - Write
+    // MARK: - Write
     
     /**
      Write/Save data to path in cache directory.
@@ -75,7 +75,7 @@ public extension FileManager {
         return FileManager.write(data: data, absolutePath: absolutePath)
     }
     
-    //MARK: - Retrieval
+    // MARK: - Retrieval
     
     /**
      Retrieve data to path in cache directory.
@@ -96,7 +96,7 @@ public extension FileManager {
         return FileManager.retrieveData(absolutePath: absolutePath)
     }
     
-    //MARK: - Exists
+    // MARK: - Exists
     
     /**
      Determines if a file exists at path in the cache directory
@@ -117,7 +117,7 @@ public extension FileManager {
         return FileManager.fileExists(absolutePath: absolutePath)
     }
     
-    //MARK: - Deletion
+    // MARK: - Deletion
     
     /**
      Delete data from path in cache directory.

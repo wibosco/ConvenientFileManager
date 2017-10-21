@@ -1,6 +1,12 @@
-language: objective-c
+ language: objective-c
 
-osx_image: xcode8
-   
-script: 
- xcodebuild -project ConvenientFileManager.xcodeproj -scheme ConvenientFileManager test -destination 'platform=iOS Simulator,name=iPhone 6'
+cache:
+  - bundler
+
+osx_image: xcode9
+
+before_install:
+   - bundle install
+
+script:
+   - bundle exec fastlane run_tests  --verbose

@@ -11,7 +11,7 @@ import Foundation
 /// A collection of helper functions for common operations when dealing with the file manager.
 public extension FileManager {
     
-    //MARK: - Retrieving
+    // MARK: - Retrieving
     
     /**
      Retrieve data to path in document directory.
@@ -34,7 +34,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: - Write
+    // MARK: - Write
     
     /**
      Write/Save data to path on filesystem.
@@ -102,7 +102,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: - Exists
+    // MARK: - Exists
     
     /**
      Determines if a file exists at path.
@@ -138,7 +138,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: - Deletion
+    // MARK: - Deletion
     
     /**
      Delete data from path.
@@ -165,7 +165,7 @@ public extension FileManager {
         }
     }
     
-    //MARK: - URL
+    // MARK: - URL
     
     /**
      URL of resource in directory.
@@ -179,7 +179,7 @@ public extension FileManager {
         return URL(fileURLWithPath: absolutePath)
     }
     
-    //MARK: - Move
+    // MARK: - Move
     
     /**
      Moves a file from a source location to a destination location.
