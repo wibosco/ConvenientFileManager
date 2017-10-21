@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [4.0.1](https://github.com/wibosco/ConvenientFileManager/releases/tag/4.0.1)
+
+* Added cocoapod version to gem file
+
 ## [4.0.0](https://github.com/wibosco/ConvenientFileManager/releases/tag/4.0.0)
 
 * Updated project to use Swift 4.0
