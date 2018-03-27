@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [4.0.2](https://github.com/wibosco/ConvenientFileManager/releases/tag/4.0.2)
+
+* Updated examples to use development pods
+
 ## [4.0.1](https://github.com/wibosco/ConvenientFileManager/releases/tag/4.0.1)
 
 * Added cocoapod version to gem file
@@ -67,7 +71,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.2](https://github.com/wibosco/ConvenientFileManager/releases/tag/1.0.2)
 
 * Added asynchronous method for checking if file exists
-* Improvement documention 
+* Improvement documention
 * Improvement parameter names to better reflect their purpose
 * Added support for Travis CI
 
