@@ -5,6 +5,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 inhibit_all_warnings!
 
-target 'ObjectiveCExample' do	
-	pod 'ConvenientFileManager'
+target 'ObjectiveCExample' do
+	pod 'ConvenientFileManager', :path => '../../'
 end
