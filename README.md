@@ -215,12 +215,12 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 
 ```swift
 FileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fileExists) in
-        if (!fileExists) {
-            //Yay!
-        } else {
-            //Boo!
-        }
+    if (!fileExists) {
+        //Yay!
+    } else {
+        //Boo!
     }
+}
 ```
 
 ###### Objective-C
