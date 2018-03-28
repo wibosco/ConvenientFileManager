@@ -187,7 +187,7 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 ```objc
 - (BOOL)mediaAssetHasBeenDownloaded:(CFEMedia *)media
 {
-	BOOL mediaAssetHasBeenDownloaded = NO;
+    BOOL mediaAssetHasBeenDownloaded = NO;
 
     switch (self.media.location.integerValue)
     {
@@ -245,7 +245,7 @@ FileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (file
 
 > ConvenientFileManager uses [modules](http://useyourloaf.com/blog/modules-and-precompiled-headers.html) for importing/using frameworks - you will need to enable this in your project.
 
-##Found an issue?
+## Found an issue?
 
 Please open a [new Issue here](https://github.com/wibosco/ConvenientFileManager/issues/new) if you run into a problem specific to ConvenientFileManager, have a feature request, or want to share a comment. Note that general NSFileManager questions should be asked on [Stack Overflow](http://stackoverflow.com).
 
