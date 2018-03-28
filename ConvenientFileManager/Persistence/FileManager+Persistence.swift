@@ -22,7 +22,7 @@ public extension FileManager {
      */
     @objc(cfm_retrieveDataAtAbsolutePath:)
     public class func retrieveData(absolutePath: String) -> Data? {
-        guard absolutePath.characters.count > 0 else {
+        guard absolutePath.count > 0 else {
             return nil
         }
         
@@ -49,7 +49,7 @@ public extension FileManager {
     @objc(cfm_writeData:toAbsolutePath:)
     @discardableResult
     public class func write(data: Data, absolutePath: String) -> Bool {
-        guard data.count > 0 && absolutePath.characters.count > 0 else {
+        guard data.count > 0 && absolutePath.count > 0 else {
             return false
         }
         
@@ -87,7 +87,7 @@ public extension FileManager {
     @objc(cfm_createDirectoryAtAbsoluteDirectoryPath:)
     @discardableResult
     public class func createDirectory(absoluteDirectoryPath: String) -> Bool {
-        guard absoluteDirectoryPath.characters.count > 0 else {
+        guard absoluteDirectoryPath.count > 0 else {
             return false
         }
         
@@ -150,7 +150,7 @@ public extension FileManager {
     @objc(cfm_deleteDataAtAbsolutePath:)
     @discardableResult
     public class func deleteData(absolutePath: String) -> Bool {
-        guard absolutePath.characters.count > 0 else {
+        guard absolutePath.count > 0 else {
             return false
         }
         
@@ -192,7 +192,7 @@ public extension FileManager {
     @objc(cfm_moveFileFromSourceAbsolutePath:toDestinationAbsolutePath:)
     @discardableResult
     public class func moveFile(sourceAbsolutePath: String, destinationAbsolutePath: String) -> Bool {
-        guard sourceAbsolutePath.characters.count > 0 && destinationAbsolutePath.characters.count > 0 else {
+        guard sourceAbsolutePath.count > 0 && destinationAbsolutePath.count > 0 else {
             return false
         }
         

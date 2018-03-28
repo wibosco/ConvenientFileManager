@@ -1,12 +1,16 @@
 PODS:
-  - ConvenientFileManager (3.0.0)
+  - ConvenientFileManager (4.0.1)
 
 DEPENDENCIES:
-  - ConvenientFileManager
+  - ConvenientFileManager (from `../../`)
+
+EXTERNAL SOURCES:
+  ConvenientFileManager:
+    :path: ../../
 
 SPEC CHECKSUMS:
-  ConvenientFileManager: 81dbcb7e4663ef9fc6c007f4248aeafefa099a0f
+  ConvenientFileManager: 4a6768a8697ffe1252c4f3b43158ed81dd52c253
 
-PODFILE CHECKSUM: 3d09fba45d45396c572328bdbba109d126f64bbf
+PODFILE CHECKSUM: 365f249f12bd7f6a3bee19260f54a4bbfd7ee1f1
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

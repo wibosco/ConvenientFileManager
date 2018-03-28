@@ -4,7 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/ConvenientFileManager.svg)](http://cocoapods.org/pods/ConvenientFileManager)
 
-ConvenientFileManager is a suite of categories to ease using `NSFileManager` for common tasks.
+ConvenientFileManager is a suite of categories to ease using `(NS)FileManager` for common tasks.
 
 ## Installation via [CocoaPods](https://cocoapods.org/)
 
@@ -27,7 +27,9 @@ $ pod install
 
 ## Usage
 
-ConvenientFileManager comes with convenience methods for the `Documents` (`FileManager+Documents`) and `Cache` (`FileManager+Cache`) directories in your app sandbox. These methods will prefix the relevant path on the one provided for accessing data however you may already have the absolute path and wish to use that instead, in which case you should use `FileManager+Persistence`.
+ConvenientFileManager comes with a suite of convenience methods for the `Documents` (`FileManager+Documents`) and `Cache` (`FileManager+Cache`) directories in your app's sandbox. These extensions/categories provide a streamlined interface for reading, writing and deleting data from these directories over what `(NS)FileManager` provides by removing some of the boilerplate around which directory you are using.
+
+Even if you already have the absolute path for reading, writing or deleting data you have access to the same suite of methods by using `FileManager+Persistence`.
 
 #### Writing/Saving
 
@@ -35,12 +37,12 @@ ConvenientFileManager comes with convenience methods for the `Documents` (`FileM
 
 ```swift
 func writeImageToDisk(image: UIImage) {
-    if let imageData =  UIImagePNGRepresentation(image) {
+    if let imageData = UIImagePNGRepresentation(image) {
         switch self.media.location.integerValue {
-        case .Cache:
-            NSFileManager.writeToCacheDirectory(data: imageData, relativePath: self.media.name)
-        case .Documents:
-            NSFileManager.writeDataToDocumentsDirectory(data: imageData, relativePath: self.media.name)
+        case .cache:
+            FileManager.writeToCacheDirectory(data: imageData, relativePath: self.media.name)
+        case .documents:
+            FileManager.writeDataToDocumentsDirectory(data: imageData, relativePath: self.media.name)
         }
     }
 }
@@ -52,19 +54,19 @@ func writeImageToDisk(image: UIImage) {
 - (void)writeImageToDisk:(UIImage *)image
 {
     NSData *imageData = UIImagePNGRepresentation(image);
-    
+
     switch (self.media.location.integerValue)
     {
         case CFEMediaLocationCache:
         {
             [NSFileManager cfm_writeData:imageData toCacheDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
         case CFEMediaLocationDocuments:
         {
             [NSFileManager cfm_writeData:imageData toDocumentsDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
     }
@@ -78,18 +80,18 @@ func writeImageToDisk(image: UIImage) {
 ```swift
 func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
     var retrievedData: NSData?
-    
+
     switch media.location.integerValue {
-    case .Cache:
-        retrievedData = NSFileManager.retrieveDataFromCacheDirectory(relativePath: media.name)
-    case .Documents:
-        retrievedData = NSFileManager.retrieveDataFromDocumentsDirectory(relativePath: media.name)
+    case .cache:
+        retrievedData = FileManager.retrieveDataFromCacheDirectory(relativePath: media.name)
+    case .documents:
+        retrievedData = FileManager.retrieveDataFromDocumentsDirectory(relativePath: media.name)
     }
-    
+
     guard let unwrappedRetrievedData = retrievedData else {
         return nil
     }
-    
+
     return UIImage.init(data: unwrappedRetrievedData)
 }
 ```
@@ -100,23 +102,23 @@ func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
 - (UIImage *)retrieveImageFromMedia:(CFEMedia *)media
 {
     NSData *imageData = nil;
-    
+
     switch (media.location.integerValue)
     {
         case CFEMediaLocationCache:
         {
             imageData = [NSFileManager cfm_retrieveDataFromCacheDirectoryWithRelativePath:media.name];
-            
+
             break;
         }
         case CFEMediaLocationDocuments:
         {
             imageData = [NSFileManager cfm_retrieveDataFromDocumentsDirectoryWithRelativePath:media.name];
-            
+
             break;
         }
     }
-    
+
     return [[UIImage alloc] initWithData:imageData];
 }
 ```
@@ -128,10 +130,10 @@ func retrieveImageFromMedia(media: CFEMedia) -> UIImage? {
 ```swift
 func trashButtonPressed(sender: UIBarButtonItem) {
     switch self.media.location.integerValue {
-    case .Cache:
-        NSFileManager.deleteDataFromCacheDirectory(relativePath: self.media.name)
-    case .Documents:
-        NSFileManager.deleteDataFromDocumentsDirectory(relativePath: self.media.name)
+    case .cache:
+        FileManager.deleteDataFromCacheDirectory(relativePath: self.media.name)
+    case .documents:
+        FileManager.deleteDataFromDocumentsDirectory(relativePath: self.media.name)
     }
 }
 ```
@@ -146,13 +148,13 @@ func trashButtonPressed(sender: UIBarButtonItem) {
         case CFEMediaLocationCache:
         {
             [NSFileManager cfm_deleteDataFromCacheDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
         case CFEMediaLocationDocuments:
         {
             [NSFileManager cfm_deleteDataFromDocumentDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
     }
@@ -168,12 +170,12 @@ func trashButtonPressed(sender: UIBarButtonItem) {
 ```swift
 func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
     var mediaAssetHasBeenDownloaded = false
-    
+
     switch self.media.location.integerValue {
-    case .Cache:
-        mediaAssetHasBeenDownloaded = NSFileManager.fileExistsInCacheDirectory(relativePath: self.media.name)
-    case .Documents:
-        mediaAssetHasBeenDownloaded = NSFileManager.fileExistsInDocumentsDirectory(relativePath: self.media.name)
+    case .cache:
+        mediaAssetHasBeenDownloaded = FileManager.fileExistsInCacheDirectory(relativePath: self.media.name)
+    case .documents:
+        mediaAssetHasBeenDownloaded = FileManager.fileExistsInDocumentsDirectory(relativePath: self.media.name)
     }
 
     return mediaAssetHasBeenDownloaded
@@ -192,17 +194,17 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
         case CFEMediaLocationCache:
         {
             mediaAssetHasBeenDownloaded = [NSFileManager cfm_fileExistsInCacheDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
         case CFEMediaLocationDocuments:
         {
             mediaAssetHasBeenDownloaded = [NSFileManager cfm_fileExistsInCacheDirectoryWithRelativePath:self.media.name];
-            
+
             break;
         }
     }
-    
+
     return mediaAssetHasBeenDownloaded;
 }
 ```
@@ -212,13 +214,13 @@ func mediaAssetHasBeenDownloaded(media: CFEMedia) -> Bool {
 ###### Swift
 
 ```swift
-NSFileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fileExists) in
-        if (!fileExists) {
-            //Yay!
-        } else {
-            //Boo!
-        }
+FileManager.fileExistsAtPath(absolutePath: self.media.absoluteLocalPath) { (fileExists) in
+    if (!fileExists) {
+        //Yay!
+    } else {
+        //Boo!
     }
+}
 ```
 
 ###### Objective-C

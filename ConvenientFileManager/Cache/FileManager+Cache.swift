@@ -42,7 +42,7 @@ public extension FileManager {
      */
     @objc(cfm_cacheDirectoryPathForResourceWithRelativePath:)
     public class func cacheDirectoryPathForResource(relativePath: String) -> String {
-        guard relativePath.characters.count > 0 else {
+        guard relativePath.count > 0 else {
             return FileManager.cacheDirectoryPath()
         }
         
@@ -65,7 +65,7 @@ public extension FileManager {
     @objc(cfm_writeData:toCacheDirectoryWithRelativePath:)
     @discardableResult
     public class func writeToCacheDirectory(data: Data, relativePath: String) -> Bool{
-        guard relativePath.characters.count > 0 && data.count > 0 else {
+        guard relativePath.count > 0 && data.count > 0 else {
             return false
         }
         
@@ -86,7 +86,7 @@ public extension FileManager {
      */
     @objc(cfm_retrieveDataFromCacheDirectoryWithRelativePath:)
     public class func retrieveDataFromCacheDirectory(relativePath: String) -> Data? {
-        guard relativePath.characters.count > 0 else {
+        guard relativePath.count > 0 else {
             return nil
         }
         
@@ -107,7 +107,7 @@ public extension FileManager {
      */
     @objc(cfm_fileExistsInCacheDirectoryWithRelativePath:)
     public class func fileExistsInCacheDirectory(relativePath: String) -> Bool {
-        guard relativePath.characters.count > 0 else {
+        guard relativePath.count > 0 else {
             return false
         }
         
@@ -129,7 +129,7 @@ public extension FileManager {
     @objc(cfm_deleteDataFromCacheDirectoryWithRelativePath:)
     @discardableResult
     public class func deleteDataFromCacheDirectory(relativePath: String) -> Bool {
-        guard relativePath.characters.count > 0  else{
+        guard relativePath.count > 0  else{
             return false
         }
         
