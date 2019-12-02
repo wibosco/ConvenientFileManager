@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/cocoapods/l/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
 [![Platform](https://img.shields.io/cocoapods/p/ConvenientFileManager.svg?style=flat)](http://cocoapods.org/pods/ConvenientFileManager)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/ConvenientFileManager.svg)](http://cocoapods.org/pods/ConvenientFileManager)
+<a href="https://twitter.com/wibosco"><img src="https://img.shields.io/badge/twitter-@wibosco-blue.svg?style=flat" alt="Twitter: @wibosco" /></a>
 
 ConvenientFileManager is a suite of categories to ease using `(NS)FileManager` for common tasks.
 
